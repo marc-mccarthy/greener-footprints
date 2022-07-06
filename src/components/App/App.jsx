@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Calculate from '../Calculate/Calculate';
 
 import './App.css';
 
@@ -67,6 +68,14 @@ function App() {
 					>
 						<InfoPage />
 					</ProtectedRoute>
+
+                    <ProtectedRoute
+                        // logged in shows Calculate else shows LoginPage
+                        exact
+                        path="/calculate"
+                    >
+                        <Calculate />
+                    </ProtectedRoute>
 
 					<Route exact path="/login">
 						{user.id ? (
