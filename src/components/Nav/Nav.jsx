@@ -12,8 +12,7 @@ function Nav() {
 	return (
 		<div className="nav">
 			<Link to="/home">
-				<h2 className="nav-title">Prime Solo Project</h2>
-                <h3>Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly</h3>
+                <h3 className="nav-title">Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly</h3>
 			</Link>
 			<div>
 				{/* If no user is logged in, show these links */}
@@ -38,6 +37,10 @@ function Nav() {
 						<Link className="navLink" to="/info">
 							Info Page
 						</Link>
+
+                        <Link className="navLink" to="/info">
+                            Documentation
+                        </Link>
 
 						<LogOutButton className="navLink" />
 					</>

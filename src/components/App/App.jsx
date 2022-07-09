@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Calculate from '../Calculate/Calculate';
+import Documentation from '../Documentation/Documentation';
 
 import './App.css';
 
@@ -48,6 +49,14 @@ function App() {
 					>
 						<AboutPage />
 					</Route>
+
+                    <Route
+                        // shows AboutPage at all times (logged in or not)
+                        exact
+                        path="/documentation"
+                    >
+                        <Documentation />
+                    </Route>
 
 					{/* For protected routes, the view could show one of several things on the same route.
                         Visiting localhost:3000/user will show the UserPage if the user is logged in.
