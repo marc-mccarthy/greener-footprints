@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "GET_DIRECTIONS_SAGA" actions
+// Worker Saga: will be fired on "VEHICLE_MAKES_SAGA" actions
 function* vehicleMakes(action) {
 	try {
         const vehicleMakes = yield axios({

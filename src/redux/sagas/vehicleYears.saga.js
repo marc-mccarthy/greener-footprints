@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// worker Saga: will be fired on "VEHICLE_MODELS_SAGA" actions
+// Worker Saga: will be fired on "VEHICLE_YEARS_SAGA" actions
 function* vehicleYears(action) {
     console.log('YEARS: ACTION.PAYLOAD', action.payload)
 	try {
         const vehicleYears = yield axios({
 			method: 'GET',
-			url: `https://www.carboninterface.com/api/v1/vehicle_makes/${action.payload}/vehicle_models`,
+			url: `https://www.carboninterface.com/api/v1/vehicle_makes/${action.payload.vehicleMake}/vehicle_models`,
 			headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer I72gDHzqfVLkuMsjO69Dg`,
