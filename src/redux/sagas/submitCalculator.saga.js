@@ -7,19 +7,19 @@ const directionsRenderer = new google.maps.DirectionsRenderer();
 function* submitCalculator(action) {
 	try {
         console.log('CALCULATOR: ACTION.PAYLOAD', action.payload);
-		const response = yield directionsService.route({
+		const routeResponse = yield directionsService.route({
 			origin: action.payload.startAddress,
 			destination: action.payload.endAddress,
 			provideRouteAlternatives: false,
-			travelMode: 'DRIVING',
-			unitSystem: google.maps.UnitSystem.IMPERIAL,
+            travelMode: 'DRIVING',
+            drivingOptions: {
+                departureTime: new Date(/* now, or future date */),
+                trafficModel: 'bestguess',
+            },
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
 		});
-        const distanceMiles = response.routes[0].legs[0].distance.value/1609.34;
-        console.log('DISTANCE MILES',distanceMiles);
-	    console.log('DURATION OF TRIP', response.routes[0].legs[0].duration.text);
-        console.log('START ADDRESS', response.routes[0].legs[0].start_address);
-        console.log('END ADDRESS', response.routes[0].legs[0].end_address);
-        const carbonApi = yield axios({
+
+        const carbonResponse = yield axios({
 			method: 'POST',
 			url: 'https://www.carboninterface.com/api/v1/estimates',
 			headers: {
@@ -29,11 +29,27 @@ function* submitCalculator(action) {
 			data: {
 				type: 'vehicle',
 				distance_unit: 'mi',
-				distance_value: distanceMiles,
-				vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9',
+				distance_value: routeResponse.routes[0].legs[0].distance.value/1609.34,
+				vehicle_model_id: action.payload.vehicleModel,
 			},
 		});
-        console.log(carbonApi.data);
+
+        axios.post('/api/directions', {
+			startAddress: routeResponse.routes[0].legs[0].start_address,
+			startLat: routeResponse.routes[0].legs[0].start_location.lat,
+			startLng: routeResponse.routes[0].legs[0].start_location.lng,
+			endAddress: routeResponse.routes[0].legs[0].end_address,
+			endLat: routeResponse.routes[0].legs[0].end_location.lat,
+			endLng: routeResponse.routes[0].legs[0].end_location.lng,
+			distanceMiles: routeResponse.routes[0].legs[0].distance.text,
+			duration: routeResponse.routes[0].legs[0].duration.text,
+			passengers: action.payload.passengers,
+			vehicleId: action.payload.vehicleModel,
+			routeResponse: routeResponse.routes[0],
+			carbonResponse: carbonResponse.data.attributes,
+		});
+        console.log('ROUTE RESULT:', routeResponse);
+        console.log('CARBON RESULT:', carbonResponse);
 	} catch (error) {
 		console.log('Error in submitCalculatorSaga:', error);
 	}

@@ -15,7 +15,6 @@ import VehicleModels from '../VehicleModels/VehicleModels';
 function Calculate(props) {
 	const dispatch = useDispatch();
 
-	/*
     const [formData, setFormData] = useState({
         startAddress: '',
         endAddress: '',
@@ -24,26 +23,11 @@ function Calculate(props) {
         vehicleYear: '',
         vehicleModel: '',
     });
-    */
-
-	const [startAddress, setStartAddress] = useState('');
-	const [endAddress, setEndAddress] = useState('');
-	const [passengers, setPassengers] = useState('');
-	const [vehicleMake, setVehicleMake] = useState('');
-	const [vehicleYear, setVehicleYear] = useState('');
-	const [vehicleModel, setVehicleModel] = useState('');
 
 	const readySetGo = () => {
 		dispatch({
 			type: 'SUBMIT_CALCULATOR',
-			payload: {
-				startAddress,
-				endAddress,
-				passengers,
-				vehicleMake,
-				vehicleYear,
-				vehicleModel,
-			},
+			payload: formData,
 		});
 	};
 
@@ -55,32 +39,28 @@ function Calculate(props) {
 			<form>
 				<Box sx={{ minWidth: 120 }}>
 					<AddressInput
-						setStartAddress={setStartAddress}
-						setEndAddress={setEndAddress}
+						formData={formData}
+						setFormData={setFormData}
 					/>
 
 					<Passengers
-						passengers={passengers}
-						setPassengers={setPassengers}
-					/>
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
 
 					<VehicleMakes
-						vehicleMake={vehicleMake}
-						setVehicleMake={setVehicleMake}
-						setVehicleYear={setVehicleYear}
-						setVehicleModel={setVehicleModel}
+						formData={formData}
+						setFormData={setFormData}
 					/>
 
 					<VehicleYears
-						vehicleYear={vehicleYear}
-						setVehicleYear={setVehicleYear}
-						vehicleMake={vehicleMake}
-						setVehicleModel={setVehicleModel}
+						formData={formData}
+						setFormData={setFormData}
 					/>
 
 					<VehicleModels
-						vehicleModel={vehicleModel}
-						setVehicleModel={setVehicleModel}
+						formData={formData}
+						setFormData={setFormData}
 					/>
 
 					<FormControl>

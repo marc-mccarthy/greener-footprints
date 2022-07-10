@@ -6,12 +6,15 @@ import {
 	Select,
 } from '@mui/material';
 
-function VehicleModels({ vehicleModel, setVehicleModel }) {
+function VehicleModels({ formData, setFormData }) {
 
     const vehicleModels = useSelector(store => store.vehicleModels);
 
     const vehicleModelsChange = e => {
-        setVehicleModel(e.target.value);
+        setFormData({
+			...formData,
+			vehicleModel: e.target.value,
+		});
         console.log('VEHICLE MODEL:', e.target.value)
 	};
 
@@ -22,7 +25,7 @@ function VehicleModels({ vehicleModel, setVehicleModel }) {
 			<Select
 				labelId='Select Model'
 				id='model'
-				value={vehicleModel}
+				value={formData.vehicleModel}
 				label='Model'
 				onChange={vehicleModelsChange}
 			>

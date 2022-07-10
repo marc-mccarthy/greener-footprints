@@ -7,7 +7,7 @@ import {
 	Select,
 } from '@mui/material';
 
-function Passengers({ passengers, setPassengers }) {
+function Passengers({ formData, setFormData }) {
 
     const maxPersons = [];
 	{
@@ -27,9 +27,11 @@ function Passengers({ passengers, setPassengers }) {
 			<Select
 				labelId='Select Passengers'
 				id='passengers'
-				value={passengers}
+				value={formData.passengers}
 				label='Passengers'
-				onChange={e => setPassengers(e.target.value)}
+				onChange={e =>
+					setFormData({ ...formData, passengers: e.target.value })
+				}
 			>
 				{maxPersons}
 			</Select>

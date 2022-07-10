@@ -7,7 +7,7 @@ import {
 	Select,
 } from '@mui/material';
 
-function VehicleMakes({ vehicleMake, setVehicleMake, setVehicleYear, setVehicleModel }) {
+function VehicleMakes({ formData, setFormData }) {
 
 	useEffect(() => {
 		dispatch({ type: 'VEHICLE_MAKES_SAGA' });
@@ -17,10 +17,13 @@ function VehicleMakes({ vehicleMake, setVehicleMake, setVehicleYear, setVehicleM
 	const vehicleMakes = useSelector(store => store.vehicleMakes);
 
 	const vehicleMakesChange = (e) => {
-		setVehicleMake(e.target.value);
+        setFormData({
+			...formData,
+			vehicleMake: e.target.value,
+			vehicleYear: '',
+			vehicleModel: '',
+		});
         console.log('VEHICLE MAKE:', e.target.value);
-        setVehicleYear('');
-        setVehicleModel('');
 		dispatch({ type: 'VEHICLE_YEARS_SAGA', payload: { vehicleMake: e.target.value } });
 	};
 
@@ -31,7 +34,7 @@ function VehicleMakes({ vehicleMake, setVehicleMake, setVehicleYear, setVehicleM
             <Select
                 labelId='Select Make'
                 id='make'
-                value={vehicleMake}
+                value={formData.vehicleMake}
                 label='Make'
                 onChange={vehicleMakesChange}
             >

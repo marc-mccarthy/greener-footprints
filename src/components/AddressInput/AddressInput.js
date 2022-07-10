@@ -7,20 +7,24 @@ import {
 	Select,
 } from '@mui/material';
 
-function AddressInput({ setStartAddress, setEndAddress }) {
+function AddressInput({ formData, setFormData }) {
 
 	return (
 		<FormControl fullWidth>
 			{/* START ADDRESS */}
 			<input
 				type='text'
-				onChange={e => setStartAddress(e.target.value)}
+				onChange={e =>
+					setFormData({ ...formData, startAddress: e.target.value })
+				}
 				placeholder='Starting Address'
 			/>
 			{/* END ADDRESS */}
 			<input
 				type='text'
-				onChange={e => setEndAddress(e.target.value)}
+				onChange={e =>
+					setFormData({ ...formData, endAddress: e.target.value })
+				}
 				placeholder='Ending Address'
 			/>
 		</FormControl>

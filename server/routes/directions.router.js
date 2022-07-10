@@ -7,7 +7,7 @@ require('dotenv').config();
  * GET route template
  */
 router.post('/', (req, res) => {
-    console.log(req.body.string);
+    console.log(req.body);
 });
 
 /**
