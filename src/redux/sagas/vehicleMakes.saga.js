@@ -12,6 +12,7 @@ function* vehicleMakes(action) {
                 "Authorization": `Bearer I72gDHzqfVLkuMsjO69Dg`,
 			},
 		});
+        console.log('MAKES DATA IN SAGA', vehicleMakes.data)
         yield put({ type: 'VEHICLE_MAKES', payload: vehicleMakes.data });
 	} catch (error) {
 		console.log('Error in vehicleMakes.saga:', error);

@@ -2,7 +2,7 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import sendDirectionsSaga from './directions.saga';
+import submitCalculatorSaga from './submitCalculator.saga';
 import vehicleMakesSaga from './vehicleMakes.saga';
 import vehicleYearsSaga from './vehicleYears.saga';
 import vehicleModelsSaga from './vehicleModels.saga';
@@ -19,7 +19,7 @@ export default function* rootSaga() {
 		loginSaga(), // login saga is now registered
 		registrationSaga(),
 		userSaga(),
-		sendDirectionsSaga(),
+		submitCalculatorSaga(),
         vehicleMakesSaga(),
         vehicleYearsSaga(),
         vehicleModelsSaga(),

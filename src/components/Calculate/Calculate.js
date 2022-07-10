@@ -1,39 +1,75 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Calculate.css';
+import {
+	Box,
+	Button,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+} from '@mui/material';
 
 function Calculate(props) {
+	useEffect(() => {
+		dispatch({ type: 'VEHICLE_MAKES_SAGA' });
+	}, []);
 
-    useEffect(() => {
-        dispatch({ type: 'VEHICLE_MAKES_SAGA' });
-    }, []);
-
-    const dispatch = useDispatch();
-    const vehicleMakes = useSelector(store => store.vehicleMakes);
-    const vehicleYears = useSelector(store => store.vehicleYears);
-    const vehicleModels = useSelector(store => store.vehicleModels);
+	const dispatch = useDispatch();
+	const vehicleMakes = useSelector(store => store.vehicleMakes);
+	const vehicleYears = useSelector(store => store.vehicleYears);
+	const vehicleModels = useSelector(store => store.vehicleModels);
 
 	const [startAddress, setStartAddress] = useState('');
 	const [endAddress, setEndAddress] = useState('');
+	const [modeOfTransport, setModeOfTransport] = useState('');
 	const [passengers, setPassengers] = useState('');
 	const [vehicleMake, setVehicleMake] = useState('');
-    const [vehicleYear, setVehicleYear] = useState('');
-    const [vehicleModel, setVehicleModel] = useState('');
+	const [vehicleYear, setVehicleYear] = useState('');
+	const [vehicleModel, setVehicleModel] = useState('');
 
-    const vehicleMakesChange = (e) => {
-        setVehicleMake(e.target.value);
-        dispatch({ type: 'VEHICLE_YEARS_SAGA', payload: vehicleMake });
-    }
+	let maxPersons = [];
+	{
+		for (let num = 0; num <= 10; num++) {
+			maxPersons.push(
+				<MenuItem key={num} value={num}>
+					{num}
+				</MenuItem>
+			);
+		}
+	}
 
-    const vehicleYearsChange = e => {
-		setVehicleYear(e.target.value);
-		dispatch({ type: 'VEHICLE_MODELS_SAGA', payload: { vehicleMake, vehicleYear }});
+	const vehicleMakesChange = e => {
+		setVehicleMake(e.target.value);
+		dispatch({ type: 'VEHICLE_YEARS_SAGA', payload: e.target.value });
 	};
 
-    const readySetGo = () => {
-        console.log(vehicleMake)
-        dispatch({ type: 'SEND_DIRECTIONS_SAGA', payload: { startAddress, endAddress, vehicle: 'DRIVING' } });
-    }
+	const vehicleYearsChange = e => {
+		setVehicleYear(e.target.value);
+		dispatch({
+			type: 'VEHICLE_MODELS_SAGA',
+			payload: { vehicleMake, vehicleYear: e.target.value },
+		});
+	};
+
+	const vehicleModelsChange = e => {
+		setVehicleModel(e.target.value);
+	};
+
+	const readySetGo = () => {
+		dispatch({
+			type: 'SUBMIT_CALCULATOR',
+			payload: {
+				startAddress,
+				endAddress,
+				modeOfTransport,
+				passengers,
+				vehicleMake,
+				vehicleYear,
+				vehicleModel,
+			},
+		});
+	};
 
 	return (
 		<div>
@@ -45,80 +81,123 @@ function Calculate(props) {
 						<h1>Greener Prints: Road Trip Edition</h1>
 					</div>
 					<form>
-						<div>
-							<input
-								type='text'
-								onChange={e => setStartAddress(e.target.value)}
-								placeholder='Starting Address'
-							/>
-							<input
-								type='text'
-								onChange={e => setEndAddress(e.target.value)}
-								placeholder='Ending Address'
-							/>
-						</div>
-						<div>
-							<select>
-								<option value='' disabled selected>
+						<Box sx={{ minWidth: 120 }}>
+							<FormControl fullWidth>
+								{/* START ADDRESS */}
+								<input
+									type='text'
+									onChange={e =>
+										setStartAddress(e.target.value)
+									}
+									placeholder='Starting Address'
+								/>
+								{/* END ADDRESS */}
+								<input
+									type='text'
+									onChange={e =>
+										setEndAddress(e.target.value)
+									}
+									placeholder='Ending Address'
+								/>
+							</FormControl>
+
+							{/* MODE OF TRANSPORT */}
+							<FormControl fullWidth>
+								<InputLabel id='mode'>
 									Mode of Transport
-								</option>
-								<option value='DRIVING'>Driving</option>
-								<option value='TRANSIT'>Transit</option>
-								<option value='WALKING'>Walking</option>
-								<option value='BICYCLING'>Bicycling</option>
-							</select>
-						</div>
-						<div>
-							<select onChange={vehicleMakesChange}>
-								<option value='' disabled selected>
-									Vehicle Makes
-								</option>
-                                    {vehicleMakes.map(make => (
-                                        <option
-                                            key={make.data.id}
-                                            value={make.data.id}
-                                        >
-                                            {make.data.attributes.name}
-                                        </option>
-                                    ))}
-							</select>
-							<select onChange={vehicleYearsChange}>
-								<option value='' disabled selected>
-									Vehicle Years
-								</option>
-                                    {vehicleYears.map(year => (
-                                        <option
-                                            key={year}
-                                            value={year}
-                                        >
-                                            {year}
-                                        </option>
-                                    ))}
-							</select>
-							<select>
-								<option value='' disabled selected>
-									Vehicle Models
-								</option>
-								{vehicleModels.map(model => (
-									<option
-										key={model.data.id}
-										value={model.data.id}
-									>
-										{model.data.attributes.name}
-									</option>
-								))}
-							</select>
-						</div>
-						<div>
-							<input
-								type='integer'
-								onChange={e => setPassengers(e.target.value)}
-								placeholder='Passenger Count'
-							/>
-						</div>
-						<div>
-							<button onClick={readySetGo}>Calculate</button>
-						</div>
+								</InputLabel>
+								<Select
+									labelId='Select Mode of Transport'
+									id='mode'
+									value={modeOfTransport}
+									label='Mode of Transport'
+									onChange={e =>
+										setModeOfTransport(e.target.value)
+									}
+								>
+									{maxPersons}
+								</Select>
+							</FormControl>
+
+							{/* PASSENGER COUNT */}
+							<FormControl fullWidth>
+								<InputLabel id='make'>Passengers</InputLabel>
+								<Select
+									labelId='Select Passengers'
+									id='passengers'
+									value={passengers}
+									label='Passengers'
+									onChange={e =>
+										setPassengers(e.target.value)
+									}
+								>
+									{maxPersons}
+								</Select>
+							</FormControl>
+
+							{/* VEHICLE MAKES */}
+							<FormControl fullWidth>
+								<InputLabel id='make'>Make</InputLabel>
+								<Select
+									labelId='Select Make'
+									id='make'
+									value={vehicleMake}
+									label='Make'
+									onChange={vehicleMakesChange}
+								>
+									{vehicleMakes.map(make => (
+										<MenuItem
+											key={make.data.id}
+											value={make.data.id}
+										>
+											{make.data.attributes.name}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+
+							{/* VEHICLE YEARS */}
+							<FormControl fullWidth>
+								<InputLabel id='year'>Year</InputLabel>
+								<Select
+									labelId='Select Year'
+									id='year'
+									value={vehicleYear}
+									label='Year'
+									onChange={vehicleYearsChange}
+								>
+									{vehicleYears.map(year => (
+										<MenuItem key={year} value={year}>
+											{year}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+
+							{/* VEHICLE MODELS */}
+							<FormControl fullWidth>
+								<InputLabel id='make'>Model</InputLabel>
+								<Select
+									labelId='Select Model'
+									id='model'
+									value={vehicleModel}
+									label='Model'
+									onChange={vehicleModelsChange}
+								>
+									{vehicleModels.map(model => (
+										<MenuItem
+											key={model.data.id}
+											value={model.data.id}
+										>
+											{model.data.attributes.name}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+							<FormControl>
+								<Button onClick={readySetGo}>Calculate</Button>
+							</FormControl>
+						</Box>
 					</form>
 				</div>
 			)}

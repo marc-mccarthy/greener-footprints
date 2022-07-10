@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "VEHICLE_MODELS_SAGA" actions
 function* vehicleModels(action) {
-    console.log(action.payload)
+    console.log('MODELS: ACTION.PAYLOAD', action.payload)
 	try {
         const vehicleModels = yield axios({
 			method: 'GET',
@@ -13,16 +13,22 @@ function* vehicleModels(action) {
                 "Authorization": `Bearer I72gDHzqfVLkuMsjO69Dg`,
 			},
 		});
-        let models = vehicleModels.data.map(model => {
+        let models = vehicleModels.data.filter(model => {
             let year = action.payload.vehicleYear;
             if (model.data.attributes.year === year) {
+                console.log('MODEL', model.data.attributes.name)
                 return model.data;
             }
-        })
-		// let uniqueModels = [...new Set(models)];
-        yield put({ type: 'VEHICLE_MODELS', payload: models });
+        });
+        console.log('MODELS DATA IN SAGA', models)
+        let key = 'name'
+        const uniqueModels = [
+			...new Map(models.map(model => [model.data.attributes[key], model])).values(),
+		];
+        console.log('UNIQUE MODELS DATA IN SAGA', uniqueModels);
+        yield put({ type: 'VEHICLE_MODELS', payload: uniqueModels });
 	} catch (error) {
-		console.log('Error in vehicleMakes.saga:', error);
+		console.log('Error in vehicleModels.saga:', error);
 	}
 }
 

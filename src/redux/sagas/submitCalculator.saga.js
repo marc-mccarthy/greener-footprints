@@ -1,22 +1,24 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 const directionsService = new google.maps.DirectionsService();
+const directionsRenderer = new google.maps.DirectionsRenderer();
 
-// worker Saga: will be fired on "GET_DIRECTIONS_SAGA" actions
-function* sendDirections(action) {
+// Worker Saga: will be fired on 'SUBMIT_CALCULATOR' actions
+function* submitCalculator(action) {
 	try {
+        console.log('CALCULATOR: ACTION.PAYLOAD', action.payload);
 		const response = yield directionsService.route({
 			origin: action.payload.startAddress,
 			destination: action.payload.endAddress,
 			provideRouteAlternatives: false,
-			travelMode: action.payload.vehicle,
+			travelMode: 'DRIVING',
 			unitSystem: google.maps.UnitSystem.IMPERIAL,
 		});
         const distanceMiles = response.routes[0].legs[0].distance.value/1609.34;
-        console.log(distanceMiles);
-	    const duration = response.routes[0].legs[0].duration.text;
-        const startAddress = response.routes[0].legs[0].start_address;
-        const endAddress = response.routes[0].legs[0].end_address;
+        console.log('DISTANCE MILES',distanceMiles);
+	    console.log('DURATION OF TRIP', response.routes[0].legs[0].duration.text);
+        console.log('START ADDRESS', response.routes[0].legs[0].start_address);
+        console.log('END ADDRESS', response.routes[0].legs[0].end_address);
         const carbonApi = yield axios({
 			method: 'POST',
 			url: 'https://www.carboninterface.com/api/v1/estimates',
@@ -31,14 +33,14 @@ function* sendDirections(action) {
 				vehicle_model_id: '7268a9b7-17e8-4c8d-acca-57059252afe9',
 			},
 		});
-        console.log(carbonApi.data.data.attributes);
+        console.log(carbonApi.data);
 	} catch (error) {
-		console.log('Error in sendDirectionsSaga:', error);
+		console.log('Error in submitCalculatorSaga:', error);
 	}
 }
 
-function* sendDirectionsSaga() {
-	yield takeLatest('SEND_DIRECTIONS_SAGA', sendDirections);
+function* submitCalculatorSaga() {
+	yield takeLatest('SUBMIT_CALCULATOR', submitCalculator);
 }
 
-export default sendDirectionsSaga;
+export default submitCalculatorSaga;
