@@ -19,8 +19,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import Calculate from '../Calculate/Calculate';
-import Documentation from '../Documentation/Documentation';
+import NewTrip from '../NewTrip/NewTrip';
+import History from '../History/History';
+import Charts from '../Charts/Charts';
+import Docs from '../Docs/Docs';
 
 import './App.css';
 
@@ -43,7 +45,7 @@ function App() {
 
 					{/* Visiting localhost:3000/about will show the about page. */}
 					<Route
-						// shows AboutPage at all times (logged in or not)
+						// shows About Page at all times (logged in or not)
 						exact
 						path="/about"
 					>
@@ -51,24 +53,48 @@ function App() {
 					</Route>
 
                     <Route
-                        // shows AboutPage at all times (logged in or not)
+                        // shows Docs Page at all times (logged in or not)
                         exact
-                        path="/documentation"
+                        path="/docs"
                     >
-                        <Documentation />
+                        <Docs />
                     </Route>
 
 					{/* For protected routes, the view could show one of several things on the same route.
                         Visiting localhost:3000/user will show the UserPage if the user is logged in.
                         If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
                         Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-					<ProtectedRoute
+                    <ProtectedRoute
+                        // logged in shows NewTrip else shows LoginPage
+                        exact
+                        path="/newtrip"
+                    >
+                        <NewTrip />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        // logged in shows Calculate else shows LoginPage
+                        exact
+                        path="/history"
+                    >
+                        <History />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
 						// logged in shows UserPage else shows LoginPage
 						exact
 						path="/user"
 					>
 						<UserPage />
 					</ProtectedRoute>
+
+                    <ProtectedRoute
+                        // logged in shows Calculate else shows LoginPage
+                        exact
+                        path="/charts"
+                    >
+                        <Charts />
+                    </ProtectedRoute>
 
 					<ProtectedRoute
 						// logged in shows InfoPage else shows LoginPage
@@ -77,14 +103,6 @@ function App() {
 					>
 						<InfoPage />
 					</ProtectedRoute>
-
-                    <ProtectedRoute
-                        // logged in shows Calculate else shows LoginPage
-                        exact
-                        path="/calculate"
-                    >
-                        <Calculate />
-                    </ProtectedRoute>
 
 					<Route exact path="/login">
 						{user.id ? (

@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import './Calculate.css';
+import { useDispatch, useSelector } from 'react-redux';
 import {
 	Box,
 	Button,
@@ -12,8 +11,9 @@ import VehicleMakes from '../VehicleMakes/VehicleMakes';
 import VehicleYears from '../VehicleYears/VehicleYears';
 import VehicleModels from '../VehicleModels/VehicleModels';
 
-function Calculate(props) {
+function NewTrip(props) {
 	const dispatch = useDispatch();
+    const user = useSelector(store => store.user);
 
     const [formData, setFormData] = useState({
         startAddress: '',
@@ -22,6 +22,7 @@ function Calculate(props) {
         vehicleMake: '',
         vehicleYear: '',
         vehicleModel: '',
+        userId: user.id,
     });
 
 	const readySetGo = () => {
@@ -32,9 +33,9 @@ function Calculate(props) {
 	};
 
 	return (
-		<div className='Calculate'>
+		<div className='NewTrip'>
 			<div>
-				<h1>Greener Prints: Road Trip Edition</h1>
+				<h1>Greener Foot(prints): Road Trip Edition</h1>
 			</div>
 			<form>
 				<Box sx={{ minWidth: 120 }}>
@@ -64,7 +65,7 @@ function Calculate(props) {
 					/>
 
 					<FormControl>
-						<Button onClick={readySetGo}>Calculate</Button>
+						<Button onClick={readySetGo}>NewTrip</Button>
 					</FormControl>
 				</Box>
 			</form>
@@ -72,4 +73,4 @@ function Calculate(props) {
 	);
 }
 
-export default Calculate;
+export default NewTrip;

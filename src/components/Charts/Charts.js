@@ -9,7 +9,7 @@ import {
 	Select,
 } from '@mui/material';
 
-function Results(props) {
+function Charts(props) {
 
 	useEffect(() => {
 		console.log('USE EFFECT WORKING');
@@ -18,10 +18,10 @@ function Results(props) {
     const dispatch = useDispatch();
 
 	return (
-		<div className='Results'>
-			<h1>Results</h1>
+		<div className='Charts'>
+			<h1>Charts</h1>
 		</div>
 	);
 }
 
-export default Results;
+export default Charts;

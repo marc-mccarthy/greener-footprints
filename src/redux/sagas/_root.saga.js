@@ -2,10 +2,11 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import submitCalculatorSaga from './submitCalculator.saga';
+import newTripSaga from './newTrip.saga';
 import vehicleMakesSaga from './vehicleMakes.saga';
 import vehicleYearsSaga from './vehicleYears.saga';
 import vehicleModelsSaga from './vehicleModels.saga';
+import getTripsSaga from './getTrips.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,9 +20,10 @@ export default function* rootSaga() {
 		loginSaga(), // login saga is now registered
 		registrationSaga(),
 		userSaga(),
-		submitCalculatorSaga(),
+		newTripSaga(),
         vehicleMakesSaga(),
         vehicleYearsSaga(),
         vehicleModelsSaga(),
+        getTripsSaga(),
 	]);
 }

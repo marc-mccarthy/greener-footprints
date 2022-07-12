@@ -4,6 +4,7 @@ import user from './user.reducer';
 import vehicleMakes from './vehicleMakes.reducer';
 import vehicleYears from './vehicleYears.reducer';
 import vehicleModels from './vehicleModels.reducer';
+import getTrips from './getTrips.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     vehicleMakes,
     vehicleYears,
     vehicleModels,
+    getTrips,
 });
 
 export default rootReducer;

@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
-import logo1 from '../../logos/co2-logo.png';
-import logo2 from '../../logos/react-logo.png';
+import logo1 from '../../images/co2-logo.png';
+import logo2 from '../../images/react-logo.png';
 
 function Nav() {
 	const user = useSelector((store) => store.user);
@@ -30,16 +30,24 @@ function Nav() {
                             Home
                         </Link>
 
-						<Link className="navLink" to="/calculate">
-							Calculate
+						<Link className="navLink" to="/newtrip">
+							New Trip
 						</Link>
+
+                        <Link className="navLink" to="/history">
+                            History
+                        </Link>
+
+                        <Link className="navLink" to="/charts">
+                            Charts
+                        </Link>
 
 						<Link className="navLink" to="/info">
 							Info Page
 						</Link>
 
-                        <Link className="navLink" to="/info">
-                            Documentation
+                        <Link className="navLink" to="/docs">
+                            Docs
                         </Link>
 
 						<LogOutButton className="navLink" />

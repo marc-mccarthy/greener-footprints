@@ -3,11 +3,24 @@ const pool = require('../modules/pool');
 const router = express.Router();
 require('dotenv').config();
 
-// POST Route
+// GET all trips
+router.get('/:id', (req, res) => {
+    pool.query(`SELECT * FROM "trips" WHERE user_id = $1 ORDER BY "id" ASC`, [req.params.id])
+        .then(result => {
+            console.log(result.rows)
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('Error for recieving user trips', error);
+            res.sendStatus(500);
+        });
+});
+
+// POST a new trip
 router.post('/', (req, res) => {
     console.log(req.body);
 	pool.query(
-		`INSERT INTO "greener_prints" ("startAddress", "endAddress", "distanceMiles", "duration", "passengers", "estimateId", "vehicleModelId", "vehicleYear", "vehicleMake", "vehicleModel", "carbonPounds") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+		`INSERT INTO "trips" ("startAddress", "endAddress", "distanceMiles", "duration", "passengers", "estimateId", "vehicleModelId", "vehicleYear", "vehicleMake", "vehicleModel", "carbonPounds", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
 		[
 			req.body.startAddress,
 			req.body.endAddress,
@@ -20,6 +33,7 @@ router.post('/', (req, res) => {
 			req.body.vehicleMake,
 			req.body.vehicleModel,
 			req.body.carbonPounds,
+            req.body.userId,
 		]
 	)
 		.then(() => {

@@ -4,7 +4,7 @@ const directionsService = new google.maps.DirectionsService();
 const directionsRenderer = new google.maps.DirectionsRenderer();
 
 // Worker Saga: will be fired on 'SUBMIT_CALCULATOR' actions
-function* submitCalculator(action) {
+function* newTrip(action) {
 	try {
 		console.log('CALCULATOR: ACTION.PAYLOAD', action.payload);
 		const routeResponse = yield directionsService.route({
@@ -34,16 +34,12 @@ function* submitCalculator(action) {
 				vehicle_model_id: action.payload.vehicleModel,
 			},
 		});
-        console.log(
-			'MEEEEEE',
-			routeResponse.routes[0].legs[0].start_location.lat
-		);
 
         const newTrip = {
             startAddress: routeResponse.routes[0].legs[0].start_address,
 			endAddress: routeResponse.routes[0].legs[0].end_address,
 			distanceMiles:
-				routeResponse.routes[0].legs[0].distance.text,
+				routeResponse.routes[0].legs[0].distance.value / 1609.34,
 			duration: routeResponse.routes[0].legs[0].duration.text,
 			passengers: action.payload.passengers,
 			estimateId: carbonResponse.data.data.id,
@@ -53,10 +49,16 @@ function* submitCalculator(action) {
 			vehicleMake: carbonResponse.data.data.attributes.vehicle_make,
 			vehicleModel: carbonResponse.data.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.data.attributes.carbon_lb,
+            userId: action.payload.userId,
         }
 
-		axios.post('/api/directions', newTrip);
-        console.log(newTrip);
+		axios.post('/api/trips', newTrip).then(response => {
+            console.log('RESPONSE FROM POST /api/trip:', response);
+            // put({ type: 'GET_TRIPS' });
+        }).catch(error => {
+            console.log('ERROR FROM POST /api/trip:', error);
+        })
+
 		console.log('ROUTE RESULT:', routeResponse);
 		console.log('CARBON RESULT:', carbonResponse);
 	} catch (error) {
@@ -64,8 +66,8 @@ function* submitCalculator(action) {
 	}
 }
 
-function* submitCalculatorSaga() {
-	yield takeLatest('SUBMIT_CALCULATOR', submitCalculator);
+function* newTripSaga() {
+	yield takeLatest('SUBMIT_CALCULATOR', newTrip);
 }
 
-export default submitCalculatorSaga;
+export default newTripSaga;
