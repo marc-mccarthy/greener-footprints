@@ -21,24 +21,24 @@
     - [x] Ideally, stretch goals that the user feels are likely should be included in the views and noted as stretch goals in a bullet
 - [x] Project Schedule
     - [x] At a minimum, each view should have a date associated with it
-    - [ ] The schedule is broken into features -- that is, a feature is a chunk of functionality that delivers demonstratable value
-    - [ ] Each feature should have an appropriate due date (if all dates are the same, that is not valid)
-    - [ ] There should be at least one feature per day, if a feature will take longer than a day, it is too large and should be broken down
-    - [ ] The schedule should support a working, demonstrable CRUD app complete on the Thursday of the first week of work
-    - [ ] All Base Mode features should be complete on the following Thursday (the week before final presentations)
+    - [x] The schedule is broken into features -- that is, a feature is a chunk of functionality that delivers demonstratable value
+    - [x] Each feature should have an appropriate due date (if all dates are the same, that is not valid)
+    - [x] There should be at least one feature per day, if a feature will take longer than a day, it is too large and should be broken down
+    - [x] The schedule should support a working, demonstrable CRUD app complete on the Thursday of the first week of work
+    - [x] All Base Mode features should be complete on the following Thursday (the week before final presentations)
 - [x] Browsers
     - [x] Only include browsers you will actually be testing
         Chromium: 103 (Official Build) (arm64)
     - [x] Round up to the nearest whole number (ex Chrome 66, not Chrome 66.2384.239)
     - [x] If you are including mobile browsers, include the phone you are supporting as well
-- [ ] Database/Entity Relationship Diagrams
+- [x] Database/Entity Relationship Diagrams
     - [x] Each table holds information about a _single Entity_ (Trip)
-    - [ ] Each table has attributes, describing properties of the Entity
-    - [ ] Everything shown in the wireframes is represented somewhere in the ERD
+    - [x] Each table has attributes, describing properties of the Entity
+    - [x] Everything shown in the wireframes is represented somewhere in the ERD
     - [x] All data in the ERD is represented in the wireframes
     - [x] Joins are used to describe one-to-many and many-to-many relationships (None)
     - [x] Joined tables have `REFERENCE`'ing ids in the correct table (UserId)
-- [ ] Review everything on every view. If it is not hard-coded it must be saved in the database.
+- [x] Review everything on every view. If it is not hard-coded it must be saved in the database.
 - [x] Technologies
     - [x] All node modules installed with `npm install`
         See below for modules
@@ -50,9 +50,9 @@
         Joy UI or Material UI
     - [x] Deployment technologies
         Heroku
-- [ ] Stretch/Future Goals
-    - [ ] Should include feature title and brief description
-    - [ ] Should take several months of full time effort to complete
+- [x] Stretch/Future Goals
+    - [x] Should include feature title and brief description
+    - [x] Should take several months of full time effort to complete
 
 Node Modules Installed:
 "@emotion/react": "^11.9.3",
