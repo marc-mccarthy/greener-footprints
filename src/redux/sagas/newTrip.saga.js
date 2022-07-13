@@ -53,10 +53,10 @@ function* newTrip(action) {
         }
 
 		axios.post('/api/trips', newTrip).then(response => {
-            console.log('RESPONSE FROM POST /api/trip:', response);
-            // put({ type: 'GET_TRIPS' });
+            console.log('RESPONSE FROM POST /api/trips:', response);
+            put({ type: 'GET_TRIPS' });
         }).catch(error => {
-            console.log('ERROR FROM POST /api/trip:', error);
+            console.log('ERROR FROM POST /api/trips:', error);
         })
 
 		console.log('ROUTE RESULT:', routeResponse);

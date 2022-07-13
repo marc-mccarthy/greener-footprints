@@ -4,6 +4,7 @@ import {
 	Box,
 	Button,
 	FormControl,
+    Stack,
 } from '@mui/material';
 import AddressInput from '../AddressInput/AddressInput';
 import Passengers from '../Passengers/Passengers';
@@ -39,34 +40,36 @@ function NewTrip(props) {
 			</div>
 			<form>
 				<Box sx={{ minWidth: 120 }}>
-					<AddressInput
-						formData={formData}
-						setFormData={setFormData}
-					/>
+					<Stack direction="row">
+						<AddressInput
+							formData={formData}
+							setFormData={setFormData}
+						/>
 
-					<Passengers
-                        formData={formData}
-                        setFormData={setFormData}
-                    />
+						<Passengers
+							formData={formData}
+							setFormData={setFormData}
+						/>
 
-					<VehicleMakes
-						formData={formData}
-						setFormData={setFormData}
-					/>
+						<VehicleMakes
+							formData={formData}
+							setFormData={setFormData}
+						/>
 
-					<VehicleYears
-						formData={formData}
-						setFormData={setFormData}
-					/>
+						<VehicleYears
+							formData={formData}
+							setFormData={setFormData}
+						/>
 
-					<VehicleModels
-						formData={formData}
-						setFormData={setFormData}
-					/>
+						<VehicleModels
+							formData={formData}
+							setFormData={setFormData}
+						/>
 
-					<FormControl>
-						<Button onClick={readySetGo}>NewTrip</Button>
-					</FormControl>
+						<FormControl>
+							<Button onClick={readySetGo}>NewTrip</Button>
+						</FormControl>
+					</Stack>
 				</Box>
 			</form>
 		</div>
