@@ -7,6 +7,7 @@ import vehicleMakesSaga from './vehicleMakes.saga';
 import vehicleYearsSaga from './vehicleYears.saga';
 import vehicleModelsSaga from './vehicleModels.saga';
 import getTripsSaga from './getTrips.saga';
+import deleteTripSaga from './deleteTrip.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
         vehicleYearsSaga(),
         vehicleModelsSaga(),
         getTripsSaga(),
+        deleteTripSaga(),
 	]);
 }
