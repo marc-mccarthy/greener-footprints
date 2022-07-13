@@ -8,69 +8,8 @@ import {
 	MenuItem,
 	Select,
 } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
 import loadingBar from '../../images/loading-bar.gif';
-
-const columns = [
-	{ field: 'id', headerName: 'ID', width: 50 },
-	{
-		field: 'startAddress',
-		headerName: 'Start Address',
-		width: 250,
-		editable: true,
-	},
-	{
-		field: 'endAddress',
-		headerName: 'End Address',
-		width: 250,
-		editable: true,
-	},
-	{
-		field: 'distanceMiles',
-		headerName: 'Distance (mi)',
-		type: 'number',
-		width: 120,
-		editable: true,
-	},
-	{
-		field: 'duration',
-		headerName: 'Duration',
-		width: 150,
-		editable: true,
-	},
-	{
-		field: 'passengers',
-		headerName: 'Passengers',
-		type: 'number',
-		width: 100,
-		editable: true,
-	},
-	{
-		field: 'vehicleYear',
-		headerName: 'Year',
-		width: 90,
-		editable: true,
-	},
-	{
-		field: 'vehicleMake',
-		headerName: 'Make',
-		width: 100,
-		editable: true,
-	},
-	{
-		field: 'vehicleModel',
-		headerName: 'Model',
-		width: 110,
-		editable: true,
-	},
-	{
-		field: 'carbonPounds',
-		headerName: 'Carbon (lbs)',
-		type: 'number',
-		width: 100,
-		editable: true,
-	},
-];
+import './History.css';
 
 function History(props) {
 
@@ -82,20 +21,9 @@ function History(props) {
 	const user = useSelector(store => store.user);
 	const trips = useSelector(store => store.getTrips);
 
-    const rows = trips.map(trip => {
-		return {
-			id: trip.id,
-			startAddress: trip.startAddress,
-			endAddress: trip.endAddress,
-			distanceMiles: trip.distanceMiles,
-			duration: trip.duration,
-			passengers: trip.passengers,
-			vehicleYear: trip.vehicleYear,
-			vehicleMake: trip.vehicleMake,
-			vehicleModel: trip.vehicleModel,
-			carbonPounds: trip.carbonPounds,
-		};
-	});
+    const handleDeleteRow = (rowId) => {
+        dispatch({type: 'DELETE_TRIP_SAGA', payload: rowId });
+    }
 
 	return (
 		<div className='History'>
@@ -104,14 +32,49 @@ function History(props) {
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box sx={{ height: 400, width: '100%' }}>
-					<DataGrid
-						rows={rows}
-						columns={columns}
-						pageSize={10}
-						rowsPerPageOptions={[10]}
-						checkboxSelection
-						disableSelectionOnClick
-					/>
+					<table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Start Address</th>
+                                <th>End Address</th>
+                                <th>Distance (mi)</th>
+                                <th>Duration</th>
+                                <th>Passengers</th>
+                                <th>Year</th>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th>Carbon (lbs)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {trips.map(row => {
+                                return (
+									<tr key={row.id}>
+										<td>{row.id}</td>
+										<td>{row.startAddress}</td>
+										<td>{row.endAddress}</td>
+										<td>{row.distanceMiles}</td>
+										<td>{row.duration}</td>
+										<td>{row.passengers}</td>
+										<td>{row.vehicleYear}</td>
+										<td>{row.vehicleMake}</td>
+										<td>{row.vehicleModel}</td>
+										<td>{row.carbonPounds}</td>
+										<td>
+											<Button
+												size='small'
+												onClick={() => handleDeleteRow(row.id)}
+											>
+												Delete
+											</Button>
+										</td>
+									</tr>
+								);
+                            }
+                            )}
+                        </tbody>
+                    </table>
 				</Box>
 			)}
 		</div>

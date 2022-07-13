@@ -2,15 +2,13 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Worker Saga: will be fired on "VEHICLE_MAKES_SAGA" actions
-function* getTrips(action) {
+function* getTrips() {
 	try {
         const config = {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
         };
-        let userId = action.payload.userId;
-        const trips = yield axios.get(`/api/trips/${userId}`);
-        console.log('TRIPS:', trips.data);
+        const trips = yield axios.get(`/api/trips/`, config);
         yield put({ type: 'GET_TRIPS', payload: trips.data });
 	} catch (error) {
 		console.log('Error in getTrips.saga:', error);
