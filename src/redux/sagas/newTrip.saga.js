@@ -6,41 +6,31 @@ const directionsRenderer = new google.maps.DirectionsRenderer();
 // Worker Saga: will be fired on 'SUBMIT_CALCULATOR' actions
 function* newTrip(action) {
 	try {
-		console.log('CALCULATOR: ACTION.PAYLOAD', action.payload);
-		const routeResponse = yield directionsService.route({
-			origin: action.payload.startAddress,
-			destination: action.payload.endAddress,
-			provideRouteAlternatives: false,
-			travelMode: 'DRIVING',
-			drivingOptions: {
-				departureTime: new Date(),
-				trafficModel: 'bestguess',
-			},
-			unitSystem: google.maps.UnitSystem.IMPERIAL,
-		});
+		console.log('NEW_TRIP: ACTION.PAYLOAD', action.payload);
+        const startAddress = action.payload.startAddress.replaceAll(' ', '+');
+		const endAddress = action.payload.endAddress.replaceAll(' ', '+');
+        const directionsResponse = yield axios.post('/api/trips/maps', {
+            directionsUrl: `https://maps.googleapis.com/maps/api/directions/json?origin=${startAddress}&destination=${endAddress}&key=`
+        });
 
-		const carbonResponse = yield axios({
-			method: 'POST',
-			url: 'https://www.carboninterface.com/api/v1/estimates',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer I72gDHzqfVLkuMsjO69Dg`,
-			},
-			data: {
+
+
+        const carbonResponse = yield axios.post('/api/trips/carbon', {
+            data: {
 				type: 'vehicle',
 				distance_unit: 'mi',
 				distance_value:
-					routeResponse.routes[0].legs[0].distance.value / 1609.34,
+					directionsResponse.data.distance.value / 1609.34,
 				vehicle_model_id: action.payload.vehicleModel,
 			},
-		});
+        });
+        
 
         const newTrip = {
-            startAddress: routeResponse.routes[0].legs[0].start_address,
-			endAddress: routeResponse.routes[0].legs[0].end_address,
-			distanceMiles:
-				routeResponse.routes[0].legs[0].distance.value / 1609.34,
-			duration: routeResponse.routes[0].legs[0].duration.text,
+			startAddress: directionsResponse.data.start_address,
+			endAddress: directionsResponse.data.end_address,
+			distanceMiles: directionsResponse.data.distance.value / 1609.34,
+			duration: directionsResponse.data.duration.text,
 			passengers: action.payload.passengers,
 			estimateId: carbonResponse.data.data.id,
 			vehicleModelId:
@@ -49,8 +39,8 @@ function* newTrip(action) {
 			vehicleMake: carbonResponse.data.data.attributes.vehicle_make,
 			vehicleModel: carbonResponse.data.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.data.attributes.carbon_lb,
-            userId: action.payload.userId,
-        }
+			userId: action.payload.userId,
+		};
 
 		axios.post('/api/trips', newTrip).then(response => {
             console.log('RESPONSE FROM POST /api/trips:', response);
@@ -59,7 +49,7 @@ function* newTrip(action) {
             console.log('ERROR FROM POST /api/trips:', error);
         })
 
-		console.log('ROUTE RESULT:', routeResponse);
+		console.log('DIRECTIONS RESULT:', directionsResponse);
 		console.log('CARBON RESULT:', carbonResponse);
 	} catch (error) {
 		console.log('Error in submitCalculatorSaga:', error);

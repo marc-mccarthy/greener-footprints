@@ -10,7 +10,7 @@ function StartAddress({ formData, setFormData }) {
 			<TextField
 				sx={{ width: 300 }}
 				required
-				autofocus
+				autoFocus
 				id='start-address-input'
 				label='Start Address'
 				placeholder='Start Address'

@@ -5,6 +5,7 @@ require('dotenv').config();
 const {
 	rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
+const axios = require('axios');
 
 
 // GET all trips
@@ -61,5 +62,45 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500);
         });
 });
+
+router.post('/maps', (req, res) => {
+    // console.log('MAPS API SERVER req.body:', req.body.directionsUrl + process.env.GOOGLE_MAPS_KEY);
+    axios
+		.get(req.body.directionsUrl + process.env.GOOGLE_MAPS_KEY)
+		.then(response => {
+			console.log('MAPS API SERVER response:', response.data.routes[0].legs[0]);
+			res.send(response.data.routes[0].legs[0]);
+		})
+		.catch(error => {
+			console.log('Error in POST /api/trips/maps:', error);
+			res.sendStatus(500);
+		});
+})
+
+router.post('/carbon', (req, res) => {
+    console.log('CARBON API SERVER req.body:', req.body);
+    axios
+        .get('https://www.carboninterface.com/api/v1/estimates', {
+            headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
+			},
+            data: {
+				type: 'vehicle',
+				distance_unit: 'mi',
+				distance_value:
+					req.body.data.distance_value,
+				vehicle_model_id: req.body.data.vehicle_model_id,
+			},
+        })
+        .then(response => {
+            console.log('CARBON API SERVER response:', response.data);
+            res.send(response.data);
+        })
+        .catch(error => {
+            console.log('Error in POST /api/trips/carbon:', error);
+            res.sendStatus(500);
+        });
+})
 
 module.exports = router;
