@@ -3,7 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import newTripSaga from './newTrip.saga';
-import vehicleMakesSaga from './vehicleMakes.saga';
+import vehiclesSaga from './vehicles.saga';
 import vehicleYearsSaga from './vehicleYears.saga';
 import vehicleModelsSaga from './vehicleModels.saga';
 import getTripsSaga from './getTrips.saga';
@@ -22,7 +22,7 @@ export default function* rootSaga() {
 		registrationSaga(),
 		userSaga(),
 		newTripSaga(),
-        vehicleMakesSaga(),
+        vehiclesSaga(),
         vehicleYearsSaga(),
         vehicleModelsSaga(),
         getTripsSaga(),

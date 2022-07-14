@@ -1,11 +1,12 @@
 // Storage Reducer: will be fired on "VEHICLE_MAKES" actions
-const vehicleMakes = (state = [], action) => {
+const vehicles = (state = [], action) => {
+    console.log('VEHICLES REDUCER', action.payload);
 	switch (action.type) {
-		case 'VEHICLE_MAKES':
+		case 'VEHICLES':
 			return action.payload;
 		default:
 			return state;
 	}
 };
 
-export default vehicleMakes;
+export default vehicles;

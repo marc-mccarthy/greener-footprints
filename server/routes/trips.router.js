@@ -77,10 +77,30 @@ router.post('/maps', (req, res) => {
 		});
 })
 
+router.get('/carbon', (req, res) => {
+    console.log('CARBON API SERVER req.body:', req.body);
+    axios
+        .get('https://www.carboninterface.com/api/v1/vehicle_makes', {
+            headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
+			},
+        })
+        .then(response => {
+            console.log('CARBON API SERVER response:', response.data);
+            res.send(response.data);
+        })
+        .catch(error => {
+            console.log('Error in POST /api/trips/carbon:', error);
+            res.sendStatus(500);
+        });
+})
+
+/*
 router.post('/carbon', (req, res) => {
     console.log('CARBON API SERVER req.body:', req.body);
     axios
-        .get('https://www.carboninterface.com/api/v1/estimates', {
+        .get('https://www.carboninterface.com/api/v1/vehicle_makes', {
             headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
@@ -102,5 +122,6 @@ router.post('/carbon', (req, res) => {
             res.sendStatus(500);
         });
 })
+*/
 
 module.exports = router;

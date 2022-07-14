@@ -13,8 +13,7 @@ function* newTrip(action) {
             directionsUrl: `https://maps.googleapis.com/maps/api/directions/json?origin=${startAddress}&destination=${endAddress}&key=`
         });
 
-
-
+        /*
         const carbonResponse = yield axios.post('/api/trips/carbon', {
             data: {
 				type: 'vehicle',
@@ -24,7 +23,7 @@ function* newTrip(action) {
 				vehicle_model_id: action.payload.vehicleModel,
 			},
         });
-        
+        */
 
         const newTrip = {
 			startAddress: directionsResponse.data.start_address,

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import vehicleMakes from './vehicleMakes.reducer';
+import vehicles from './vehicles.reducer';
 import vehicleYears from './vehicleYears.reducer';
 import vehicleModels from './vehicleModels.reducer';
 import getTrips from './getTrips.reducer';
@@ -15,7 +15,7 @@ import getTrips from './getTrips.reducer';
 const rootReducer = combineReducers({
     errors, // contains registrationMessage and loginMessage
     user, // will have an id and username if someone is logged in
-    vehicleMakes,
+    vehicles,
     vehicleYears,
     vehicleModels,
     getTrips,

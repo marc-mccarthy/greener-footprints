@@ -10,11 +10,11 @@ import {
 function VehicleMakes({ formData, setFormData }) {
 
 	useEffect(() => {
-		dispatch({ type: 'VEHICLE_MAKES_SAGA' });
+		dispatch({ type: 'VEHICLES_SAGA' });
 	}, []);
 
 	const dispatch = useDispatch();
-	const vehicleMakes = useSelector(store => store.vehicleMakes);
+	const vehicleMakes = useSelector(store => store.vehicles);
 
 	const vehicleMakesChange = (e) => {
         setFormData({
