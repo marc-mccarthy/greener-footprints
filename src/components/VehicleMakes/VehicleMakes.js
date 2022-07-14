@@ -28,23 +28,24 @@ function VehicleMakes({ formData, setFormData }) {
 	};
 
 	return (
-        <FormControl fullWidth>
-            {/* VEHICLE MAKES */}
-            <InputLabel id='make'>Make</InputLabel>
-            <Select
-                labelId='Select Make'
-                id='make'
-                value={formData.vehicleMake}
-                label='Make'
-                onChange={vehicleMakesChange}
-            >
-                {vehicleMakes.map(make => (
-                    <MenuItem key={make.data.id} value={make.data.id}>
-                        {make.data.attributes.name}
-                    </MenuItem>
-                ))}
-            </Select>
-        </FormControl>
+		<div>
+			{/* VEHICLE MAKES */}
+			<InputLabel id='make'>Make</InputLabel>
+			<Select
+				sx={{ width: 150 }}
+				labelId='Select Make'
+				id='make'
+				value={formData.vehicleMake}
+				label='Make'
+				onChange={vehicleMakesChange}
+			>
+				{vehicleMakes.map(make => (
+					<MenuItem key={make.data.id} value={make.data.id}>
+						{make.data.attributes.name}
+					</MenuItem>
+				))}
+			</Select>
+		</div>
 	);
 }
 

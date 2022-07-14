@@ -21,10 +21,11 @@ function Passengers({ formData, setFormData }) {
 	}
 
 	return (
-		<FormControl fullWidth>
+		<div>
 			{/* PASSENGER COUNT */}
 			<InputLabel id='make'>Passengers</InputLabel>
 			<Select
+                sx={{ width: 150}}
 				labelId='Select Passengers'
 				id='passengers'
 				value={formData.passengers}
@@ -35,7 +36,7 @@ function Passengers({ formData, setFormData }) {
 			>
 				{maxPersons}
 			</Select>
-		</FormControl>
+		</div>
 	);
 }
 

@@ -25,10 +25,11 @@ function VehicleYears({ formData, setFormData }) {
 	};
 
 	return (
-		<FormControl fullWidth>
+		<div>
 			{/* VEHICLE YEARS */}
 			<InputLabel id='year'>Year</InputLabel>
 			<Select
+				sx={{ width: 150 }}
 				labelId='Select Year'
 				id='year'
 				value={formData.vehicleYear}
@@ -41,7 +42,7 @@ function VehicleYears({ formData, setFormData }) {
 					</MenuItem>
 				))}
 			</Select>
-		</FormControl>
+		</div>
 	);
 }
 

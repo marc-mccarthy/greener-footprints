@@ -19,10 +19,11 @@ function VehicleModels({ formData, setFormData }) {
 	};
 
 	return (
-		<FormControl fullWidth>
+		<div>
 			{/* VEHICLE MODELS */}
 			<InputLabel id='make'>Model</InputLabel>
 			<Select
+				sx={{ width: 150 }}
 				labelId='Select Model'
 				id='model'
 				value={formData.vehicleModel}
@@ -35,7 +36,7 @@ function VehicleModels({ formData, setFormData }) {
 					</MenuItem>
 				))}
 			</Select>
-		</FormControl>
+		</div>
 	);
 }
 

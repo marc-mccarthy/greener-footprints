@@ -6,7 +6,8 @@ import {
 	FormControl,
     Stack,
 } from '@mui/material';
-import AddressInput from '../AddressInput/AddressInput';
+import StartAddress from '../StartAddress/StartAddress';
+import EndAddress from '../EndAddress/EndAddress';
 import Passengers from '../Passengers/Passengers';
 import VehicleMakes from '../VehicleMakes/VehicleMakes';
 import VehicleYears from '../VehicleYears/VehicleYears';
@@ -39,37 +40,52 @@ function NewTrip(props) {
 				<h1>Greener Foot(prints): Road Trip Edition</h1>
 			</div>
 			<form>
-				<Box sx={{ minWidth: 120 }}>
-					<Stack direction="row">
-						<AddressInput
+				<Box>
+					<FormControl>
+						<StartAddress
 							formData={formData}
 							setFormData={setFormData}
 						/>
-
+					</FormControl>
+					<FormControl>
+						<EndAddress
+							formData={formData}
+							setFormData={setFormData}
+						/>
+					</FormControl>
+					<FormControl>
 						<Passengers
 							formData={formData}
 							setFormData={setFormData}
 						/>
-
+					</FormControl>
+					<FormControl>
 						<VehicleMakes
 							formData={formData}
 							setFormData={setFormData}
 						/>
-
+					</FormControl>
+					<FormControl>
 						<VehicleYears
 							formData={formData}
 							setFormData={setFormData}
 						/>
-
+					</FormControl>
+					<FormControl>
 						<VehicleModels
 							formData={formData}
 							setFormData={setFormData}
 						/>
-
-						<FormControl>
-							<Button onClick={readySetGo}>NewTrip</Button>
-						</FormControl>
-					</Stack>
+					</FormControl>
+					<FormControl>
+						<Button
+							size='large'
+							onClick={readySetGo}
+							sx={{ width: 100 }}
+						>
+							NewTrip
+						</Button>
+					</FormControl>
 				</Box>
 			</form>
 		</div>
