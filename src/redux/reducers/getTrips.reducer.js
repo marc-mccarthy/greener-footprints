@@ -1,5 +1,3 @@
-import getTripsSaga from "../sagas/getTrips.saga";
-
 // Storage Reducer: will be fired on "GET_TRIPS" actions
 const getTrips = (state = [], action) => {
 	switch (action.type) {

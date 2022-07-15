@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 const directionsService = new google.maps.DirectionsService();
 const directionsRenderer = new google.maps.DirectionsRenderer();
 
-// Worker Saga: will be fired on 'SUBMIT_CALCULATOR' actions
+// Worker Saga: will be fired on 'NEW_TRIP' actions
 function* newTrip(action) {
 	try {
 		console.log('NEW TRIP: ACTION.PAYLOAD', action.payload);
