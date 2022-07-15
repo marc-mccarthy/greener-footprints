@@ -9,9 +9,9 @@ import {
 import StartAddress from '../StartAddress/StartAddress';
 import EndAddress from '../EndAddress/EndAddress';
 import Passengers from '../Passengers/Passengers';
-import VehicleMakes from '../VehicleMakes/VehicleMakes';
-import VehicleYears from '../VehicleYears/VehicleYears';
-import VehicleModels from '../VehicleModels/VehicleModels';
+import Makes from '../Makes/Makes';
+import Years from '../Years/Years';
+import Models from '../Models/Models';
 
 function NewTrip(props) {
 	const dispatch = useDispatch();
@@ -21,15 +21,15 @@ function NewTrip(props) {
         startAddress: '',
         endAddress: '',
         passengers: '',
-        vehicleMake: '',
-        vehicleYear: '',
-        vehicleModel: '',
+        make: '',
+        year: '',
+        model: '',
         userId: user.id,
     });
 
 	const readySetGo = () => {
 		dispatch({
-			type: 'SUBMIT_CALCULATOR',
+			type: 'NEW_TRIP',
 			payload: formData,
 		});
 	};
@@ -60,19 +60,19 @@ function NewTrip(props) {
 						/>
 					</FormControl>
 					<FormControl>
-						<VehicleMakes
+						<Makes
 							formData={formData}
 							setFormData={setFormData}
 						/>
 					</FormControl>
 					<FormControl>
-						<VehicleYears
+						<Years
 							formData={formData}
 							setFormData={setFormData}
 						/>
 					</FormControl>
 					<FormControl>
-						<VehicleModels
+						<Models
 							formData={formData}
 							setFormData={setFormData}
 						/>

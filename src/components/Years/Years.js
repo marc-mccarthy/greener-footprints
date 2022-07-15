@@ -5,21 +5,21 @@ import {
 	Select,
 } from '@mui/material';
 
-function VehicleYears({ formData, setFormData }) {
+function Years({ formData, setFormData }) {
 
 	const dispatch = useDispatch();
-	const vehicleYears = useSelector(store => store.vehicleYears);
+	const years = useSelector(store => store.years);
 
-	const vehicleYearsChange = (e) => {
+	const yearsChange = (e) => {
         setFormData({
 			...formData,
-			vehicleYear: e.target.value,
-			vehicleModel: '',
+			year: e.target.value,
+			model: '',
 		});
-        console.log('VEHICLE YEAR:', e.target.value);
+        console.log('YEAR:', e.target.value);
 		dispatch({
-			type: 'VEHICLE_MODELS_SAGA',
-			payload: { vehicleMake: formData.vehicleMake, vehicleYear: e.target.value },
+			type: 'MODELS_SAGA',
+			payload: { make: formData.make, year: e.target.value },
 		});
 	};
 
@@ -31,11 +31,11 @@ function VehicleYears({ formData, setFormData }) {
 				sx={{ width: 150 }}
 				labelId='Select Year'
 				id='year'
-				value={formData.vehicleYear}
+				value={formData.year}
 				label='Year'
-				onChange={vehicleYearsChange}
+				onChange={yearsChange}
 			>
-				{vehicleYears.map(year => (
+				{years.map(year => (
 					<MenuItem key={year} value={year}>
 						{year}
 					</MenuItem>
@@ -45,4 +45,4 @@ function VehicleYears({ formData, setFormData }) {
 	);
 }
 
-export default VehicleYears;
+export default Years;

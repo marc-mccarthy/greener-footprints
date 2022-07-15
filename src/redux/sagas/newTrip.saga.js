@@ -6,24 +6,25 @@ const directionsRenderer = new google.maps.DirectionsRenderer();
 // Worker Saga: will be fired on 'SUBMIT_CALCULATOR' actions
 function* newTrip(action) {
 	try {
-		console.log('NEW_TRIP: ACTION.PAYLOAD', action.payload);
+		console.log('NEW TRIP: ACTION.PAYLOAD', action.payload);
+        // GOOGLE MAPS API REQUEST TO SERVER
         const startAddress = action.payload.startAddress.replaceAll(' ', '+');
 		const endAddress = action.payload.endAddress.replaceAll(' ', '+');
         const directionsResponse = yield axios.post('/api/trips/maps', {
             directionsUrl: `https://maps.googleapis.com/maps/api/directions/json?origin=${startAddress}&destination=${endAddress}&key=`
         });
+        console.log('DIRECTIONS RESPONSE:', directionsResponse);
 
-        /*
-        const carbonResponse = yield axios.post('/api/trips/carbon', {
+        // CARBON INTERFACE API RESPONSE TO SERVER
+        const carbonResponse = yield axios({
+            method: 'POST',
+            url: '/api/trips/carbon/estimate',
             data: {
-				type: 'vehicle',
-				distance_unit: 'mi',
-				distance_value:
-					directionsResponse.data.distance.value / 1609.34,
-				vehicle_model_id: action.payload.vehicleModel,
-			},
+                distance_value: directionsResponse.data.distance.value / 1609.34,
+				vehicle_model_id: action.payload.model,
+            }
         });
-        */
+        console.log('CARBON RESPONSE:', carbonResponse);
 
         const newTrip = {
 			startAddress: directionsResponse.data.start_address,
@@ -31,32 +32,36 @@ function* newTrip(action) {
 			distanceMiles: directionsResponse.data.distance.value / 1609.34,
 			duration: directionsResponse.data.duration.text,
 			passengers: action.payload.passengers,
-			estimateId: carbonResponse.data.data.id,
+			estimateId: carbonResponse.data.id,
 			vehicleModelId:
-				carbonResponse.data.data.attributes.vehicle_model_id,
-			vehicleYear: carbonResponse.data.data.attributes.vehicle_year,
-			vehicleMake: carbonResponse.data.data.attributes.vehicle_make,
-			vehicleModel: carbonResponse.data.data.attributes.vehicle_model,
-			carbonPounds: carbonResponse.data.data.attributes.carbon_lb,
+				carbonResponse.data.attributes.vehicle_model_id,
+			vehicleYear: carbonResponse.data.attributes.vehicle_year,
+			vehicleMake: carbonResponse.data.attributes.vehicle_make,
+			vehicleModel: carbonResponse.data.attributes.vehicle_model,
+			carbonPounds: carbonResponse.data.attributes.carbon_lb,
 			userId: action.payload.userId,
 		};
+        console.log('NEW TRIP:', newTrip);
 
-		axios.post('/api/trips', newTrip).then(response => {
-            console.log('RESPONSE FROM POST /api/trips:', response);
-            put({ type: 'GET_TRIPS' });
-        }).catch(error => {
-            console.log('ERROR FROM POST /api/trips:', error);
-        })
+		axios
+			.post('/api/trips/newTrip', newTrip)
+			.then(response => {
+				console.log('RESPONSE FROM POST /api/trips:', response);
+				put({ type: 'GET_TRIPS' });
+			})
+			.catch(error => {
+				console.log('ERROR FROM POST /api/trips:', error);
+			});
 
-		console.log('DIRECTIONS RESULT:', directionsResponse);
-		console.log('CARBON RESULT:', carbonResponse);
+
+
 	} catch (error) {
-		console.log('Error in submitCalculatorSaga:', error);
+		console.log('Error in newTripSaga:', error);
 	}
 }
 
 function* newTripSaga() {
-	yield takeLatest('SUBMIT_CALCULATOR', newTrip);
+	yield takeLatest('NEW_TRIP', newTrip);
 }
 
 export default newTripSaga;

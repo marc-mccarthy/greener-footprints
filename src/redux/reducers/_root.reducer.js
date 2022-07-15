@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import vehicles from './vehicles.reducer';
-import vehicleYears from './vehicleYears.reducer';
-import vehicleModels from './vehicleModels.reducer';
+import makes from './makes.reducer';
+import years from './years.reducer';
+import models from './models.reducer';
 import getTrips from './getTrips.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -15,9 +15,9 @@ import getTrips from './getTrips.reducer';
 const rootReducer = combineReducers({
     errors, // contains registrationMessage and loginMessage
     user, // will have an id and username if someone is logged in
-    vehicles,
-    vehicleYears,
-    vehicleModels,
+    makes,
+    years,
+    models,
     getTrips,
 });
 
