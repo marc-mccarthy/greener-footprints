@@ -1,21 +1,20 @@
 import { useSelector } from 'react-redux';
 import {
-	FormControl,
 	InputLabel,
 	MenuItem,
 	Select,
 } from '@mui/material';
 
-function VehicleModels({ formData, setFormData }) {
+function Models({ formData, setFormData }) {
 
-    const vehicleModels = useSelector(store => store.vehicleModels);
+    const models = useSelector(store => store.models);
 
-    const vehicleModelsChange = e => {
+    const modelsChange = e => {
         setFormData({
 			...formData,
-			vehicleModel: e.target.value,
+			model: e.target.value,
 		});
-        console.log('VEHICLE MODEL:', e.target.value)
+        console.log('MODEL:', e.target.value)
 	};
 
 	return (
@@ -26,11 +25,11 @@ function VehicleModels({ formData, setFormData }) {
 				sx={{ width: 150 }}
 				labelId='Select Model'
 				id='model'
-				value={formData.vehicleModel}
+				value={formData.model}
 				label='Model'
-				onChange={vehicleModelsChange}
+				onChange={modelsChange}
 			>
-				{vehicleModels.map(model => (
+				{models.map(model => (
 					<MenuItem key={model.data.id} value={model.data.id}>
 						{model.data.attributes.name}
 					</MenuItem>
@@ -40,4 +39,4 @@ function VehicleModels({ formData, setFormData }) {
 	);
 }
 
-export default VehicleModels;
+export default Models;
