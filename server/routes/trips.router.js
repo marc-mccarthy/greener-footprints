@@ -21,19 +21,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // POST new trip
 router.post('/newTrip', (req, res) => {
+    console.log(req.body)
 	pool.query(
-		`INSERT INTO "trips" ("startAddress", "endAddress", "distanceMiles", "duration", "passengers", "estimateId", "vehicleModelId", "vehicleYear", "vehicleMake", "vehicleModel", "carbonPounds", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+		`INSERT INTO "trips" ("startAddress", "endAddress", "distance", "duration", "passengers", "estimateId", "modelId", "year", "make", "model", "carbonPounds", "userId") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
 		[
 			req.body.startAddress,
 			req.body.endAddress,
-			req.body.distanceMiles,
+			req.body.distance,
 			req.body.duration,
 			req.body.passengers,
 			req.body.estimateId,
-			req.body.vehicleModelId,
-			req.body.vehicleYear,
-			req.body.vehicleMake,
-			req.body.vehicleModel,
+			req.body.modelId,
+			req.body.year,
+			req.body.make,
+			req.body.model,
 			req.body.carbonPounds,
             req.body.userId,
 		]

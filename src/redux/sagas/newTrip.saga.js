@@ -29,15 +29,15 @@ function* newTrip(action) {
         const newTrip = {
 			startAddress: directionsResponse.data.start_address,
 			endAddress: directionsResponse.data.end_address,
-			distanceMiles: directionsResponse.data.distance.value / 1609.34,
+			distance: directionsResponse.data.distance.value / 1609.34,
 			duration: directionsResponse.data.duration.text,
 			passengers: action.payload.passengers,
 			estimateId: carbonResponse.data.id,
-			vehicleModelId:
+			modelId:
 				carbonResponse.data.attributes.vehicle_model_id,
-			vehicleYear: carbonResponse.data.attributes.vehicle_year,
-			vehicleMake: carbonResponse.data.attributes.vehicle_make,
-			vehicleModel: carbonResponse.data.attributes.vehicle_model,
+			year: carbonResponse.data.attributes.vehicle_year,
+			make: carbonResponse.data.attributes.vehicle_make,
+			model: carbonResponse.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.attributes.carbon_lb,
 			userId: action.payload.userId,
 		};

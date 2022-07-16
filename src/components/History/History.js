@@ -54,12 +54,12 @@ function History(props) {
 										<td>{row.id}</td>
 										<td>{row.startAddress}</td>
 										<td>{row.endAddress}</td>
-										<td>{row.distanceMiles}</td>
+										<td>{row.distance}</td>
 										<td>{row.duration}</td>
 										<td>{row.passengers}</td>
-										<td>{row.vehicleYear}</td>
-										<td>{row.vehicleMake}</td>
-										<td>{row.vehicleModel}</td>
+										<td>{row.year}</td>
+										<td>{row.make}</td>
+										<td>{row.model}</td>
 										<td>{row.carbonPounds}</td>
 										<td>
 											<Button

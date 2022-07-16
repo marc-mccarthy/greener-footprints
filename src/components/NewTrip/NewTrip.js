@@ -23,7 +23,7 @@ function NewTrip(props) {
 	const dispatch = useDispatch();
     const user = useSelector(store => store.user);
     const trips = useSelector(store => store.getTrips);
-    const lastTrip = trips.length > 0 ? trips[trips.length - 1] : null;
+    const lastTrip = trips.length > 0 ? trips[trips.length - 1] : undefined;
 
 
     const [formData, setFormData] = useState({
@@ -87,12 +87,12 @@ function NewTrip(props) {
 						</Button>
 					</FormControl>
 				</Box>
-				<Box>
-					<Grid>
-						<h3>{lastTrip.startAddress}</h3>
-						<h3>{lastTrip.endAddress}</h3>
-						<h3>{lastTrip.passengers}</h3>
-					</Grid>
+                <Box>
+                    {lastTrip === undefined ? <div></div> : (
+                        <Box>
+                            <h3>{JSON.stringify(lastTrip)}</h3>
+                        </Box>
+                    )}
 				</Box>
 			</form>
 		</div>
