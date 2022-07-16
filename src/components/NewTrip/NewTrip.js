@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Box,
 	Button,
 	FormControl,
+    Grid,
     Stack,
 } from '@mui/material';
 import StartAddress from '../StartAddress/StartAddress';
@@ -14,8 +15,16 @@ import Years from '../Years/Years';
 import Models from '../Models/Models';
 
 function NewTrip(props) {
+
+    useEffect(() => {
+        dispatch({ type: 'GET_TRIPS_SAGA' });
+    }, []);
+
 	const dispatch = useDispatch();
     const user = useSelector(store => store.user);
+    const trips = useSelector(store => store.getTrips);
+    const lastTrip = trips.length > 0 ? trips[trips.length - 1] : null;
+
 
     const [formData, setFormData] = useState({
         startAddress: '',
@@ -60,22 +69,13 @@ function NewTrip(props) {
 						/>
 					</FormControl>
 					<FormControl>
-						<Makes
-							formData={formData}
-							setFormData={setFormData}
-						/>
+						<Makes formData={formData} setFormData={setFormData} />
 					</FormControl>
 					<FormControl>
-						<Years
-							formData={formData}
-							setFormData={setFormData}
-						/>
+						<Years formData={formData} setFormData={setFormData} />
 					</FormControl>
 					<FormControl>
-						<Models
-							formData={formData}
-							setFormData={setFormData}
-						/>
+						<Models formData={formData} setFormData={setFormData} />
 					</FormControl>
 					<FormControl>
 						<Button
@@ -86,6 +86,13 @@ function NewTrip(props) {
 							NewTrip
 						</Button>
 					</FormControl>
+				</Box>
+				<Box>
+					<Grid>
+						<h3>{lastTrip.startAddress}</h3>
+						<h3>{lastTrip.endAddress}</h3>
+						<h3>{lastTrip.passengers}</h3>
+					</Grid>
 				</Box>
 			</form>
 		</div>
