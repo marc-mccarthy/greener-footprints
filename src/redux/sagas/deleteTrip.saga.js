@@ -6,7 +6,7 @@ import getTripsSaga from './getTrips.saga';
 function* deleteTrip(action) {
     console.log('DELETE: ACTION.PAYLOAD', action.payload);
 	try {
-        yield axios.delete(`/api/trips/${action.payload}`)
+        yield axios.delete(`/api/trips/${action.payload.id}`)
             .then(response => {
                 console.log('DELETE TRIP RESPONSE', response)
             })
