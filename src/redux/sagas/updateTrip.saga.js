@@ -4,9 +4,9 @@ const directionsService = new google.maps.DirectionsService();
 const directionsRenderer = new google.maps.DirectionsRenderer();
 
 // Worker Saga: will be fired on 'NEW_TRIP' actions
-function* newTrip(action) {
+function* updateTrip(action) {
 	try {
-		console.log('NEW TRIP: ACTION.PAYLOAD', action.payload);
+		console.log('UPDATE TRIP: ACTION.PAYLOAD', action.payload);
         // GOOGLE MAPS API REQUEST TO SERVER
         const startAddress = action.payload.startAddress.replaceAll(' ', '+');
 		const endAddress = action.payload.endAddress.replaceAll(' ', '+');
@@ -26,7 +26,8 @@ function* newTrip(action) {
         });
         console.log('CARBON RESPONSE:', carbonResponse);
 
-        const newTrip = {
+        const updateTrip = {
+            id: action.payload.id,
 			startAddress: directionsResponse.data.start_address,
 			endAddress: directionsResponse.data.end_address,
 			distance: directionsResponse.data.distance.value / 1609.34,
@@ -35,30 +36,26 @@ function* newTrip(action) {
 			estimateId: carbonResponse.data.id,
 			modelId:
 				carbonResponse.data.attributes.vehicle_model_id,
-			year: carbonResponse.data.attributes.vehicle_year,
-			make: carbonResponse.data.attributes.vehicle_make,
-			model: carbonResponse.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.attributes.carbon_lb,
-			userId: action.payload.userId,
 		};
-        console.log('NEW TRIP:', newTrip);
+        console.log('UPDATE TRIP:', updateTrip);
 
-		yield axios
-			.post('/api/trips/newTrip', newTrip)
+		axios
+			.put('/api/trips/updateTrip', updateTrip)
 			.then(response => {
-				console.log('RESPONSE FROM POST /api/trips/newTrip:', response);
+				console.log('RESPONSE FROM POST /api/trips/updateTrip:', response);
 			})
 			.catch(error => {
-				console.log('ERROR FROM POST /api/trips/newTrip:', error);
+				console.log('ERROR FROM POST /api/trips/updateTrip:', error);
 			});
             yield put({ type: 'GET_TRIPS_SAGA' });
 	} catch (error) {
-		console.log('Error in newTripSaga:', error);
+		console.log('Error in updateTripSaga:', error);
 	}
 }
 
-function* newTripSaga() {
-	yield takeLatest('NEW_TRIP', newTrip);
+function* updateTripSaga() {
+	yield takeLatest('UPDATE_TRIP_SAGA', updateTrip);
 }
 
-export default newTripSaga;
+export default updateTripSaga;

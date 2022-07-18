@@ -7,6 +7,7 @@ import makesSaga from './makes.saga';
 import yearsSaga from './years.saga';
 import modelsSaga from './models.saga';
 import getTripsSaga from './getTrips.saga';
+import updateTripSaga from './updateTrip.saga';
 import deleteTripSaga from './deleteTrip.saga';
 
 // rootSaga is the primary saga.
@@ -26,6 +27,7 @@ export default function* rootSaga() {
         yearsSaga(),
         modelsSaga(),
         getTripsSaga(),
+        updateTripSaga(),
         deleteTripSaga(),
 	]);
 }

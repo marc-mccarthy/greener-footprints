@@ -8,7 +8,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 // GET all trips
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/getTrips', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "trips" WHERE user_id = $1 ORDER BY "id" ASC`, [req.user.id])
         .then(response => {
             res.send(response.rows);
@@ -21,9 +21,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // POST new trip
 router.post('/newTrip', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
 	pool.query(
-		`INSERT INTO "trips" ("startAddress", "endAddress", "distance", "duration", "passengers", "estimateId", "modelId", "year", "make", "model", "carbonPounds", "userId") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+		`INSERT INTO "trips" ("startAddress", "endAddress", "distance", "duration", "passengers", "estimateId", "modelId", "year", "make", "model", "carbonPounds", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
 		[
 			req.body.startAddress,
 			req.body.endAddress,
@@ -43,7 +43,32 @@ router.post('/newTrip', (req, res) => {
 			res.sendStatus(201);
 		})
 		.catch(error => {
-			console.log('Error in POST /api/trips:', error);
+			console.log('Error in POST /api/trips/newTrip:', error);
+			res.sendStatus(500);
+		});
+});
+
+// UPDATE old trip
+router.put('/updateTrip', (req, res) => {
+	console.log(req.body);
+	pool.query(
+		`UPDATE "trips" SET "startAddress" = $1, "endAddress" = $2, "distance" = $3, "duration" = $4, "passengers" = $5, "modelId" = $6, "carbonPounds" = $7 WHERE "id" = $8`,
+		[
+			req.body.startAddress,
+			req.body.endAddress,
+			req.body.distance,
+			req.body.duration,
+			req.body.passengers,
+			req.body.modelId,
+			req.body.carbonPounds,
+			req.body.id,
+		]
+	)
+		.then(response => {
+			res.sendStatus(201);
+		})
+		.catch(error => {
+			console.log('Error in POST /api/trips/updateTrip:', error);
 			res.sendStatus(500);
 		});
 });
@@ -54,7 +79,7 @@ router.post('/maps', (req, res) => {
     axios
 		.get(req.body.directionsUrl + process.env.GOOGLE_MAPS_KEY)
 		.then(response => {
-			console.log('MAPS API SERVER response:', response.data.routes[0].legs[0]);
+			// console.log('MAPS API SERVER response:', response.data.routes[0].legs[0]);
 			res.send(response.data.routes[0].legs[0]);
 		})
 		.catch(error => {
@@ -155,6 +180,7 @@ router.post('/carbon/estimate', (req, res) => {
 
 // DELETE trip
 router.delete('/:id', (req, res) => {
+    console.log('DELETE /api/trips/:id', req.params);
     pool.query(
         `DELETE FROM "trips" WHERE "id" = $1`,
         [req.params.id]

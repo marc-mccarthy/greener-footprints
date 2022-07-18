@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-import getTripsSaga from './getTrips.saga';
 
 // Worker Saga: will be fired on "DELETE_TRIP_SAGA" actions
 function* deleteTrip(action) {
-    console.log('DELETE: ACTION.PAYLOAD', action.payload);
+    console.log('DELETE: ACTION.PAYLOAD', action.payload.id);
 	try {
         yield axios.delete(`/api/trips/${action.payload.id}`)
             .then(response => {
