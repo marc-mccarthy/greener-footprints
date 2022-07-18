@@ -3,9 +3,9 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // Worker Saga: will be fired on "DELETE_TRIP_SAGA" actions
 function* deleteTrip(action) {
-    console.log('DELETE: ACTION.PAYLOAD', action.payload.id);
+    console.log('DELETE: ACTION.PAYLOAD', action.payload);
 	try {
-        yield axios.delete(`/api/trips/${action.payload.id}`)
+        yield axios.delete(`/api/trips/${action.payload}`)
             .then(response => {
                 console.log('DELETE TRIP RESPONSE', response)
             })

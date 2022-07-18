@@ -96,12 +96,12 @@ function History(props) {
 			cellClassName: 'actions',
 			getActions: ({ id }) => {
 				return [
-                    <GridActionsCellItem
-                        icon={<DeleteIcon />}
-                        label='Delete'
-                        color='inherit'
-                        onClick={() => dispatch({ type: 'DELETE_TRIP_SAGA', id })}
-                    />,
+					<GridActionsCellItem
+						icon={<DeleteIcon />}
+						label='Delete'
+						color='inherit'
+						onClick={() => dispatch({type: 'DELETE_TRIP_SAGA', payload: id })}
+					/>,
 				];
 			},
 		},
