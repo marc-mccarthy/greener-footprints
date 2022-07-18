@@ -21,7 +21,7 @@ function* updateTrip(action) {
             url: '/api/trips/carbon/estimate',
             data: {
                 distance_value: directionsResponse.data.distance.value / 1609.34,
-				vehicle_model_id: action.payload.model,
+				vehicle_model_id: action.payload.modelId,
             }
         });
         console.log('CARBON RESPONSE:', carbonResponse);
@@ -51,6 +51,8 @@ function* updateTrip(action) {
             yield put({ type: 'GET_TRIPS_SAGA' });
 	} catch (error) {
 		console.log('Error in updateTripSaga:', error);
+        yield put({ type: 'GET_TRIPS_SAGA' });
+        alert("No Available Route Found");
 	}
 }
 

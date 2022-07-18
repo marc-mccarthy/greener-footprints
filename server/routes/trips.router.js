@@ -19,6 +19,20 @@ router.get('/getTrips', rejectUnauthenticated, (req, res) => {
         });
 });
 
+// GET edit trip
+router.get('/editTrip/:id', rejectUnauthenticated, (req, res) => {
+    console.log('Params:',req.params.id);
+    console.log('User:', req.user.id);
+    pool.query(`SELECT * FROM "trips" WHERE id = $1 AND user_id = $2`, [req.params.id, req.user.id])
+        .then(response => {
+            res.send(response.rows);
+        })
+        .catch(error => {
+            console.log('Error in GET /api/editTrip:', error);
+            res.sendStatus(500);
+        });
+});
+
 // POST new trip
 router.post('/newTrip', (req, res) => {
     // console.log(req.body)

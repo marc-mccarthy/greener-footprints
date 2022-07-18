@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
 import {
 	Box,
 	Button,
@@ -9,8 +10,8 @@ import {
 	Select,
 	Stack,
 } from '@mui/material';
-import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import loadingBar from '../../images/loading-bar.gif';
@@ -19,6 +20,7 @@ import './History.css';
 function History(props) {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
 	useEffect(() => {
         dispatch({ type: 'GET_TRIPS_SAGA' });
@@ -27,11 +29,6 @@ function History(props) {
 	const trips = useSelector(store => store.getTrips);
 
 	const columns = [
-		{
-			field: 'id',
-			headerName: 'ID',
-			width: 50,
-		},
 		{
 			field: 'startAddress',
 			headerName: 'Start Address',
@@ -74,14 +71,14 @@ function History(props) {
 		},
 		{
 			field: 'carbonPounds',
-			headerName: 'Carbon (lbs)',
+			headerName: 'CO2 (lbs)',
 			type: 'number',
 			width: 100,
 			editable: false,
 		},
 		{
 			field: 'carbonPoundsPerson',
-			headerName: 'Carbon (lbs)',
+			headerName: 'CO2 / Person (lbs)',
 			type: 'number',
 			width: 120,
 			editable: false,
@@ -97,56 +94,43 @@ function History(props) {
 			getActions: ({ id }) => {
 				return [
 					<GridActionsCellItem
+						icon={<EditIcon />}
+						label='Edit'
+						color='inherit'
+						onClick={() => {
+                            // dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
+							history.push(`/edittrip/${id}`);
+                        }}
+					/>,
+					<GridActionsCellItem
 						icon={<DeleteIcon />}
 						label='Delete'
 						color='inherit'
-						onClick={() => dispatch({type: 'DELETE_TRIP_SAGA', payload: id })}
+						onClick={() =>
+							dispatch({ type: 'DELETE_TRIP_SAGA', payload: id })
+						}
 					/>,
 				];
 			},
 		},
 	];
 
-	const rows = trips.map(trip => {
-		return {
-			id: trip.id,
-			startAddress: trip.startAddress,
-			endAddress: trip.endAddress,
-			distance: trip.distance,
-			duration: trip.duration,
-			passengers: trip.passengers,
-			year: trip.year,
-			make: trip.make,
-			model: trip.model,
-			carbonPounds: trip.carbonPounds,
-		};
-	});
-
-    const [snackbar, setSnackbar] = useState(null);
-	const handleCloseSnackbar = () => setSnackbar(null);
-
-    const processRowUpdate = (params) => {
-		const modelId = trips.find(trip => trip.id === params.id).modelId;
-		dispatch({ type: 'GET_TRIPS', payload: [] });
-		dispatch({
-			type: 'UPDATE_TRIP_SAGA',
-			payload: {
-				id: params.id,
-				model: modelId,
-				startAddress: params.startAddress,
-				endAddress: params.endAddress,
-				passengers: params.passengers,
-			},
-		});
-		setSnackbar({
-			children: 'User successfully saved',
-			severity: 'success',
-		});
+    const processRowUpdate = (newRow, oldRow) => {
+        console.log('NEW ROW:', newRow);
+        console.log('OLD ROW:', oldRow);
+        if (newRow.startAddress === oldRow.startAddress && newRow.endAddress === oldRow.endAddress && newRow.passengers === oldRow.passengers) {
+            console.log('No Change');
+            return;
+        }
+        const modelId = trips.find(trip => trip.id === newRow.id).modelId;
+        dispatch({ type: 'GET_TRIPS', payload: [] });
+        dispatch({ type: 'UPDATE_TRIP_SAGA', payload: {...newRow, modelId} });
 	};
 
-    const processRowUpdateError = useCallback(error => {
-	//	setSnackbar({ children: error.message, severity: 'error' });
-	}, []);
+    const processRowUpdateError = (error) => {
+        // console.log('ERROR:', error);
+	    // setSnackbar({ children: error.message, severity: 'error' });
+	};
 
 	return (
 		<div>
@@ -164,45 +148,21 @@ function History(props) {
 						style={{ width: '100%' }}
 						sx={{
 							width: '100%',
-							'& .MuiDataGrid-cell--editable': {
-								bgcolor: theme =>
-									theme.palette.mode === 'dark'
-										? '#376331'
-										: 'rgb(237, 237, 235)',
-							},
 						}}
 					>
 						<DataGrid
 							autoHeight
-							rows={rows}
+							rows={trips}
 							columns={columns}
 							pageSize={20}
-							getRowId={row => row.id}
+							getRowId={(row) => row.id}
 							rowsPerPageOptions={[20]}
 							editMode='row'
 							disableSelectionOnClick
 							processRowUpdate={processRowUpdate}
-							onProcessRowUpdateError={error =>
-								processRowUpdateError(error)
-							}
+							onProcessRowUpdateError={processRowUpdateError}
 							experimentalFeatures={{ newEditingApi: true }}
 						/>
-						{!!snackbar && (
-							<Snackbar
-								open
-								anchorOrigin={{
-									vertical: 'bottom',
-									horizontal: 'center',
-								}}
-								onClose={handleCloseSnackbar}
-								autoHideDuration={6000}
-							>
-								<Alert
-									{...snackbar}
-									onClose={handleCloseSnackbar}
-								/>
-							</Snackbar>
-						)}
 					</Box>
 				</div>
 			)}

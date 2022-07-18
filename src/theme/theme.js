@@ -4,45 +4,59 @@ const theme = createTheme({
 	palette: {
 		type: 'light',
 		primary: {
-			main: '#2c732c',
+			main: '#059e00',
+		},
+		secondary: {
+			main: '#04a7d6',
 		},
 		background: {
-			default: '#111111',
-			paper: '#212121',
+			default: '#f7f7f7',
+			paper: '#9de3fc',
+		},
+		type: 'dark',
+		primary: {
+			main: '#059e00',
+		},
+		secondary: {
+			main: '#04a7d6',
+		},
+		background: {
+			default: '#f7f7f7',
+			paper: '#9de3fc',
 		},
 	},
 	typography: {
-		fontFamily: 'Lato',
+		fontFamily: 'Playfair Display',
 		h1: {
-			fontFamily: 'Montserrat',
+			fontFamily: 'Playfair Display',
 		},
 		h2: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Arvo',
 		},
 		h3: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Dosis',
 		},
 		h4: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Montserrat',
 		},
 		h6: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Montserrat',
 		},
 		h5: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Montserrat',
 		},
 		subtitle1: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Montserrat',
 		},
 		subtitle2: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Montserrat',
 		},
 		button: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Quicksand',
 			fontWeight: 900,
 		},
 		overline: {
-			fontFamily: 'Ubuntu Mono',
+			fontFamily: 'Quicksand',
 		},
 	},
 });

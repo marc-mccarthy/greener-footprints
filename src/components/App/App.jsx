@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import NewTrip from '../NewTrip/NewTrip';
+import EditTrip from '../EditTrip/EditTrip';
 import History from '../History/History';
 import Charts from '../Charts/Charts';
 import Docs from '../Docs/Docs';
@@ -70,6 +71,14 @@ function App() {
                         path="/newtrip"
                     >
                         <NewTrip />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
+                        // logged in shows EditTrip else shows LoginPage
+                        exact
+                        path="/edittrip/:id"
+                    >
+                        <EditTrip />
                     </ProtectedRoute>
 
                     <ProtectedRoute
