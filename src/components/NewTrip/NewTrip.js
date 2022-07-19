@@ -49,51 +49,82 @@ function NewTrip(props) {
 				<h1>Greener Foot(prints): Road Trip Edition</h1>
 			</div>
 			<form>
-				<Box>
-					<FormControl>
-						<StartAddress
-							formData={formData}
-							setFormData={setFormData}
-						/>
-					</FormControl>
-					<FormControl>
-						<EndAddress
-							formData={formData}
-							setFormData={setFormData}
-						/>
-					</FormControl>
-					<FormControl>
-						<Passengers
-							formData={formData}
-							setFormData={setFormData}
-						/>
-					</FormControl>
-					<FormControl>
-						<Makes formData={formData} setFormData={setFormData} />
-					</FormControl>
-					<FormControl>
-						<Years formData={formData} setFormData={setFormData} />
-					</FormControl>
-					<FormControl>
-						<Models formData={formData} setFormData={setFormData} />
-					</FormControl>
-					<FormControl>
-						<Button
-							size='large'
-							onClick={readySetGo}
-							sx={{ width: 100 }}
-						>
-							NewTrip
-						</Button>
-					</FormControl>
-				</Box>
-                <Box>
-                    {lastTrip === undefined ? <div></div> : (
-                        <Box>
-                            <h3>{JSON.stringify(lastTrip)}</h3>
-                        </Box>
-                    )}
-				</Box>
+                <Grid
+                    container
+                    spacing={2}
+                    direction='row'
+                    justifyContent='center'
+                    alignItems='center'
+                >
+                    <Grid item>
+                        <FormControl>
+                            <StartAddress
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <EndAddress
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <Passengers
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <Makes
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <Years
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <Models
+                                formData={formData}
+                                setFormData={setFormData}
+                            />
+                        </FormControl>
+                    </Grid>
+                    <Grid item>
+                        <FormControl>
+                            <Button
+                                size='large'
+                                onClick={readySetGo}
+                                sx={{ width: 100 }}
+                            >
+                                NewTrip
+                            </Button>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+            <Box>
+                {lastTrip === undefined ? (
+                    <div></div>
+                ) : (
+                    <Box>
+                        <h3>{JSON.stringify(lastTrip)}</h3>
+                    </Box>
+                )}
+            </Box>
 			</form>
 		</div>
 	);

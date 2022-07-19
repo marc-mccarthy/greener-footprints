@@ -21,11 +21,10 @@ function EditTrip(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        console.log('EditTrip: useEffect', id);
-        dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
+        console.log('EditTrip: useEffect', editTrip[0].id);
+        // dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
     }, []);
 
-	const dispatch = useDispatch();
     const user = useSelector(store => store.user);
     const editTrip = useSelector(store => store.editTrip);
 
@@ -49,39 +48,36 @@ function EditTrip(props) {
                     <div>
                         <h1>Edit Trip</h1>
                     </div>
-                    <form>
                         <Box>
                             <FormControl>
                                 <StartAddress
                                     formData={formData}
                                     setFormData={setFormData}
                                 />
-                            </FormControl>
-                            <FormControl>
                                 <EndAddress
                                     formData={formData}
                                     setFormData={setFormData}
                                 />
-                            </FormControl>
-                            <FormControl>
                                 <Passengers
                                     formData={formData}
                                     setFormData={setFormData}
                                 />
-                            </FormControl>
-                            <FormControl>
-                                <Makes formData={formData} setFormData={setFormData} />
-                            </FormControl>
-                            <FormControl>
-                                <Years formData={formData} setFormData={setFormData} />
-                            </FormControl>
-                            <FormControl>
-                                <Models formData={formData} setFormData={setFormData} />
-                            </FormControl>
-                            <FormControl>
+                                <Makes
+                                    formData={formData}
+                                    setFormData={setFormData}
+                                />
+                                <Years
+                                    formData={formData}
+                                    setFormData={setFormData}
+                                />
+                                <Models
+                                    formData={formData}
+                                    setFormData={setFormData}
+                                />
                                 <Button
                                     size='large'
                                     sx={{ width: 100 }}
+                                    variant='contained'
                                 >
                                     Edit Trip
                                 </Button>
@@ -90,9 +86,9 @@ function EditTrip(props) {
                         <Box>
                             <h3>{JSON.stringify(editTrip)}</h3>
                         </Box>
-                    </form>
-                </div>
-            )}
+                    </div>
+                )
+            }
         </div>
 	);
 }
