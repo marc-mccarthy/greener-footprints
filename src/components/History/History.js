@@ -177,10 +177,10 @@ function History(props) {
 
     const [selectedRows, setSelectedRows] = useState([]);
 
-    const deleteMultiple = (selectedRows) => {
+    const deleteMultiple = () => {
         console.log('DELETE MULTIPLE:', selectedRows);
-        selectedRows.forEach(row => {
-            dispatch({ type: 'DELETE_TRIP_SAGA', payload: row.id });
+        selectedRows.forEach(id => {
+            dispatch({ type: 'DELETE_TRIP_SAGA', payload: id });
         });
     }
 
@@ -230,6 +230,7 @@ function History(props) {
 								}}
 								onSelectionModelChange={ids => {
                                     setSelectedRows(ids);
+                                    console.log('SELECTION MODEL CHANGE:', ids);
 								}}
 								sx={{
 									boxShadow: 4,
