@@ -2,7 +2,6 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 require('dotenv').config();
-const axios = require('axios');
 const {
 	rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
@@ -15,20 +14,6 @@ router.get('/getTrips', rejectUnauthenticated, (req, res) => {
         })
         .catch(error => {
             console.log('Error in GET /api/trips:', error);
-            res.sendStatus(500);
-        });
-});
-
-// GET edit trip
-router.get('/editTrip/:id', rejectUnauthenticated, (req, res) => {
-    console.log('Params:',req.params.id);
-    console.log('User:', req.user.id);
-    pool.query(`SELECT * FROM "trips" WHERE id = $1 AND user_id = $2`, [req.params.id, req.user.id])
-        .then(response => {
-            res.send(response.rows);
-        })
-        .catch(error => {
-            console.log('Error in GET /api/editTrip:', error);
             res.sendStatus(500);
         });
 });
@@ -62,9 +47,9 @@ router.post('/newTrip', (req, res) => {
 		});
 });
 
-// UPDATE old trip
+// UPDATE old trip (datagrid)
 router.put('/updateTrip', (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 	pool.query(
 		`UPDATE "trips" SET "startAddress" = $1, "endAddress" = $2, "distance" = $3, "duration" = $4, "passengers" = $5, "modelId" = $6, "carbonPounds" = $7 WHERE "id" = $8`,
 		[
@@ -87,114 +72,23 @@ router.put('/updateTrip', (req, res) => {
 		});
 });
 
-// POST maps
-router.post('/maps', (req, res) => {
-    // console.log('MAPS API SERVER req.body:', req.body.directionsUrl + process.env.GOOGLE_MAPS_KEY);
-    axios
-		.get(req.body.directionsUrl + process.env.GOOGLE_MAPS_KEY)
-		.then(response => {
-			// console.log('MAPS API SERVER response:', response.data.routes[0].legs[0]);
-			res.send(response.data.routes[0].legs[0]);
-		})
-		.catch(error => {
-			console.log('Error in POST /api/trips/maps:', error);
-			res.sendStatus(500);
-		});
-});
-
-// POST new makes
-router.get('/carbon/makes', (req, res) => {
-    // console.log('CARBON API SERVER req.body:', req.body);
-    axios({
-        method: 'GET',
-        url: 'https://www.carboninterface.com/api/v1/vehicle_makes',
-        headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
-		},
-    })
-    .then(response => {
-        // console.log('CARBON API SERVER response:', response.data);
-        res.send(response.data);
-    })
-    .catch(error => {
-        console.log('Error in POST /api/trips/carbon/makes:', error);
-        res.sendStatus(500);
-    });
-});
-
-// POST new years
-router.post('/carbon/years', (req, res) => {
-	// console.log('CARBON API SERVER req.body:', req.body.make);
-	axios({
-        method: 'GET',
-        url: `https://www.carboninterface.com/api/v1/vehicle_makes/${req.body.make}/vehicle_models`,
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
-        },
-    })
-    .then(response => {
-        // console.log('CARBON API SERVER response:', response.data);
-        res.send(response.data);
-    })
-    .catch(error => {
-        console.log('Error in POST /api/trips/carbon/years:', error);
-        res.sendStatus(500);
-    });
-});
-
-// POST new models
-router.post('/carbon/models', (req, res) => {
-	// console.log('CARBON API SERVER req.body:', req.body.make);
-	axios({
-		method: 'GET',
-		url: `https://www.carboninterface.com/api/v1/vehicle_makes/${req.body.make}/vehicle_models`,
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
-		},
-	})
-    .then(response => {
-        // console.log('CARBON API SERVER response:', response.data);
-        res.send(response.data);
-    })
-    .catch(error => {
-        console.log('Error in POST /api/trips/carbon/years:', error);
-        res.sendStatus(500);
-    });
-});
-
-// POST new estimate
-router.post('/carbon/estimate', (req, res) => {
-    // console.log('CARBON API SERVER req.body:', req.body);
-    axios({
-		method: 'POST',
-		url: 'https://www.carboninterface.com/api/v1/estimates',
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${process.env.CARBON_INTERFACE_KEY}`,
-		},
-		data: {
-			type: 'vehicle',
-			distance_unit: 'mi',
-			distance_value: req.body.distance_value,
-			vehicle_model_id: req.body.vehicle_model_id,
-		},
-	})
-    .then(response => {
-        // console.log('CARBON API SERVER response:', response.data.data);
-        res.send(response.data.data);
-    })
-    .catch(error => {
-        console.log('Error in POST /api/trips/carbon/estimate:', error);
-        res.sendStatus(500);
-    });
+// UPDATE edit trip (separate page)
+router.get('/editTrip/:id', rejectUnauthenticated, (req, res) => {
+    // console.log('Params:',req.params.id);
+    // console.log('User:', req.user.id);
+    pool.query(`SELECT * FROM "trips" WHERE id = $1 AND user_id = $2`, [req.params.id, req.user.id])
+        .then(response => {
+            res.send(response.rows);
+        })
+        .catch(error => {
+            console.log('Error in GET /api/editTrip:', error);
+            res.sendStatus(500);
+        });
 });
 
 // DELETE trip
 router.delete('/:id', (req, res) => {
-    console.log('DELETE /api/trips/:id', req.params);
+    // console.log('DELETE /api/trips/:id', req.params);
     pool.query(
         `DELETE FROM "trips" WHERE "id" = $1`,
         [req.params.id]

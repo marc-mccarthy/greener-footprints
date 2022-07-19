@@ -13,8 +13,8 @@ function Nav(props) {
 	return (
 		<div className="nav">
 			<Link to="/home">
-                <Typography>
-                    <h3 className="nav-title">Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly</h3>
+                <Typography variant="h3" color="#fff">
+                    Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly
                 </Typography>
 			</Link>
 			<div>
@@ -25,38 +25,30 @@ function Nav(props) {
 						Login / Register
 					</Link>
 				)}
-
 				{/* If a user is logged in, show these links */}
 				{user.id && (
 					<>
                         <Link className="navLink" to="/user">
                             Home
                         </Link>
-
 						<Link className="navLink" to="/newtrip">
 							New Trip
 						</Link>
-
                         <Link className="navLink" to="/history">
                             History
                         </Link>
-
                         <Link className="navLink" to="/charts">
                             Charts
                         </Link>
-
 						<LogOutButton className="navLink" />
 					</>
 				)}
-
                 <Link className="navLink" to="/docs">
                     Docs
                 </Link>
-
                 <Link className="navLink" to="/info">
                     Info Page
                 </Link>
-
 				<Link className="navLink" to="/about">
 					About
 				</Link>

@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* years(action) {
     console.log('YEARS: ACTION.PAYLOAD', action.payload)
     try {
-        const years = yield axios.post('/api/trips/carbon/years', {make: action.payload.make});
+        const years = yield axios.post('/api/carbon/years', {make: action.payload.make});
         let responseYears = years.data.map(model => model.data.attributes.year);
         console.log('YEARS IN SAGA', responseYears)
 		let uniqueYears = [...new Set(responseYears)];

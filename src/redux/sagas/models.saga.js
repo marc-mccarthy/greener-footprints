@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // Worker Saga: will be fired on "MODELS_SAGA" actions
 function* models(action) {
 	try {
-		const models = yield axios.post('/api/trips/carbon/models', {make: action.payload.make});
+		const models = yield axios.post('/api/carbon/models', {make: action.payload.make});
 		let responseModels = models.data.filter(model => {
             let year = action.payload.year;
             if (model.data.attributes.year === year) {

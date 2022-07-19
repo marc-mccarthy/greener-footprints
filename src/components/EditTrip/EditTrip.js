@@ -6,7 +6,7 @@ import {
 	Button,
 	FormControl,
     Grid,
-    Stack,
+    Typography,
 } from '@mui/material';
 import loadingBar from '../../images/loading-bar.gif';
 import StartAddress from '../StartAddress/StartAddress';
@@ -18,11 +18,12 @@ import Models from '../Models/Models';
 
 function EditTrip(props) {
 
+    const dispatch = useDispatch();
+    const history = useHistory();
     const { id } = useParams();
 
     useEffect(() => {
-        console.log('EditTrip: useEffect', editTrip[0].id);
-        // dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
+        dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
     }, []);
 
     const user = useSelector(store => store.user);
@@ -38,58 +39,122 @@ function EditTrip(props) {
         userId: user.id,
     });
 
+    const readySetGo = () => {
+        dispatch({ type: 'EDIT_TRIP', payload: formData });
+    }
+
 	return (
-        <div>
-            {editTrip.length === 0 ? (
+		<Box className='EditTrip'>
+			{editTrip.length === 0 ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
-                <div className='EditTrip'>
-                    <h3>{JSON.stringify(editTrip)}</h3>
-                    <div>
-                        <h1>Edit Trip</h1>
-                    </div>
-                        <Box>
-                            <FormControl>
-                                <StartAddress
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                />
-                                <EndAddress
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                />
-                                <Passengers
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                />
-                                <Makes
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                />
-                                <Years
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                />
-                                <Models
-                                    formData={formData}
-                                    setFormData={setFormData}
-                                />
-                                <Button
-                                    size='large'
-                                    sx={{ width: 100 }}
-                                    variant='contained'
-                                >
-                                    Edit Trip
-                                </Button>
-                            </FormControl>
-                        </Box>
-                        <Box>
-                            <h3>{JSON.stringify(editTrip)}</h3>
-                        </Box>
-                    </div>
-                )
-            }
-        </div>
+				<Box>
+					<Box m={3}>
+						<Typography variant='h4' color='primary' align='center'>
+							Edit Trip
+						</Typography>
+					</Box>
+
+					<Box m={3}>
+						<Grid
+							container
+							spacing={2}
+							direction='row'
+							justifyContent='center'
+							alignItems='center'
+						>
+							<Grid item>
+								<FormControl>
+									<StartAddress
+										formData={formData}
+										setFormData={setFormData}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl>
+									<EndAddress
+										formData={formData}
+										setFormData={setFormData}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl>
+									<Passengers
+										formData={formData}
+										setFormData={setFormData}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl>
+									<Makes
+										formData={formData}
+										setFormData={setFormData}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl>
+									<Years
+										formData={formData}
+										setFormData={setFormData}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl>
+									<Models
+										formData={formData}
+										setFormData={setFormData}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl>
+									<Button
+										size='large'
+										onClick={readySetGo}
+										sx={{ width: 100 }}
+										variant='contained'
+									>
+										Submit
+									</Button>
+								</FormControl>
+							</Grid>
+						</Grid>
+					</Box>
+
+					<Box m={3}>
+						<Box m={3}>
+							<Typography
+								variant='h5'
+								color='primary'
+								align='center'
+							>
+								Current Trip
+							</Typography>
+						</Box>
+
+						<Box m={3}>
+							<h3>{JSON.stringify(editTrip)}</h3>
+						</Box>
+
+						<Box m={3}>
+							<Button
+								size='large'
+								onClick={() => history.push('/history')}
+								sx={{ width: 100 }}
+								variant='contained'
+							>
+								History
+							</Button>
+						</Box>
+					</Box>
+				</Box>
+			)}
+		</Box>
 	);
 }
 

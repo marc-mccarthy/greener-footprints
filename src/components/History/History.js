@@ -1,25 +1,20 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import {
 	Box,
 	Button,
-	FormControl,
 	Grid,
-	InputLabel,
-	MenuItem,
-	Select,
-	Stack,
+    Typography,
 } from '@mui/material';
-import Alert from '@mui/material/Alert';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import loadingBar from '../../images/loading-bar.gif';
 import './History.css';
-import {ThemeContext} from '@emotion/react';
 
 function History(props) {
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const trips = useSelector(store => store.getTrips);
@@ -73,7 +68,7 @@ function History(props) {
 			headerClassName: 'theme--header',
 			type: 'number',
 			minWidth: 100,
-			maxWidth: 130,
+			maxWidth: 160,
 			flex: 1,
 			editable: false,
 		},
@@ -82,7 +77,7 @@ function History(props) {
 			headerName: 'Duration',
 			headerClassName: 'theme--header',
 			minWidth: 120,
-			maxWidth: 150,
+			maxWidth: 180,
 			flex: 1,
 			editable: false,
 		},
@@ -91,7 +86,7 @@ function History(props) {
 			headerName: 'Vehicle',
 			headerClassName: 'theme--header',
 			minWidth: 210,
-			maxWidth: 240,
+			maxWidth: 260,
 			flex: 1,
 			editable: false,
 			valueGetter: params =>
@@ -104,7 +99,7 @@ function History(props) {
 			headerAlign: 'center',
 			type: 'number',
 			minWidth: 100,
-			maxWidth: 130,
+			maxWidth: 150,
 			flex: 1,
 			editable: false,
 		},
@@ -128,7 +123,7 @@ function History(props) {
 			headerClassName: 'theme--header',
 			headerAlign: 'center',
 			minWidth: 110,
-			maxWidth: 140,
+			maxWidth: 160,
 			flex: 1,
 			cellClassName: 'actions',
 			getActions: ({ id }) => {
@@ -139,7 +134,7 @@ function History(props) {
 						color='inherit'
 						onClick={() => {
 							dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
-							history.push(`/edittrip/`);
+							history.push(`/edittrip/${id}`);
 						}}
 					/>,
 					<GridActionsCellItem
@@ -185,67 +180,69 @@ function History(props) {
     }
 
 	return (
-		<div>
+		<Box>
 			{trips.length === 0 ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
-				<div>
-					<Box className='history-header'>
-						<Box className='history-header-title'>
-							<h1>History</h1>
-							<Button onClick={deleteMultiple}>
-								Delete Multiple
-							</Button>
-						</Box>
+				<Box>
+					<Box m={3}>
+						<Typography variant='h4' color='primary' align='center'>
+							History
+						</Typography>
 					</Box>
-					<Grid
-						container
-						direction='row'
-						justifyContent='center'
-						alignItems='center'
-						sx={{
-							height: 300,
-							width: '100%',
-							'& .theme--header': {
-								backgroundColor: '#059e00',
-								color: '#fff',
-							},
-						}}
-					>
-						<Grid item xs={11.5}>
-							<DataGrid
-								autoHeight
-								rows={trips}
-								columns={columns}
-								pageSize={20}
-								getRowId={row => row.id}
-								rowsPerPageOptions={[20]}
-								editMode='row'
-								disableSelectionOnClick
-								processRowUpdate={processRowUpdate}
-								onProcessRowUpdateError={processRowUpdateError}
-								checkboxSelection={true}
-								experimentalFeatures={{
-									newEditingApi: true,
-								}}
-								onSelectionModelChange={ids => {
-                                    setSelectedRows(ids);
-                                    console.log('SELECTION MODEL CHANGE:', ids);
-								}}
-								sx={{
-									boxShadow: 4,
-									border: 4,
-									borderColor: 'primary.light',
-									'& .MuiDataGrid-cell:hover': {
-										color: 'primary.main',
-									},
-								}}
-							/>
-						</Grid>
-					</Grid>
-				</div>
-			)}
-		</div>
+                    <Box>
+                        <Button onClick={deleteMultiple}>
+							Delete Multiple
+						</Button>
+                        <Grid
+                            container
+                            direction='row'
+                            justifyContent='center'
+                            alignItems='center'
+                            sx={{
+                                height: 300,
+                                width: '100%',
+                                '& .theme--header': {
+                                    backgroundColor: '#059e00',
+                                    color: '#fff',
+                                },
+                            }}
+                        >
+                            <Grid item xs={11.5}>
+                                <DataGrid
+                                    autoHeight
+                                    rows={trips}
+                                    columns={columns}
+                                    pageSize={20}
+                                    getRowId={row => row.id}
+                                    rowsPerPageOptions={[20]}
+                                    editMode='row'
+                                    disableSelectionOnClick
+                                    processRowUpdate={processRowUpdate}
+                                    onProcessRowUpdateError={processRowUpdateError}
+                                    checkboxSelection={true}
+                                    experimentalFeatures={{
+                                        newEditingApi: true,
+                                    }}
+                                    onSelectionModelChange={ids => {
+                                        setSelectedRows(ids);
+                                        console.log('SELECTION MODEL CHANGE:', ids);
+                                    }}
+                                    sx={{
+                                        boxShadow: 4,
+                                        border: 4,
+                                        borderColor: 'primary.light',
+                                        '& .MuiDataGrid-cell:hover': {
+                                            color: 'primary.main',
+                                        },
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box>
+            )}
+		</Box>
 	);
 }
 

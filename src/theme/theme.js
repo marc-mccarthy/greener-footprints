@@ -1,63 +1,35 @@
 import { createTheme } from '@mui/material/styles';
+import backtonature from '../fonts/backtonature.woff'
+import beautymountains from '../fonts/beautymountains.woff'
+import lemonjelly from '../fonts/lemonjelly.woff';
+import moonshine from '../fonts/moonshine.woff';
+import rooster from '../fonts/rooster.woff';
+import chunkfive from '../fonts/chunkfive.woff';
+import rhythm from '../fonts/rhythm.woff';
+import proximanova from '../fonts/proximanova.woff';
 
 const theme = createTheme({
 	palette: {
 		type: 'light',
 		primary: {
-			main: '#059e00',
+			main: '#0b6b07',
 		},
 		secondary: {
-			main: '#04a7d6',
-		},
-		background: {
-			default: '#f7f7f7',
-			paper: '#9de3fc',
-		},
-		type: 'dark',
-		primary: {
-			main: '#059e00',
-		},
-		secondary: {
-			main: '#04a7d6',
-		},
-		background: {
-			default: '#f7f7f7',
-			paper: '#9de3fc',
+			main: '#226f85',
 		},
 	},
 	typography: {
-		fontFamily: 'Playfair Display',
-		h1: {
-			fontFamily: 'Playfair Display',
-		},
-		h2: {
-			fontFamily: 'Arvo',
-		},
-		h3: {
-			fontFamily: 'Dosis',
-		},
-		h4: {
-			fontFamily: 'Montserrat',
-		},
-		h6: {
-			fontFamily: 'Montserrat',
-		},
-		h5: {
-			fontFamily: 'Montserrat',
-		},
-		subtitle1: {
-			fontFamily: 'Montserrat',
-		},
-		subtitle2: {
-			fontFamily: 'Montserrat',
-		},
+		fontFamily:
+			'Oswald',
+		fontSize: 18,
 		button: {
-			fontFamily: 'Quicksand',
-			fontWeight: 900,
+			fontFamily: 'Oswald',
+			fontWeight: 400,
 		},
-		overline: {
-			fontFamily: 'Quicksand',
-		},
+        h3: {
+            fontFamily: 'backtonature',
+            fontWeight: 900,
+        }
 	},
 });
 

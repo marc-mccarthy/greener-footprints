@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-const directionsService = new google.maps.DirectionsService();
-const directionsRenderer = new google.maps.DirectionsRenderer();
 
 // Worker Saga: will be fired on 'NEW_TRIP' actions
 function* newTrip(action) {
@@ -10,7 +8,7 @@ function* newTrip(action) {
         // GOOGLE MAPS API REQUEST TO SERVER
         const startAddress = action.payload.startAddress.replaceAll(' ', '+');
 		const endAddress = action.payload.endAddress.replaceAll(' ', '+');
-        const directionsResponse = yield axios.post('/api/trips/maps', {
+        const directionsResponse = yield axios.post('/api/maps', {
             directionsUrl: `https://maps.googleapis.com/maps/api/directions/json?origin=${startAddress}&destination=${endAddress}&key=`
         });
         console.log('DIRECTIONS RESPONSE:', directionsResponse);
@@ -18,7 +16,7 @@ function* newTrip(action) {
         // CARBON INTERFACE API RESPONSE TO SERVER
         const carbonResponse = yield axios({
             method: 'POST',
-            url: '/api/trips/carbon/estimate',
+            url: '/api/carbon/estimate',
             data: {
                 distance_value: directionsResponse.data.distance.value / 1609.34,
 				vehicle_model_id: action.payload.model,

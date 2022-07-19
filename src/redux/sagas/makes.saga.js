@@ -8,7 +8,7 @@ function* makesSaga() {
 
 function* makes() {
 	try {
-        const makes = yield axios.get('/api/trips/carbon/makes');
+        const makes = yield axios.get('/api/carbon/makes');
         console.log('MAKES IN SAGA', makes.data)
         yield put({ type: 'MAKES', payload: makes.data });
 	} catch (error) {

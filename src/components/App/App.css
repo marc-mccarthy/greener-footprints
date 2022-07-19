@@ -117,3 +117,84 @@ input {
 	margin-right: auto;
 	width: 50%;
 }
+
+/* --------------------------------------------------------------------------------
+External Font Faces
+-------------------------------------------------------------------------------- */
+
+@font-face {
+	font-family: 'backtonature';
+	src: url('../../fonts/backtonature.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'beautymountains';
+	src: url('../../fonts/beautymountains.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'california';
+	src: url('../../fonts/california.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'lemonjelly';
+	src: url('../../fonts/lemonjelly.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'moonshine';
+	src: url('../../fonts/moonshine.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'quiltpatches';
+	src: url('../../fonts/quiltpatches.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'rooster';
+	src: url('../../fonts/rooster.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'stanley';
+	src: url('../../fonts/stanley.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'chunkfive';
+	src: url('../../fonts/chunkfive.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'rhythm';
+	src: url('../../fonts/rhythm.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'proximanova';
+	src: url('../../fonts/proximanova.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}

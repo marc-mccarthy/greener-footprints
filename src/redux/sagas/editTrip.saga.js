@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-const directionsService = new google.maps.DirectionsService();
-const directionsRenderer = new google.maps.DirectionsRenderer();
 
 // Worker Saga: will be fired on 'EDIT_TRIP_SAGA' actions
 function* editTrip(action) {
