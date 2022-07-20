@@ -137,8 +137,8 @@ External Font Faces
 }
 
 @font-face {
-	font-family: 'california';
-	src: url('../../fonts/california.woff') format('woff');
+	font-family: 'chunkfive';
+	src: url('../../fonts/chunkfive.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -151,15 +151,8 @@ External Font Faces
 }
 
 @font-face {
-	font-family: 'moonshine';
-	src: url('../../fonts/moonshine.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'quiltpatches';
-	src: url('../../fonts/quiltpatches.woff') format('woff');
+	font-family: 'proximanova';
+	src: url('../../fonts/proximanova.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -167,34 +160,6 @@ External Font Faces
 @font-face {
 	font-family: 'rooster';
 	src: url('../../fonts/rooster.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'stanley';
-	src: url('../../fonts/stanley.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'chunkfive';
-	src: url('../../fonts/chunkfive.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'rhythm';
-	src: url('../../fonts/rhythm.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'proximanova';
-	src: url('../../fonts/proximanova.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }

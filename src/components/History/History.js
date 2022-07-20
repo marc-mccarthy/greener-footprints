@@ -39,7 +39,7 @@ function History(props) {
 			field: 'startAddress',
 			headerName: 'Start Address',
 			headerClassName: 'theme--header',
-			minWidth: 230,
+			minWidth: 210,
 			flex: 1,
 			editable: true,
 		},
@@ -47,7 +47,7 @@ function History(props) {
 			field: 'endAddress',
 			headerName: 'End Address',
 			headerClassName: 'theme--header',
-			minWidth: 230,
+			minWidth: 210,
 			flex: 1,
 			editable: true,
 		},
@@ -57,8 +57,8 @@ function History(props) {
 			headerClassName: 'theme--header',
 			headerAlign: 'center',
 			type: 'number',
-			minWidth: 90,
-			maxWidth: 120,
+			minWidth: 110,
+			maxWidth: 150,
 			flex: 1,
 			editable: true,
 		},
@@ -67,8 +67,8 @@ function History(props) {
 			headerName: 'Distance (mi)',
 			headerClassName: 'theme--header',
 			type: 'number',
-			minWidth: 100,
-			maxWidth: 160,
+			minWidth: 110,
+			maxWidth: 150,
 			flex: 1,
 			editable: false,
 		},
@@ -85,7 +85,7 @@ function History(props) {
 			field: 'vehicle',
 			headerName: 'Vehicle',
 			headerClassName: 'theme--header',
-			minWidth: 210,
+			minWidth: 189,
 			maxWidth: 260,
 			flex: 1,
 			editable: false,
@@ -109,8 +109,8 @@ function History(props) {
 			headerClassName: 'theme--header',
 			headerAlign: 'center',
 			type: 'number',
-			minWidth: 120,
-			maxWidth: 150,
+			minWidth: 140,
+			maxWidth: 170,
 			flex: 1,
 			editable: false,
 			valueGetter: params =>
@@ -166,8 +166,8 @@ function History(props) {
 		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { ...newRow, modelId } });
 	};
 
-	const processRowUpdateError = error => {
-		// console.log('ERROR:', error);
+	const processRowUpdateError = (error) => {
+		console.log('ERROR:', error);
 	};
 
     const [selectedRows, setSelectedRows] = useState([]);
@@ -191,7 +191,8 @@ function History(props) {
 						</Typography>
 					</Box>
                     <Box>
-                        <Button onClick={deleteMultiple}>
+                        <Button
+                            onClick={deleteMultiple}>
 							Delete Multiple
 						</Button>
                         <Grid
@@ -219,7 +220,7 @@ function History(props) {
                                     editMode='row'
                                     disableSelectionOnClick
                                     processRowUpdate={processRowUpdate}
-                                    onProcessRowUpdateError={processRowUpdateError}
+                                    onProcessRowUpdateError={() => processRowUpdateError}
                                     checkboxSelection={true}
                                     experimentalFeatures={{
                                         newEditingApi: true,

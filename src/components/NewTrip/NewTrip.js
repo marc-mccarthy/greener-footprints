@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
 import {
 	Box,
 	Button,
@@ -15,6 +16,7 @@ import Passengers from '../Passengers/Passengers';
 import Makes from '../Makes/Makes';
 import Years from '../Years/Years';
 import Models from '../Models/Models';
+import LastTrip from '../LastTrip/LastTrip';
 
 function NewTrip(props) {
 	useEffect(() => {
@@ -22,6 +24,7 @@ function NewTrip(props) {
 	}, []);
 
 	const dispatch = useDispatch();
+    const history = useHistory();
 	const user = useSelector(store => store.user);
 	const trips = useSelector(store => store.getTrips);
 	const lastTrip = trips.length > 0 ? trips[trips.length - 1] : undefined;
@@ -148,7 +151,7 @@ function NewTrip(props) {
 								</Box>
 
 								<Box m={3}>
-									<h3>{JSON.stringify(lastTrip)}</h3>
+									<LastTrip />
 								</Box>
 
 								<Box m={3}>

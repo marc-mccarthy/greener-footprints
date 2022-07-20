@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import loadingBar from '../../images/loading-bar.gif';
 import {
     Box,
 	InputLabel,

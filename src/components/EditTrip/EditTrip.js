@@ -15,6 +15,7 @@ import Passengers from '../Passengers/Passengers';
 import Makes from '../Makes/Makes';
 import Years from '../Years/Years';
 import Models from '../Models/Models';
+import CurrentTrip from '../CurrentTrip/CurrentTrip';
 
 function EditTrip(props) {
 
@@ -23,11 +24,12 @@ function EditTrip(props) {
     const { id } = useParams();
 
     useEffect(() => {
-        dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
+        dispatch({ type: 'GET_TRIPS_SAGA' });
     }, []);
 
     const user = useSelector(store => store.user);
-    const editTrip = useSelector(store => store.editTrip);
+    const trips = useSelector(store => store.getTrips);
+    const editTrip = trips.find(trip => trip.id === id);
 
     const [formData, setFormData] = useState({
         startAddress: '',
@@ -45,7 +47,7 @@ function EditTrip(props) {
 
 	return (
 		<Box className='EditTrip'>
-			{editTrip.length === 0 ? (
+			{trips.length === 0 ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
@@ -138,7 +140,7 @@ function EditTrip(props) {
 						</Box>
 
 						<Box m={3}>
-							<h3>{JSON.stringify(editTrip)}</h3>
+							<CurrentTrip />
 						</Box>
 
 						<Box m={3}>
