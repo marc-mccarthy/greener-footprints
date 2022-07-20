@@ -1,24 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
 import loadingBar from '../../images/loading-bar.gif';
 import {
 	Box,
-	Button,
 	Divider,
-	FormControl,
-	InputLabel,
 	List,
 	ListItem,
-	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	MenuItem,
-	Select,
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import StartIcon from '@mui/icons-material/Start';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';

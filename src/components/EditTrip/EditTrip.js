@@ -16,38 +16,62 @@ import Makes from '../Makes/Makes';
 import Years from '../Years/Years';
 import Models from '../Models/Models';
 import CurrentTrip from '../CurrentTrip/CurrentTrip';
+import HistoryIcon from '@mui/icons-material/History';
+
 
 function EditTrip(props) {
 
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
+    const user = useSelector(store => store.user);
+    const trips = useSelector(store => store.getTrips);
+    const editTrip = trips.find(trip => trip.id === Number(id));
+
+    const [formData, setFormData] = useState({
+		id: id,
+		startAddress: '',
+		endAddress: '',
+		passengers: '',
+		make: '',
+		year: '',
+		model: '',
+		userId: user.id,
+	});
 
     useEffect(() => {
         dispatch({ type: 'GET_TRIPS_SAGA' });
     }, []);
 
-    const user = useSelector(store => store.user);
-    const trips = useSelector(store => store.getTrips);
-    const editTrip = trips.find(trip => trip.id === id);
-
-    const [formData, setFormData] = useState({
-        startAddress: '',
-        endAddress: '',
-        passengers: '',
-        make: '',
-        year: '',
-        model: '',
-        userId: user.id,
-    });
+    useEffect(() => {
+		if (editTrip !== undefined) {
+			setFormData({
+				id: id,
+				startAddress: editTrip.startAddress,
+                endAddress: editTrip.endAddress,
+                passengers: editTrip.passengers,
+                make: '',
+                year: '',
+                model: '',
+                userId: user.id,
+			});
+		}
+	}, [editTrip]);
 
     const readySetGo = () => {
-        dispatch({ type: 'EDIT_TRIP', payload: formData });
-    }
+		console.log(formData)
+		for (let key in formData) {
+			if (formData[key] === '') {
+				alert('Please fill out all fields');
+				return false;
+			}
+		}
+		dispatch({ type: 'EDIT_TRIP', payload: formData });
+	}
 
 	return (
 		<Box className='EditTrip'>
-			{trips.length === 0 ? (
+			{trips.length === 0 || editTrip === undefined ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
@@ -140,15 +164,16 @@ function EditTrip(props) {
 						</Box>
 
 						<Box m={3}>
-							<CurrentTrip />
+                            <h4>{JSON.stringify(editTrip)}</h4>
 						</Box>
 
 						<Box m={3}>
 							<Button
-								size='large'
+								size='small'
 								onClick={() => history.push('/history')}
-								sx={{ width: 100 }}
+								sx={{ width: 110 }}
 								variant='contained'
+								startIcon={<HistoryIcon />}
 							>
 								History
 							</Button>

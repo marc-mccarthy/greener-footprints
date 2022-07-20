@@ -22,7 +22,7 @@ function Models({ formData, setFormData }) {
 			{/* VEHICLE MODELS */}
 			<InputLabel id='make'>Model</InputLabel>
 			<Select
-				sx={{ width: 150 }}
+				sx={{ width: 175 }}
 				labelId='Select Model'
 				id='model'
 				value={formData.model}

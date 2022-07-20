@@ -30,30 +30,24 @@ function Makes({ formData, setFormData }) {
 	};
 
 	return (
-		<Box>
-			{makes.length === 0 ? (
-				<img id='loadingBar' src={loadingBar} alt='loading bar' />
-			) : (
-				<Box className='Makes'>
-					{/* VEHICLE MAKES */}
-					<InputLabel id='make'>Make</InputLabel>
-					<Select
-						sx={{ width: 150 }}
-						labelId='Select Make'
-						id='make'
-						value={formData.make}
-						label='Make'
-						onChange={makesChange}
-					>
-						{makes.map(make => (
-							<MenuItem key={make.data.id} value={make.data.id}>
-								{make.data.attributes.name}
-							</MenuItem>
-						))}
-					</Select>
-				</Box>
-			)}
-		</Box>
+        <Box className='Makes'>
+            {/* VEHICLE MAKES */}
+            <InputLabel id='make'>Make</InputLabel>
+            <Select
+                sx={{ width: 175 }}
+                labelId='Select Make'
+                id='make'
+                value={formData.make}
+                label='Make'
+                onChange={makesChange}
+            >
+                {makes.map(make => (
+                    <MenuItem key={make.data.id} value={make.data.id}>
+                        {make.data.attributes.name}
+                    </MenuItem>
+                ))}
+            </Select>
+        </Box>
 	);
 }
 

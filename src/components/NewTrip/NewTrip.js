@@ -17,6 +17,8 @@ import Makes from '../Makes/Makes';
 import Years from '../Years/Years';
 import Models from '../Models/Models';
 import LastTrip from '../LastTrip/LastTrip';
+import HistoryIcon from '@mui/icons-material/History';
+import SendIcon from '@mui/icons-material/Send';
 
 function NewTrip(props) {
 	useEffect(() => {
@@ -40,6 +42,13 @@ function NewTrip(props) {
 	});
 
 	const readySetGo = () => {
+        // console.log(formData)
+        for (let key in formData) {
+            if (formData[key] === '') {
+                alert('Please fill out all fields')
+                return false
+            }
+        }
 		dispatch({
 			type: 'NEW_TRIP',
 			payload: formData,
@@ -117,10 +126,11 @@ function NewTrip(props) {
 							<Grid item>
 								<FormControl>
 									<Button
-										size='large'
+										size='small'
 										onClick={readySetGo}
 										sx={{ width: 100 }}
 										variant='contained'
+										startIcon={<SendIcon />}
 									>
 										Submit
 									</Button>
@@ -156,10 +166,11 @@ function NewTrip(props) {
 
 								<Box m={3}>
 									<Button
-										size='large'
+										size='small'
 										onClick={() => history.push('/history')}
-										sx={{ width: 100 }}
+										sx={{ width: 110 }}
 										variant='contained'
+										startIcon={<HistoryIcon />}
 									>
 										History
 									</Button>

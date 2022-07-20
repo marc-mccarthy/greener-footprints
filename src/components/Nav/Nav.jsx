@@ -6,6 +6,7 @@ import './Nav.css';
 import { useSelector } from 'react-redux';
 import logo1 from '../../images/co2-logo.png';
 import logo2 from '../../images/react-logo.png';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Nav(props) {
 	const user = useSelector((store) => store.user);
@@ -13,7 +14,7 @@ function Nav(props) {
 	return (
 		<div className="nav">
 			<Link to="/home">
-                <Typography variant="h3" color="#fff">
+                <Typography variant="h5" color="#fff">
                     Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly
                 </Typography>
 			</Link>

@@ -28,7 +28,7 @@ function Years({ formData, setFormData }) {
 			{/* VEHICLE YEARS */}
 			<InputLabel id='year'>Year</InputLabel>
 			<Select
-				sx={{ width: 150 }}
+				sx={{ width: 175 }}
 				labelId='Select Year'
 				id='year'
 				value={formData.year}

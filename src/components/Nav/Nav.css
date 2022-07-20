@@ -3,7 +3,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 0 0 30px;
+	margin: 0 0 20px;
 	background-color: #059e00;
 	overflow: hidden;
 }
@@ -28,7 +28,7 @@
 	color: #f2f2f2;
 	background-color: #000000;
 	text-align: center;
-	padding: 24px 10px;
+	padding: 15px 10px;
 	text-decoration: none;
 	font-size: 15px;
 
@@ -44,7 +44,7 @@
 }
 
 .Nav-logo {
-	height: 4vmin;
+	height: 3vmin;
 	pointer-events: none;
 }
 

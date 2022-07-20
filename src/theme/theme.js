@@ -1,10 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import backtonature from '../fonts/backtonature.woff'
-import beautymountains from '../fonts/beautymountains.woff'
-import chunkfive from '../fonts/chunkfive.woff';
-import lemonjelly from '../fonts/lemonjelly.woff';
-import proximanova from '../fonts/proximanova.woff';
-import rooster from '../fonts/rooster.woff';
 
 // Fonts
 // 'Josefin Sans, Oleo Script, Oswald, Patrick Hand, Roboto, Sansita, Yeseva One'
@@ -19,6 +13,7 @@ const theme = createTheme({
 			main: '#226f85',
 		},
 	},
+
 	typography: {
 		fontFamily: 'Sansita, Patrick Hand, Roboto, Yeseva One',
 		fontSize: 16,

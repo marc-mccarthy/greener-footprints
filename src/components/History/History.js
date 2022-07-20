@@ -58,7 +58,7 @@ function History(props) {
 			headerAlign: 'center',
 			type: 'number',
 			minWidth: 110,
-			maxWidth: 150,
+			maxWidth: 120,
 			flex: 1,
 			editable: true,
 		},
@@ -110,7 +110,7 @@ function History(props) {
 			headerAlign: 'center',
 			type: 'number',
 			minWidth: 140,
-			maxWidth: 170,
+			maxWidth: 160,
 			flex: 1,
 			editable: false,
 			valueGetter: params =>
@@ -123,7 +123,7 @@ function History(props) {
 			headerClassName: 'theme--header',
 			headerAlign: 'center',
 			minWidth: 110,
-			maxWidth: 160,
+			maxWidth: 120,
 			flex: 1,
 			cellClassName: 'actions',
 			getActions: ({ id }) => {
@@ -167,7 +167,7 @@ function History(props) {
 	};
 
 	const processRowUpdateError = (error) => {
-		console.log('ERROR:', error);
+		// console.log('ERROR:', error);
 	};
 
     const [selectedRows, setSelectedRows] = useState([]);
@@ -185,64 +185,76 @@ function History(props) {
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
-					<Box m={3}>
+					<Box >
 						<Typography variant='h4' color='primary' align='center'>
 							History
 						</Typography>
 					</Box>
-                    <Box>
-                        <Button
-                            onClick={deleteMultiple}>
-							Delete Multiple
-						</Button>
-                        <Grid
-                            container
-                            direction='row'
-                            justifyContent='center'
-                            alignItems='center'
-                            sx={{
-                                height: 300,
-                                width: '100%',
-                                '& .theme--header': {
-                                    backgroundColor: '#059e00',
-                                    color: '#fff',
-                                },
-                            }}
-                        >
-                            <Grid item xs={11.5}>
-                                <DataGrid
-                                    autoHeight
-                                    rows={trips}
-                                    columns={columns}
-                                    pageSize={20}
-                                    getRowId={row => row.id}
-                                    rowsPerPageOptions={[20]}
-                                    editMode='row'
-                                    disableSelectionOnClick
-                                    processRowUpdate={processRowUpdate}
-                                    onProcessRowUpdateError={() => processRowUpdateError}
-                                    checkboxSelection={true}
-                                    experimentalFeatures={{
-                                        newEditingApi: true,
-                                    }}
-                                    onSelectionModelChange={ids => {
-                                        setSelectedRows(ids);
-                                        console.log('SELECTION MODEL CHANGE:', ids);
-                                    }}
-                                    sx={{
-                                        boxShadow: 4,
-                                        border: 4,
-                                        borderColor: 'primary.light',
-                                        '& .MuiDataGrid-cell:hover': {
-                                            color: 'primary.main',
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Box>
-                </Box>
-            )}
+					<Box>
+						<Grid
+							container
+							direction='row'
+							justifyContent='center'
+							alignItems='center'
+							sx={{
+								height: 300,
+								width: '100%',
+								'& .theme--header': {
+									backgroundColor: '#059e00',
+									color: '#fff',
+								},
+							}}
+						>
+							<Grid item xs={11.5}>
+								<Box mb={2}>
+									<Button
+										startIcon={<DeleteIcon />}
+										onClick={deleteMultiple}
+                                        color='secondary'
+										variant='contained'
+									>
+										Delete Selected
+									</Button>
+								</Box>
+
+								<DataGrid
+									autoHeight
+									rows={trips}
+									columns={columns}
+									pageSize={15}
+									getRowId={row => row.id}
+									rowsPerPageOptions={[15]}
+									editMode='row'
+									disableSelectionOnClick
+									processRowUpdate={processRowUpdate}
+									onProcessRowUpdateError={() =>
+										processRowUpdateError
+									}
+									checkboxSelection={true}
+									experimentalFeatures={{
+										newEditingApi: true,
+									}}
+									onSelectionModelChange={ids => {
+										setSelectedRows(ids);
+										console.log(
+											'SELECTION MODEL CHANGE:',
+											ids
+										);
+									}}
+									sx={{
+										boxShadow: 4,
+										border: 4,
+										borderColor: 'primary.light',
+										'& .MuiDataGrid-cell:hover': {
+											color: 'primary.main',
+										},
+									}}
+								/>
+							</Grid>
+						</Grid>
+					</Box>
+				</Box>
+			)}
 		</Box>
 	);
 }
