@@ -53,13 +53,16 @@ function EditTrip(props) {
 	};
 
 	const readySetGo = () => {
-		console.log(formData.model);
 		for (let key in formData) {
 			if (formData[key] === '') {
 				alert('Please fill out all fields');
 				return false;
 			}
 		}
+        if (formData.startAddress === foundTrip.startAddress && formData.endAddress === foundTrip.endAddress && formData.passengers === foundTrip.passengers) {
+            alert('No changes were made');
+            return false;
+        }
 		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { id: formData.id, startAddress: formData.startAddress, endAddress: formData.endAddress, passengers: formData.passengers, model: formData.model }});
 	};
 

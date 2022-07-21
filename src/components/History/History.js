@@ -151,8 +151,8 @@ function History(props) {
 	];
 
 	const processRowUpdate = (newRow, oldRow) => {
+        console.log('OLD ROW:', oldRow);
 		console.log('NEW ROW:', newRow);
-		console.log('OLD ROW:', oldRow);
 		if (
 			newRow.startAddress === oldRow.startAddress &&
 			newRow.endAddress === oldRow.endAddress &&
