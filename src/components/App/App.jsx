@@ -24,6 +24,7 @@ import EditTrip from '../EditTrip/EditTrip';
 import History from '../History/History';
 import Charts from '../Charts/Charts';
 import Docs from '../Docs/Docs';
+import DisplayMap from '../DisplayMap/DisplayMap';
 
 import './App.css';
 
@@ -98,6 +99,14 @@ function App() {
 					</ProtectedRoute>
 
                     <ProtectedRoute
+                        // logged in shows UserPage else shows LoginPage
+                        exact
+                        path="/map"
+                    >
+                        <DisplayMap />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute
                         // logged in shows Calculate else shows LoginPage
                         exact
                         path="/charts"
@@ -148,6 +157,7 @@ function App() {
 					{/* If none of the other routes matched, we will show a 404. */}
 					<Route>
 						<h1>404</h1>
+                        
 					</Route>
 				</Switch>
 			</div>

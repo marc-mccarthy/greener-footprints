@@ -5,6 +5,7 @@ import {
 	Box,
 	Button,
 	Grid,
+    Stack,
 	Typography,
 } from '@mui/material';
 import loadingBar from '../../images/loading-bar.gif';
@@ -14,8 +15,10 @@ import Passengers from '../Passengers/Passengers';
 import Makes from '../Makes/Makes';
 import Years from '../Years/Years';
 import Models from '../Models/Models';
-import LastTrip from '../LastTrip/LastTrip';
+import DisplayTrip from '../DisplayTrip/DisplayTrip';
+import DisplayMap from '../DisplayMap/DisplayMap';
 import HistoryIcon from '@mui/icons-material/History';
+import BarChartIcon from '@mui/icons-material/BarChart';
 import SendIcon from '@mui/icons-material/Send';
 
 function NewTrip(props) {
@@ -25,7 +28,6 @@ function NewTrip(props) {
 
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const user = useSelector(store => store.user);
 	const trips = useSelector(store => store.getTrips);
 	const lastTrip = trips.length > 0 ? trips[trips.length - 1] : undefined;
 
@@ -36,7 +38,6 @@ function NewTrip(props) {
 		make: '',
 		year: '',
 		model: '',
-		userId: user.id,
 	});
 
 	const readySetGo = () => {
@@ -51,6 +52,8 @@ function NewTrip(props) {
 			type: 'NEW_TRIP',
 			payload: formData,
 		});
+        setFormData({ startAddress: '', endAddress: '', passengers: '', make: '', year: '', model: '' });
+        console.log(formData)
 	};
 
 	return (
@@ -59,7 +62,7 @@ function NewTrip(props) {
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
-					<Box mb={5}>
+					<Box mb={2}>
 						<Typography variant='h4' color='primary' align='center'>
 							New Trip
 						</Typography>
@@ -110,7 +113,7 @@ function NewTrip(props) {
 							</Grid>
 							<Grid item>
 								<Button
-									size='small'
+									size='large'
 									onClick={readySetGo}
 									sx={{ width: 100 }}
 									variant='contained'
@@ -133,7 +136,7 @@ function NewTrip(props) {
 							</Typography>
 						) : (
 							<Box>
-								<Box m={3}>
+								<Box m={2}>
 									<Typography
 										variant='h5'
 										color='primary'
@@ -143,20 +146,52 @@ function NewTrip(props) {
 									</Typography>
 								</Box>
 
-								<Box m={3}>
-									<LastTrip />
+								<Box m={2}>
+									<Grid
+										container
+										direction='row'
+										justifyContent='flex-start'
+										alignItems='center'
+									>
+										<Grid xs={4} item>
+											<DisplayTrip trip={lastTrip} />
+										</Grid>
+										<Grid item>
+											<DisplayMap xs={9} trip={lastTrip} />
+										</Grid>
+									</Grid>
 								</Box>
 
-								<Box m={3}>
-									<Button
-										size='small'
-										onClick={() => history.push('/history')}
-										sx={{ width: 110 }}
-										variant='contained'
-										startIcon={<HistoryIcon />}
+								<Box m={2}>
+									<Stack
+										direction='row'
+										justifyContent='center'
+										alignItems='center'
+										spacing={3}
 									>
-										History
-									</Button>
+										<Button
+											size='large'
+											onClick={() =>
+												history.push('/history')
+											}
+											sx={{ width: 110 }}
+											variant='contained'
+											startIcon={<HistoryIcon />}
+										>
+											History
+										</Button>
+										<Button
+											size='large'
+											onClick={() =>
+												history.push('/charts')
+											}
+											sx={{ width: 110 }}
+											variant='contained'
+											startIcon={<BarChartIcon />}
+										>
+											Chart
+										</Button>
+									</Stack>
 								</Box>
 							</Box>
 						)}

@@ -10,6 +10,9 @@ import Makes from '../Makes/Makes';
 import Years from '../Years/Years';
 import Models from '../Models/Models';
 import HistoryIcon from '@mui/icons-material/History';
+import SendIcon from '@mui/icons-material/Send';
+import EditIcon from '@mui/icons-material/Edit';
+import DisplayTrip from '../DisplayTrip/DisplayTrip';
 
 function EditTrip(props) {
 	const dispatch = useDispatch();
@@ -19,10 +22,9 @@ function EditTrip(props) {
 		dispatch({ type: 'FIND_TRIP_SAGA', payload: id });
 	}, []);
 
-    const [showCar, setShowCar] = useState(false);
+	const [showCar, setShowCar] = useState(false);
 	const { id } = useParams();
-	const user = useSelector(store => store.user);
-	const foundTrip = useSelector(store => store.findTrip[0]);
+	const findTrip = useSelector(store => store.findTrip[0]);
 
 	const [formData, setFormData] = useState({
 		startAddress: '',
@@ -31,22 +33,22 @@ function EditTrip(props) {
 	});
 
 	useEffect(() => {
-		if (foundTrip !== undefined) {
+		if (findTrip !== undefined) {
 			setFormData({
-                id: foundTrip.id,
-				startAddress: foundTrip.startAddress,
-				endAddress: foundTrip.endAddress,
-				passengers: foundTrip.passengers,
-                model: foundTrip.modelId,
+				id: findTrip.id,
+				startAddress: findTrip.startAddress,
+				endAddress: findTrip.endAddress,
+				passengers: findTrip.passengers,
+				model: findTrip.modelId,
 			});
 		}
-	}, [foundTrip]);
+	}, [findTrip]);
 
-    const showCarInfo = () => {
+	const showCarInfo = () => {
 		setFormData({
 			...formData,
-            make: '',
-            year: '',
+			make: '',
+			year: '',
 			model: '',
 		});
 		setShowCar(!showCar);
@@ -59,26 +61,35 @@ function EditTrip(props) {
 				return false;
 			}
 		}
-        if (formData.startAddress === foundTrip.startAddress && formData.endAddress === foundTrip.endAddress && formData.passengers === foundTrip.passengers) {
-            alert('No changes were made');
-            return false;
-        }
-		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { id: formData.id, startAddress: formData.startAddress, endAddress: formData.endAddress, passengers: formData.passengers, model: formData.model }});
+		if (
+			formData.startAddress === findTrip.startAddress &&
+			formData.endAddress === findTrip.endAddress &&
+			formData.passengers === findTrip.passengers
+		) {
+			alert('No changes were made');
+			return false;
+		}
+		dispatch({ type: 'GET_TRIPS', payload: [] });
+		dispatch({ type: 'FIND_TRIP', payload: [] });
+		dispatch({
+			type: 'UPDATE_TRIP_SAGA',
+			payload: {
+				id: formData.id,
+				startAddress: formData.startAddress,
+				endAddress: formData.endAddress,
+				passengers: formData.passengers,
+				model: formData.model,
+			},
+		});
 	};
 
 	return (
 		<Box className='EditTrip'>
-			{foundTrip === undefined ? (
+			{findTrip === undefined ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
-					<Box m={3}>
-						<Typography variant='h4' color='primary' align='center'>
-							Edit Trip
-						</Typography>
-					</Box>
-
-					<Box m={3}>
+					<Box mt={3}>
 						<Grid
 							container
 							spacing={2}
@@ -86,10 +97,44 @@ function EditTrip(props) {
 							justifyContent='center'
 							alignItems='center'
 						>
+							<Grid item>
+								<Typography
+									variant='h4'
+									color='primary'
+									align='center'
+								>
+									Edit Trip
+								</Typography>
+							</Grid>
+							<Grid item>
+								{showCar ? (
+									<div></div>
+								) : (
+									<Button
+										size='small'
+										onClick={showCarInfo}
+										sx={{ height: 25, width: 75 }}
+										variant='contained'
+									>
+										Edit Car
+									</Button>
+								)}
+							</Grid>
+						</Grid>
+					</Box>
+
+					<Box m={3}>
+						<Grid
+							container
+							spacing={2}
+							m={2}
+							direction='row'
+							justifyContent='center'
+							alignItems='center'
+						>
 							<Grid
 								container
 								spacing={2}
-								mb={3}
 								direction='row'
 								justifyContent='center'
 								alignItems='center'
@@ -118,6 +163,7 @@ function EditTrip(props) {
 										onClick={readySetGo}
 										sx={{ width: 100 }}
 										variant='contained'
+										startIcon={<SendIcon />}
 									>
 										Submit
 									</Button>
@@ -136,9 +182,7 @@ function EditTrip(props) {
 											formData={formData}
 											setFormData={setFormData}
 										/>
-									) : (
-										<div></div>
-									)}
+									) : null}
 								</Grid>
 								<Grid item>
 									{showCar ? (
@@ -146,9 +190,7 @@ function EditTrip(props) {
 											formData={formData}
 											setFormData={setFormData}
 										/>
-									) : (
-										<div></div>
-									)}
+									) : null}
 								</Grid>
 								<Grid item>
 									{showCar ? (
@@ -156,46 +198,20 @@ function EditTrip(props) {
 											formData={formData}
 											setFormData={setFormData}
 										/>
-									) : (
-										<div></div>
-									)}
-								</Grid>
-								<Grid item>
-                                    {showCar ? (
-                                        <div></div>
-                                    ) : (
-                                        <Button
-                                            size='medium'
-                                            onClick={showCarInfo}
-                                            sx={{ height: 45, width: 145 }}
-                                            variant='contained'
-                                        >
-                                            Change Car
-									    </Button>
-                                    )}
+									) : null}
 								</Grid>
 							</Grid>
 						</Grid>
 					</Box>
 
-					<Box m={3}>
-						<Box m={3}>
-							<Typography
-								variant='h5'
-								color='primary'
-								align='center'
-							>
-								Current Trip
-							</Typography>
+					<Box>
+						<Box m={2}>
+							<DisplayTrip trip={findTrip} />
 						</Box>
 
-						<Box m={3}>
-							<h4>{JSON.stringify(foundTrip)}</h4>
-						</Box>
-
-						<Box m={3}>
+						<Box m={2}>
 							<Button
-								size='small'
+								size='large'
 								onClick={() => history.push('/history')}
 								sx={{ width: 110 }}
 								variant='contained'

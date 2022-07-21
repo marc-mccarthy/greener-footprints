@@ -6,7 +6,7 @@ function StartAddress({ formData, setFormData }) {
 		<Box>
 			{/* START ADDRESS */}
 			<TextField
-				sx={{ width: 300 }}
+				sx={{ width: 275 }}
 				required
 				autoFocus
 				id='start-address-input'

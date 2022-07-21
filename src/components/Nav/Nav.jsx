@@ -41,6 +41,9 @@ function Nav(props) {
                         <Link className="navLink" to="/charts">
                             Charts
                         </Link>
+                        <Link className="navLink" to="/map">
+                            Map
+                        </Link>
 						<LogOutButton className="navLink" />
 					</>
 				)}

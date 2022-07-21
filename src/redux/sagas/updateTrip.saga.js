@@ -53,9 +53,11 @@ function* updateTrip(action) {
 				console.log('ERROR FROM POST /api/trips/updateTrip:', error);
 			});
             yield put({ type: 'GET_TRIPS_SAGA' });
+            yield put({ type: 'FIND_TRIP_SAGA', payload: action.payload.id });
 	} catch (error) {
 		console.log('Error in updateTripSaga:', error);
         yield put({ type: 'GET_TRIPS_SAGA' });
+        yield put({ type: 'FIND_TRIP_SAGA', payload: action.payload.id });
         alert("No Available Route Found");
 	}
 }

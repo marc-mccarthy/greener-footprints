@@ -158,12 +158,11 @@ function History(props) {
 			newRow.endAddress === oldRow.endAddress &&
 			newRow.passengers === oldRow.passengers
 		) {
-			console.log('No Change');
+			alert('No changes were made');
 			return;
 		}
 		const modelId = trips.find(trip => trip.id === newRow.id).modelId;
 		dispatch({ type: 'GET_TRIPS', payload: [] });
-
 		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { id: newRow.id, startAddress: newRow.startAddress, endAddress: newRow.endAddress, passengers: newRow.passengers, model: modelId } });
 	};
 

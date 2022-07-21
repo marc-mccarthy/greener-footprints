@@ -16,7 +16,7 @@ const theme = createTheme({
 
 	typography: {
 		fontFamily: 'Sansita, Patrick Hand, Roboto, Yeseva One',
-		fontSize: 16,
+		fontSize: 14,
 		fontWeightLight: 400,
 		fontWeightRegular: 500,
 		fontWeightMedium: 600,
