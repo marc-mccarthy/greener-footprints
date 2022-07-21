@@ -4,6 +4,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 // Worker Saga: will be fired on 'NEW_TRIP' actions
 function* newTrip(action) {
 	try {
+        const config = {
+			headers: { 'Content-Type': 'application/json' },
+			withCredentials: true,
+		};
 		console.log('NEW TRIP: ACTION.PAYLOAD', action.payload);
         // GOOGLE MAPS API REQUEST TO SERVER
         const startAddress = action.payload.startAddress.replaceAll(' ', '+');
@@ -37,12 +41,11 @@ function* newTrip(action) {
 			make: carbonResponse.data.attributes.vehicle_make,
 			model: carbonResponse.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.attributes.carbon_lb,
-			userId: action.payload.userId,
 		};
         console.log('NEW TRIP:', newTrip);
 
 		yield axios
-			.post('/api/trips/newTrip', newTrip)
+			.post('/api/trips/newTrip', newTrip, config)
 			.then(response => {
 				console.log('RESPONSE FROM POST /api/trips/newTrip:', response);
 			})

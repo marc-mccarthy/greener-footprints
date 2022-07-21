@@ -5,7 +5,7 @@ import makes from './makes.reducer';
 import years from './years.reducer';
 import models from './models.reducer';
 import getTrips from './getTrips.reducer';
-import editTrip from './editTrip.reducer';
+import findTrip from './findTrip.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     years,
     models,
     getTrips,
-    editTrip,
+    findTrip,
 });
 
 export default rootReducer;

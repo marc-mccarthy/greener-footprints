@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
 	Box,
 	Button,
-	FormControl,
 	Grid,
-	Stack,
 	Typography,
 } from '@mui/material';
 import loadingBar from '../../images/loading-bar.gif';
@@ -26,7 +24,7 @@ function NewTrip(props) {
 	}, []);
 
 	const dispatch = useDispatch();
-    const history = useHistory();
+	const history = useHistory();
 	const user = useSelector(store => store.user);
 	const trips = useSelector(store => store.getTrips);
 	const lastTrip = trips.length > 0 ? trips[trips.length - 1] : undefined;
@@ -42,13 +40,13 @@ function NewTrip(props) {
 	});
 
 	const readySetGo = () => {
-        // console.log(formData)
-        for (let key in formData) {
-            if (formData[key] === '') {
-                alert('Please fill out all fields')
-                return false
-            }
-        }
+		// console.log(formData)
+		for (let key in formData) {
+			if (formData[key] === '') {
+				alert('Please fill out all fields');
+				return false;
+			}
+		}
 		dispatch({
 			type: 'NEW_TRIP',
 			payload: formData,
@@ -66,7 +64,6 @@ function NewTrip(props) {
 							New Trip
 						</Typography>
 					</Box>
-
 					<Box>
 						<Grid
 							container
@@ -76,65 +73,51 @@ function NewTrip(props) {
 							alignItems='center'
 						>
 							<Grid item>
-								<FormControl>
-									<StartAddress
-										formData={formData}
-										setFormData={setFormData}
-									/>
-								</FormControl>
+								<StartAddress
+									formData={formData}
+									setFormData={setFormData}
+								/>
 							</Grid>
 							<Grid item>
-								<FormControl>
-									<EndAddress
-										formData={formData}
-										setFormData={setFormData}
-									/>
-								</FormControl>
+								<EndAddress
+									formData={formData}
+									setFormData={setFormData}
+								/>
 							</Grid>
 							<Grid item>
-								<FormControl>
-									<Passengers
-										formData={formData}
-										setFormData={setFormData}
-									/>
-								</FormControl>
+								<Passengers
+									formData={formData}
+									setFormData={setFormData}
+								/>
 							</Grid>
 							<Grid item>
-								<FormControl>
-									<Makes
-										formData={formData}
-										setFormData={setFormData}
-									/>
-								</FormControl>
+								<Makes
+									formData={formData}
+									setFormData={setFormData}
+								/>
 							</Grid>
 							<Grid item>
-								<FormControl>
-									<Years
-										formData={formData}
-										setFormData={setFormData}
-									/>
-								</FormControl>
+								<Years
+									formData={formData}
+									setFormData={setFormData}
+								/>
 							</Grid>
 							<Grid item>
-								<FormControl>
-									<Models
-										formData={formData}
-										setFormData={setFormData}
-									/>
-								</FormControl>
+								<Models
+									formData={formData}
+									setFormData={setFormData}
+								/>
 							</Grid>
 							<Grid item>
-								<FormControl>
-									<Button
-										size='small'
-										onClick={readySetGo}
-										sx={{ width: 100 }}
-										variant='contained'
-										startIcon={<SendIcon />}
-									>
-										Submit
-									</Button>
-								</FormControl>
+								<Button
+									size='small'
+									onClick={readySetGo}
+									sx={{ width: 100 }}
+									variant='contained'
+									startIcon={<SendIcon />}
+								>
+									Submit
+								</Button>
 							</Grid>
 						</Grid>
 					</Box>

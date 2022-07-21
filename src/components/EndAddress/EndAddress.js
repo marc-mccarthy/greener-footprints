@@ -13,7 +13,7 @@ function EndAddress({ formData, setFormData }) {
 				id='end-address-input'
 				label='End Address'
 				placeholder='End Address'
-				defaultValue={formData.endAddress}
+				value={formData.endAddress}
 				onChange={e =>
 					setFormData({ ...formData, endAddress: e.target.value })
 				}

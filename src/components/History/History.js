@@ -133,7 +133,7 @@ function History(props) {
 						label='Edit'
 						color='inherit'
 						onClick={() => {
-							dispatch({ type: 'EDIT_TRIP_SAGA', payload: id });
+							dispatch({ type: 'FIND_TRIP_SAGA', payload: id });
 							history.push(`/edittrip/${id}`);
 						}}
 					/>,
@@ -163,7 +163,8 @@ function History(props) {
 		}
 		const modelId = trips.find(trip => trip.id === newRow.id).modelId;
 		dispatch({ type: 'GET_TRIPS', payload: [] });
-		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { ...newRow, modelId } });
+
+		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { id: newRow.id, startAddress: newRow.startAddress, endAddress: newRow.endAddress, passengers: newRow.passengers, model: modelId } });
 	};
 
 	const processRowUpdateError = (error) => {

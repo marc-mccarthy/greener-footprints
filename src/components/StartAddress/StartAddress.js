@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 
 function StartAddress({ formData, setFormData }) {
 
 	return (
-		<div>
+		<Box>
 			{/* START ADDRESS */}
 			<TextField
 				sx={{ width: 300 }}
@@ -12,7 +12,7 @@ function StartAddress({ formData, setFormData }) {
 				id='start-address-input'
 				label='Start Address'
 				placeholder='Start Address'
-				defaultValue={formData.startAddress}
+				value={formData.startAddress}
 				onChange={e =>
 					setFormData({
 						...formData,
@@ -20,7 +20,7 @@ function StartAddress({ formData, setFormData }) {
 					})
 				}
 			/>
-		</div>
+		</Box>
 	);
 }
 

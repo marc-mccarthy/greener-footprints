@@ -4,6 +4,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 // Worker Saga: will be fired on 'NEW_TRIP' actions
 function* updateTrip(action) {
 	try {
+        const config = {
+			headers: { 'Content-Type': 'application/json' },
+			withCredentials: true,
+		};
 		console.log('UPDATE TRIP: ACTION.PAYLOAD', action.payload);
         // GOOGLE MAPS API REQUEST TO SERVER
         const startAddress = action.payload.startAddress.replaceAll(' ', '+');
@@ -19,27 +23,29 @@ function* updateTrip(action) {
             url: '/api/carbon/estimate',
             data: {
                 distance_value: directionsResponse.data.distance.value / 1609.34,
-				vehicle_model_id: action.payload.modelId,
+				vehicle_model_id: action.payload.model,
             }
         });
         console.log('CARBON RESPONSE:', carbonResponse);
 
         const updateTrip = {
-            id: action.payload.id,
 			startAddress: directionsResponse.data.start_address,
 			endAddress: directionsResponse.data.end_address,
 			distance: directionsResponse.data.distance.value / 1609.34,
 			duration: directionsResponse.data.duration.text,
 			passengers: action.payload.passengers,
 			estimateId: carbonResponse.data.id,
-			modelId:
-				carbonResponse.data.attributes.vehicle_model_id,
+			modelId: carbonResponse.data.attributes.vehicle_model_id,
+			year: carbonResponse.data.attributes.vehicle_year,
+			make: carbonResponse.data.attributes.vehicle_make,
+			model: carbonResponse.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.attributes.carbon_lb,
+			id: action.payload.id,
 		};
         console.log('UPDATE TRIP:', updateTrip);
 
 		axios
-			.put('/api/trips/updateTrip', updateTrip)
+			.put('/api/trips/updateTrip', updateTrip, config)
 			.then(response => {
 				console.log('RESPONSE FROM POST /api/trips/updateTrip:', response);
 			})

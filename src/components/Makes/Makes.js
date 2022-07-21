@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import loadingBar from '../../images/loading-bar.gif';
 import {
     Box,
+    FormControl,
 	InputLabel,
 	MenuItem,
 	Select,
@@ -30,24 +31,26 @@ function Makes({ formData, setFormData }) {
 	};
 
 	return (
-        <Box className='Makes'>
-            {/* VEHICLE MAKES */}
-            <InputLabel id='make'>Make</InputLabel>
-            <Select
-                sx={{ width: 175 }}
-                labelId='Select Make'
-                id='make'
-                value={formData.make}
-                label='Make'
-                onChange={makesChange}
-            >
-                {makes.map(make => (
-                    <MenuItem key={make.data.id} value={make.data.id}>
-                        {make.data.attributes.name}
-                    </MenuItem>
-                ))}
-            </Select>
-        </Box>
+		<Box className='Makes'>
+            <FormControl>
+				{/* VEHICLE MAKES */}
+				<InputLabel id='make'>Make</InputLabel>
+				<Select
+					sx={{ width: 175 }}
+					labelId='Select Make'
+					id='make'
+					value={formData.make}
+					label='make'
+					onChange={makesChange}
+				>
+					{makes.map(make => (
+						<MenuItem key={make.data.id} value={make.data.id}>
+							{make.data.attributes.name}
+						</MenuItem>
+					))}
+				</Select>
+            </FormControl>
+		</Box>
 	);
 }
 
