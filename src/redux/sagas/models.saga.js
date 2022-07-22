@@ -2,6 +2,10 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Worker Saga: will be fired on "MODELS_SAGA" actions
+function* modelsSaga() {
+	yield takeLatest('MODELS_SAGA', models);
+}
+
 function* models(action) {
 	try {
 		const models = yield axios.post('/api/carbon/models', {make: action.payload.make});
@@ -19,10 +23,6 @@ function* models(action) {
 	} catch (error) {
 		console.log('Error in models.saga:', error);
 	}
-}
-
-function* modelsSaga() {
-	yield takeLatest('MODELS_SAGA', models);
 }
 
 export default modelsSaga;

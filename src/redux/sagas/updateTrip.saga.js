@@ -2,6 +2,10 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Worker Saga: will be fired on 'NEW_TRIP' actions
+function* updateTripSaga() {
+	yield takeLatest('UPDATE_TRIP_SAGA', updateTrip);
+}
+
 function* updateTrip(action) {
 	try {
         const config = {
@@ -60,10 +64,6 @@ function* updateTrip(action) {
         yield put({ type: 'FIND_TRIP_SAGA', payload: action.payload.id });
         alert("No Available Route Found");
 	}
-}
-
-function* updateTripSaga() {
-	yield takeLatest('UPDATE_TRIP_SAGA', updateTrip);
 }
 
 export default updateTripSaga;

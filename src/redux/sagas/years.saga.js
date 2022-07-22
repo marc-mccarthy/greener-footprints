@@ -2,6 +2,10 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Worker Saga: will be fired on "YEARS_SAGA" actions
+function* yearsSaga() {
+	yield takeLatest('YEARS_SAGA', years);
+}
+
 function* years(action) {
     console.log('YEARS: ACTION.PAYLOAD', action.payload)
     try {
@@ -14,10 +18,6 @@ function* years(action) {
 	} catch (error) {
 		console.log('Error in years.saga:', error);
 	}
-}
-
-function* yearsSaga() {
-	yield takeLatest('YEARS_SAGA', years);
 }
 
 export default yearsSaga;

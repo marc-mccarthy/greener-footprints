@@ -10,6 +10,7 @@ import getTripsSaga from './getTrips.saga';
 import findTripSaga from './findTrip.saga';
 import updateTripSaga from './updateTrip.saga';
 import deleteTripSaga from './deleteTrip.saga';
+import getMapSaga from './getMap.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
         findTripSaga(),
         updateTripSaga(),
         deleteTripSaga(),
+        getMapSaga(),
 	]);
 }

@@ -2,6 +2,10 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Worker Saga: will be fired on "DELETE_TRIP_SAGA" actions
+function* deleteTripSaga() {
+	yield takeLatest('DELETE_TRIP_SAGA', deleteTrip);
+}
+
 function* deleteTrip(action) {
     console.log('DELETE: ACTION.PAYLOAD', action.payload);
 	try {
@@ -17,10 +21,6 @@ function* deleteTrip(action) {
 	} catch (error) {
 		console.log('Error in deleteTrip.saga:', error);
 	}
-}
-
-function* deleteTripSaga() {
-	yield takeLatest('DELETE_TRIP_SAGA', deleteTrip);
 }
 
 export default deleteTripSaga;

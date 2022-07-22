@@ -1,7 +1,13 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-// worker Saga: will be fired on "LOGIN" actions
+// Worker Saga: will be fired on "LOGIN" actions
+// Worker Saga: will be fired on "LOGOUT" actions
+function* loginSaga() {
+	yield takeLatest('LOGIN', loginUser);
+	yield takeLatest('LOGOUT', logoutUser);
+}
+
 function* loginUser(action) {
 	try {
 		// clear any existing error on the login page
@@ -35,7 +41,6 @@ function* loginUser(action) {
 	}
 }
 
-// worker Saga: will be fired on "LOGOUT" actions
 function* logoutUser(action) {
 	try {
 		const config = {
@@ -56,11 +61,6 @@ function* logoutUser(action) {
 	} catch (error) {
 		console.log('Error with user logout:', error);
 	}
-}
-
-function* loginSaga() {
-	yield takeLatest('LOGIN', loginUser);
-	yield takeLatest('LOGOUT', logoutUser);
 }
 
 export default loginSaga;

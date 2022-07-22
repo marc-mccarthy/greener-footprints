@@ -22,15 +22,28 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import SendIcon from '@mui/icons-material/Send';
 
 function NewTrip(props) {
+	// PAGE LOAD
 	useEffect(() => {
 		dispatch({ type: 'GET_TRIPS_SAGA' });
 	}, []);
 
+	// REDUCERS
+	const getTrips = useSelector(store => store.getTrips);
+    const lastTrip = getTrips[getTrips.length - 1];
+	const getMap = useSelector(store => store.getMap);
+
+	useEffect(() => {
+        console.log('LAST TRIP BEFORE USE-EFFECT:', lastTrip);
+		if (lastTrip != undefined) {
+            dispatch({ type: 'GET_MAP_SAGA', payload: lastTrip });
+		}
+	}, [lastTrip]);
+
+	// HOOK ABBREVIATIONS
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const trips = useSelector(store => store.getTrips);
-	const lastTrip = trips.length > 0 ? trips[trips.length - 1] : undefined;
 
+	// STATES
 	const [formData, setFormData] = useState({
 		startAddress: '',
 		endAddress: '',
@@ -52,13 +65,20 @@ function NewTrip(props) {
 			type: 'NEW_TRIP',
 			payload: formData,
 		});
-        setFormData({ startAddress: '', endAddress: '', passengers: '', make: '', year: '', model: '' });
-        console.log(formData)
+		setFormData({
+			startAddress: '',
+			endAddress: '',
+			passengers: '',
+			make: '',
+			year: '',
+			model: '',
+		});
+		console.log(formData);
 	};
 
 	return (
 		<Box className='NewTrip'>
-			{trips.length === 0 || lastTrip.length === 0 ? (
+			{getTrips.length === 0 || lastTrip === undefined ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
@@ -126,7 +146,7 @@ function NewTrip(props) {
 					</Box>
 
 					<Box>
-						{lastTrip === undefined ? (
+						{getTrips.length === 0 ? (
 							<Typography
 								variant='h4'
 								color='primary'
@@ -150,15 +170,24 @@ function NewTrip(props) {
 									<Grid
 										container
 										direction='row'
-										justifyContent='flex-start'
-										alignItems='center'
+										justifyContent='center'
 									>
-										<Grid xs={4} item>
+										<Grid xs={4} align='center' item>
 											<DisplayTrip trip={lastTrip} />
 										</Grid>
-										<Grid item>
-											<DisplayMap xs={9} trip={lastTrip} />
-										</Grid>
+										{getMap === {} ? (
+											<Grid xs={8} align='center' item>
+												<img
+													id='loadingBar'
+													src={loadingBar}
+													alt='loading bar'
+												/>
+											</Grid>
+										) : (
+											<Grid xs={8} align='center' item>
+												<DisplayMap getMap={getMap} />
+											</Grid>
+										)}
 									</Grid>
 								</Box>
 
