@@ -221,9 +221,9 @@ function History(props) {
 									autoHeight
 									rows={trips}
 									columns={columns}
-									pageSize={15}
+									pageSize={10}
 									getRowId={row => row.id}
-									rowsPerPageOptions={[15]}
+									rowsPerPageOptions={[10]}
 									editMode='row'
 									disableSelectionOnClick
 									processRowUpdate={processRowUpdate}

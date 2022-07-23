@@ -22,15 +22,22 @@ function DisplayTrip({ trip }) {
 
 	return (
 		<Box
+			ml={10}
 			className='DisplayTrip'
+			style={{ height: '60vh', width: '40vw' }}
 			sx={{
-				width: '100%',
-				maxWidth: 360,
 				bgcolor: 'background.paper',
 			}}
 		>
 			<nav aria-label='trip-details'>
-				<List>
+				<List
+					sx={{
+						bgcolor: 'background.paper',
+						boxShadow: 9,
+						borderRadius: 10,
+						p: 2,
+					}}
+				>
 					<ListItem disablePadding>
 						<ListItemIcon>
 							<PlayCircleFilledIcon />

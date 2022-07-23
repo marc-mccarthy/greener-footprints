@@ -1,31 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import logo1 from '../../images/co2-logo.png';
 import logo2 from '../../images/react-logo.png';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 function Nav(props) {
 	const user = useSelector((store) => store.user);
+    const dispatch = useDispatch();
 
 	return (
-		<div className="nav">
+		<Box className="nav">
 			<Link to="/home">
-                <Typography variant="h5" color="#fff">
+                <Typography ml={2} variant="h5" color="#fff">
                     Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly
                 </Typography>
 			</Link>
-			<div>
-				{/* If no user is logged in, show these links */}
-				{!user.id && (
-					// If there's no user, show login/registration links
-					<Link className="navLink" to="/login">
-						Login / Register
-					</Link>
-				)}
+			<Box
+            >
 				{/* If a user is logged in, show these links */}
 				{user.id && (
 					<>
@@ -41,10 +34,6 @@ function Nav(props) {
                         <Link className="navLink" to="/charts">
                             Charts
                         </Link>
-                        <Link className="navLink" to="/map">
-                            Map
-                        </Link>
-						<LogOutButton className="navLink" />
 					</>
 				)}
                 <Link className="navLink" to="/docs">
@@ -56,8 +45,22 @@ function Nav(props) {
 				<Link className="navLink" to="/about">
 					About
 				</Link>
-			</div>
-		</div>
+                {user.id &&(
+                    <>
+                        <Link className="navLink" onClick={() => dispatch({type: 'LOGOUT'})}>
+                            Log Out
+                        </Link>
+                    </>
+                )}
+                {/* If no user is logged in, show these links */}
+                {!user.id&&(
+                    // If there's no user, show login/registration links
+                    <Link className="navLink" to="/login">
+                        Login / Register
+                    </Link>
+                )}
+			</Box>
+		</Box>
 	);
 }
 

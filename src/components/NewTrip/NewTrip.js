@@ -1,13 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-	Box,
-	Button,
-	Grid,
-    Stack,
-	Typography,
-} from '@mui/material';
+import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import loadingBar from '../../images/loading-bar.gif';
 import StartAddress from '../StartAddress/StartAddress';
 import EndAddress from '../EndAddress/EndAddress';
@@ -21,7 +15,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import SendIcon from '@mui/icons-material/Send';
 
-function NewTrip(props) {
+function NewTrip() {
 	// PAGE LOAD
 	useEffect(() => {
 		dispatch({ type: 'GET_TRIPS_SAGA' });
@@ -29,13 +23,14 @@ function NewTrip(props) {
 
 	// REDUCERS
 	const getTrips = useSelector(store => store.getTrips);
-    const lastTrip = getTrips[getTrips.length - 1];
+	const lastTrip = getTrips[getTrips.length - 1];
 	const getMap = useSelector(store => store.getMap);
 
+    //
 	useEffect(() => {
-        console.log('LAST TRIP BEFORE USE-EFFECT:', lastTrip);
 		if (lastTrip != undefined) {
-            dispatch({ type: 'GET_MAP_SAGA', payload: lastTrip });
+            console.log('Last Trip:', lastTrip);
+			dispatch({ type: 'GET_MAP_SAGA', payload: lastTrip });
 		}
 	}, [lastTrip]);
 
@@ -78,7 +73,9 @@ function NewTrip(props) {
 
 	return (
 		<Box className='NewTrip'>
-			{getTrips.length === 0 || lastTrip === undefined ? (
+			{getTrips.length === 0 ||
+			lastTrip === undefined ||
+			Object.keys(getMap).length === 0 ? (
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
@@ -87,7 +84,7 @@ function NewTrip(props) {
 							New Trip
 						</Typography>
 					</Box>
-					<Box>
+					<Box mr={3} ml={3}>
 						<Grid
 							container
 							spacing={2}
@@ -156,42 +153,26 @@ function NewTrip(props) {
 							</Typography>
 						) : (
 							<Box>
-								<Box m={2}>
-									<Typography
-										variant='h5'
-										color='primary'
-										align='center'
-									>
-										Previous Trip
-									</Typography>
-								</Box>
-
-								<Box m={2}>
+								<Box
+									style={{ height: '100%', width: '100%' }}
+									mt={3}
+								>
 									<Grid
 										container
 										direction='row'
-										justifyContent='center'
+										wrap='wrap'
+										spacing={1}
 									>
-										<Grid xs={4} align='center' item>
+										<Grid xs={6} align='center' item>
 											<DisplayTrip trip={lastTrip} />
 										</Grid>
-										{getMap === {} ? (
-											<Grid xs={8} align='center' item>
-												<img
-													id='loadingBar'
-													src={loadingBar}
-													alt='loading bar'
-												/>
-											</Grid>
-										) : (
-											<Grid xs={8} align='center' item>
-												<DisplayMap getMap={getMap} />
-											</Grid>
-										)}
+										<Grid xs={6} align='center' item>
+											<DisplayMap getMap={getMap} />
+										</Grid>
 									</Grid>
 								</Box>
 
-								<Box m={2}>
+								<Box mt={5}>
 									<Stack
 										direction='row'
 										justifyContent='center'
