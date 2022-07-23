@@ -185,11 +185,6 @@ function History(props) {
 				<img id='loadingBar' src={loadingBar} alt='loading bar' />
 			) : (
 				<Box>
-					<Box >
-						<Typography variant='h4' color='primary' align='center'>
-							History
-						</Typography>
-					</Box>
 					<Box>
 						<Grid
 							container
@@ -206,7 +201,7 @@ function History(props) {
 							}}
 						>
 							<Grid item xs={11.5}>
-								<Box mb={2}>
+								<Box mb={2} mt={2}>
 									<Button
 										startIcon={<DeleteIcon />}
 										onClick={deleteMultiple}
