@@ -21,22 +21,22 @@ function Passengers({ formData, setFormData }) {
 
 	return (
 		<Box>
-            <FormControl>
-                {/* PASSENGER COUNT */}
-                <InputLabel id='make'>Passengers</InputLabel>
-                <Select
-                    sx={{ width: 150}}
-                    labelId='Select Passengers'
-                    id='passengers'
-                    value={formData.passengers}
-                    label='Passengers'
-                    onChange={e =>
-                        setFormData({ ...formData, passengers: e.target.value })
-                    }
-                >
-                    {maxPersons}
-                </Select>
-            </FormControl>
+			<FormControl size='small'>
+				{/* PASSENGER COUNT */}
+				<InputLabel id='make'>Passengers</InputLabel>
+				<Select
+					sx={{ width: 150 }}
+					labelId='Select Passengers'
+					id='passengers'
+					value={formData.passengers}
+					label='Passengers'
+					onChange={e =>
+						setFormData({ ...formData, passengers: e.target.value })
+					}
+				>
+					{maxPersons}
+				</Select>
+			</FormControl>
 		</Box>
 	);
 }

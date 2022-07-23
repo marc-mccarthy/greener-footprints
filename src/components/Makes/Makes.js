@@ -32,7 +32,7 @@ function Makes({ formData, setFormData }) {
 
 	return (
 		<Box className='Makes'>
-            <FormControl>
+			<FormControl size='small'>
 				{/* VEHICLE MAKES */}
 				<InputLabel id='make'>Make</InputLabel>
 				<Select
@@ -49,7 +49,7 @@ function Makes({ formData, setFormData }) {
 						</MenuItem>
 					))}
 				</Select>
-            </FormControl>
+			</FormControl>
 		</Box>
 	);
 }

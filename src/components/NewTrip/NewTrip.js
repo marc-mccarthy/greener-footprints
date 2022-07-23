@@ -130,7 +130,7 @@ function NewTrip() {
 							</Grid>
 							<Grid item>
 								<Button
-									size='large'
+									size='medium'
 									onClick={readySetGo}
 									sx={{ width: 100 }}
 									variant='contained'

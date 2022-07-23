@@ -27,24 +27,24 @@ function Years({ formData, setFormData }) {
 
 	return (
 		<Box>
-            <FormControl>
-                {/* VEHICLE YEARS */}
-                <InputLabel id='year'>Year</InputLabel>
-                <Select
-                    sx={{ width: 150 }}
-                    labelId='Select Year'
-                    id='year'
-                    value={formData.year}
-                    label='Year'
-                    onChange={yearsChange}
-                >
-                    {years.map(year => (
-                        <MenuItem key={year} value={year}>
-                            {year}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+			<FormControl size='small'>
+				{/* VEHICLE YEARS */}
+				<InputLabel id='year'>Year</InputLabel>
+				<Select
+					sx={{ width: 150 }}
+					labelId='Select Year'
+					id='year'
+					value={formData.year}
+					label='Year'
+					onChange={yearsChange}
+				>
+					{years.map(year => (
+						<MenuItem key={year} value={year}>
+							{year}
+						</MenuItem>
+					))}
+				</Select>
+			</FormControl>
 		</Box>
 	);
 }

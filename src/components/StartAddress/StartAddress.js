@@ -9,22 +9,22 @@ function StartAddress({ formData, setFormData }) {
 		<Box>
 			{/* START ADDRESS */}
 
-                <TextField
-                    sx={{ width: 260 }}
-                    required
-                    autoFocus
-                    id='start-address-input'
-                    label='Start Address'
-                    placeholder='Start Address'
-                    value={formData.startAddress}
-                    onChange={e =>
-                        setFormData({
-                            ...formData,
-                            startAddress: e.target.value,
-                        })
-                    }
-                />
-
+			<TextField
+				size='small'
+				sx={{ width: 260 }}
+				required
+				autoFocus
+				id='start-address-input'
+				label='Start Address'
+				placeholder='Start Address'
+				value={formData.startAddress}
+				onChange={e =>
+					setFormData({
+						...formData,
+						startAddress: e.target.value,
+					})
+				}
+			/>
 		</Box>
 	);
 }

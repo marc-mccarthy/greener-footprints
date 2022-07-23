@@ -8,6 +8,7 @@ function EndAddress({ formData, setFormData }) {
 		<div>
 			{/* END ADDRESS */}
 			<TextField
+				size='small'
 				sx={{ width: 260 }}
 				required
 				id='end-address-input'
