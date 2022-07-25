@@ -133,7 +133,7 @@ function History(props) {
 						label='Edit'
 						color='inherit'
 						onClick={() => {
-							dispatch({ type: 'FIND_TRIP_SAGA', payload: id });
+                            dispatch({ type: 'GET_MAP', payload: {} });
 							history.push(`/edittrip/${id}`);
 						}}
 					/>,

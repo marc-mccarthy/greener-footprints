@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Anonymous from '../Anonymous/Anonymous';
+import {Box, Button, Divider, Stack} from '@mui/material';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
@@ -37,16 +39,21 @@ function LandingPage() {
                         Please register or login. If you are a new user, you will be prompted to create an account. If you are an existing user, you will be prompted to login. This database is wiped frequently as it is not meant to be stored long term until everything is fully built, and ready for production.
                     </p>
 				</div>
-				<div className="grid-col grid-col_4">
-					<RegisterForm />
+                <Box ml={5}>
+                    <Box>
+                        <RegisterForm />
+                    </Box>
+                    <Box>
+                        <h4>Already a Member?</h4>
+                            <Stack divider={<Divider orientation="vertical" flexItem />} spacing={3} justifyContent='left' direction='row'>
+                                <Button sx={{width: 120}} variant='contained' onClick={onLogin}>
+                                    Login
+                                </Button>
+                                <Anonymous />
+                            </Stack>
+                    </Box>
+                </Box>
 
-					<center>
-						<h4>Already a Member?</h4>
-						<button className="btn btn_sizeSm" onClick={onLogin}>
-							Login
-						</button>
-					</center>
-				</div>
 			</div>
 		</div>
 	);
