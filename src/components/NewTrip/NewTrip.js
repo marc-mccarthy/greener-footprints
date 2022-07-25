@@ -73,138 +73,110 @@ function NewTrip() {
 
 	return (
 		<Box className='NewTrip'>
+			<Box m={4}>
+				<Typography variant='h4' color='primary' align='center'>
+					New Trip
+				</Typography>
+			</Box>
+			<Box m={3}>
+				<Grid
+					container
+					spacing={2}
+					direction='row'
+					justifyContent='center'
+					alignItems='center'
+				>
+					<Grid item>
+						<StartAddress
+							formData={formData}
+							setFormData={setFormData}
+						/>
+					</Grid>
+					<Grid item>
+						<EndAddress
+							formData={formData}
+							setFormData={setFormData}
+						/>
+					</Grid>
+					<Grid item>
+						<Passengers
+							formData={formData}
+							setFormData={setFormData}
+						/>
+					</Grid>
+					<Grid item>
+						<Makes formData={formData} setFormData={setFormData} />
+					</Grid>
+					<Grid item>
+						<Years formData={formData} setFormData={setFormData} />
+					</Grid>
+					<Grid item>
+						<Models formData={formData} setFormData={setFormData} />
+					</Grid>
+					<Grid item>
+						<Button
+							size='medium'
+							onClick={readySetGo}
+							sx={{ width: 100 }}
+							variant='contained'
+							startIcon={<SendIcon />}
+						>
+							Submit
+						</Button>
+					</Grid>
+				</Grid>
+			</Box>
+
 			{getTrips.length === 0 ||
 			lastTrip === undefined ||
 			Object.keys(getMap).length === 0 ? (
-				<img id='loadingBar' src={loadingBar} alt='loading bar' />
+				<Box mt={10}>
+					<Typography variant='h5' color='primary' align='center'>
+						No previous trips taken
+					</Typography>
+					<Typography mt={3} variant='h5' color='primary' align='center'>
+						Add one above 🡱👌
+					</Typography>
+				</Box>
 			) : (
-				<Box>
-					<Box mb={2}>
-						<Typography variant='h4' color='primary' align='center'>
-							New Trip
-						</Typography>
-					</Box>
-					<Box mr={3} ml={3}>
-						<Grid
-							container
-							spacing={2}
-							direction='row'
-							justifyContent='center'
-							alignItems='center'
-						>
-							<Grid item>
-								<StartAddress
-									formData={formData}
-									setFormData={setFormData}
-								/>
+				<Box m={3}>
+					<Box style={{ height: '100%', width: '100%' }} mt={6}>
+						<Grid container direction='row' wrap='wrap' spacing={1}>
+							<Grid xs={6} align='center' item>
+								<DisplayTrip trip={lastTrip} />
 							</Grid>
-							<Grid item>
-								<EndAddress
-									formData={formData}
-									setFormData={setFormData}
-								/>
-							</Grid>
-							<Grid item>
-								<Passengers
-									formData={formData}
-									setFormData={setFormData}
-								/>
-							</Grid>
-							<Grid item>
-								<Makes
-									formData={formData}
-									setFormData={setFormData}
-								/>
-							</Grid>
-							<Grid item>
-								<Years
-									formData={formData}
-									setFormData={setFormData}
-								/>
-							</Grid>
-							<Grid item>
-								<Models
-									formData={formData}
-									setFormData={setFormData}
-								/>
-							</Grid>
-							<Grid item>
-								<Button
-									size='medium'
-									onClick={readySetGo}
-									sx={{ width: 100 }}
-									variant='contained'
-									startIcon={<SendIcon />}
-								>
-									Submit
-								</Button>
+							<Grid xs={6} align='center' item>
+								<DisplayMap getMap={getMap} />
 							</Grid>
 						</Grid>
 					</Box>
 
-					<Box>
-						{getTrips.length === 0 ? (
-							<Typography
-								variant='h4'
-								color='primary'
-								align='center'
+					<Box m={10}>
+						<Stack
+							direction='row'
+							justifyContent='center'
+							alignItems='center'
+							spacing={3}
+						>
+							<Button
+								size='large'
+								onClick={() => history.push('/history')}
+								sx={{ width: 110 }}
+								variant='contained'
+								startIcon={<HistoryIcon />}
 							>
-								No Previous Trips
-							</Typography>
-						) : (
-							<Box>
-								<Box
-									style={{ height: '100%', width: '100%' }}
-									mt={3}
-								>
-									<Grid
-										container
-										direction='row'
-										wrap='wrap'
-										spacing={1}
-									>
-										<Grid xs={6} align='center' item>
-											<DisplayTrip trip={lastTrip} />
-										</Grid>
-										<Grid xs={6} align='center' item>
-											<DisplayMap getMap={getMap} />
-										</Grid>
-									</Grid>
-								</Box>
-
-								<Box mt={5}>
-									<Stack
-										direction='row'
-										justifyContent='center'
-										alignItems='center'
-										spacing={3}
-									>
-										<Button
-											size='large'
-											onClick={() =>
-												history.push('/history')
-											}
-											sx={{ width: 110 }}
-											variant='contained'
-											startIcon={<HistoryIcon />}
-										>
-											History
-										</Button>
-										<Button
-											size='large'
-											onClick={() =>
-												history.push('/charts')
-											}
-											sx={{ width: 110 }}
-											variant='contained'
-											startIcon={<BarChartIcon />}
-										>
-											Chart
-										</Button>
-									</Stack>
-								</Box>
-							</Box>
-						)}
+								History
+							</Button>
+							<Button
+								size='large'
+								onClick={() => history.push('/charts')}
+								sx={{ width: 110 }}
+								variant='contained'
+								startIcon={<BarChartIcon />}
+							>
+								Chart
+							</Button>
+						</Stack>
 					</Box>
 				</Box>
 			)}

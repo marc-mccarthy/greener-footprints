@@ -6,7 +6,7 @@ import './LandingPage.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-	const [heading, setHeading] = useState('Welcome');
+	const [heading, setHeading] = useState('Welcome to Greener Foot(prints): Road Trip Edition');
 	const history = useHistory();
 
 	const onLogin = (event) => {
@@ -20,36 +20,22 @@ function LandingPage() {
 			<div className="grid">
 				<div className="grid-col grid-col_8">
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-						id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-						ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-						interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-						sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-						elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-						interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-						Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-						luctus. Duis a sapien metus.
+                        This is an exploration into understanding what really comes out of those tailpipes every time we get behind the wheel. What is that six inches of black smoke before it dissipates into perceivably nothing? How is it measured? Does anyone have reliable information as to what the impact is?
 					</p>
 
 					<p>
-						Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-						id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-						consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-						finibus metus facilisis. Nullam eget lectus non urna rhoncus
-						accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-						euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-						lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-						congue.
+                        These are big questions and beyond this scope, however, my goal is to help start the journey by showing you a measurement we all understand, pounds. Carbon pounds for gasoline are measured after it has burnt where each carbon atom attaches with two oxygen atoms. The oxygen is the heaviest weight of the pair and gives the emission more weight than prior to your station fill up. Simply, one gallon of gasoline weighs approximately 6.25 lbs. One gallon of emitted gasoline weighs 19.3 lbs.
 					</p>
 
 					<p>
-						Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-						Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-						vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-						sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-						non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-						amet nisi.
+                        A gallon of liquid gasoline is much lighter than the equivalent, emitted version that comes out of the backend. Roughly 3.7x the weight. This app will allow you to see how much carbon is emitted from your specific vehicle with your provided trip route. This is a simple way to understand the carbon footprint of your vehicle with trips and measurements we make on a daily basis!
 					</p>
+                    <h4>
+                        This app is currently being worked on so not all features may be implemented yet. Stay tuned!
+                    </h4>
+                    <p>
+                        Please register or login. If you are a new user, you will be prompted to create an account. If you are an existing user, you will be prompted to login. This database is wiped frequently as it is not meant to be stored long term until everything is fully built, and ready for production.
+                    </p>
 				</div>
 				<div className="grid-col grid-col_4">
 					<RegisterForm />

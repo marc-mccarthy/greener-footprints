@@ -10,7 +10,7 @@ import {
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import loadingBar from '../../images/loading-bar.gif';
+import SendIcon from '@mui/icons-material/Send';
 import './History.css';
 
 function History(props) {
@@ -182,7 +182,30 @@ function History(props) {
 	return (
 		<Box>
 			{trips.length === 0 ? (
-				<img id='loadingBar' src={loadingBar} alt='loading bar' />
+				<Box mt={10}>
+					<Typography variant='h5' color='primary' align='center'>
+						Uh Oh! No previous trips taken 😧
+					</Typography>
+					<Typography
+						mt={3}
+						variant='h5'
+						color='primary'
+						align='center'
+					>
+						Add one now
+					</Typography>
+					<Box mt={3} display='flex' justifyContent='center'>
+						<Button
+							size='medium'
+							onClick={() => history.push('/newtrip')}
+							sx={{ width: 130 }}
+							variant='contained'
+							startIcon={<SendIcon />}
+						>
+							New Trip
+						</Button>
+					</Box>
+				</Box>
 			) : (
 				<Box>
 					<Box>
@@ -205,7 +228,7 @@ function History(props) {
 									<Button
 										startIcon={<DeleteIcon />}
 										onClick={deleteMultiple}
-                                        color='secondary'
+										color='secondary'
 										variant='contained'
 									>
 										Delete Selected

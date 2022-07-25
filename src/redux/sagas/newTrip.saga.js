@@ -56,6 +56,7 @@ function* newTrip(action) {
             yield put({ type: 'GET_TRIPS_SAGA' });
 	} catch (error) {
 		console.log('Error in newTripSaga:', error);
+        alert('No Available Route Found');
 	}
 }
 

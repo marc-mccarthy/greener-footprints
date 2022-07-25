@@ -24,7 +24,7 @@ function DisplayTrip({ trip }) {
 		<Box
 			ml={10}
 			className='DisplayTrip'
-			style={{ height: '60vh', width: '40vw' }}
+			style={{ width: '40vw' }}
 			sx={{
 				bgcolor: 'background.paper',
 			}}
