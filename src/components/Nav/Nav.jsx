@@ -17,8 +17,7 @@ function Nav(props) {
                     Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly
                 </Typography>
 			</Link>
-			<Box
-            >
+			<Box>
 				{/* If a user is logged in, show these links */}
 				{user.id && (
 					<>

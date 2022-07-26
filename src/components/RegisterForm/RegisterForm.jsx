@@ -66,7 +66,7 @@ function RegisterForm() {
                     sx={{width: 120}}
                     variant='contained'
                 >
-                    Login
+                    Register
                 </Button>
                 <Anonymous />
             </Stack>

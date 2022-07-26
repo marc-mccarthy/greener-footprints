@@ -3,11 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import {
     Box,
-    FormControl,
     Grid,
-    InputLabel,
-    MenuItem,
-    Select,
 } from '@mui/material';
 
 function UserPage() {

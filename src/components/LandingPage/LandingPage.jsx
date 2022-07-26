@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Anonymous from '../Anonymous/Anonymous';
 import {Box, Button, Divider, Stack} from '@mui/material';
 import './LandingPage.css';
 
@@ -33,11 +32,8 @@ function LandingPage() {
                         A gallon of liquid gasoline is much lighter than the equivalent, emitted version that comes out of the backend. Roughly 3.7x the weight. This app will allow you to see how much carbon is emitted from your specific vehicle with your provided trip route. This is a simple way to understand the carbon footprint of your vehicle with trips and measurements we make on a daily basis!
 					</p>
                     <h4>
-                        This app is currently being worked on so not all features may be implemented yet. Stay tuned!
+                        Choose the 'Anonymous' user option for pre-populated trip data if you don't want to make your own. This app is currently being worked on so not all features may be implemented yet. Stay tuned!
                     </h4>
-                    <p>
-                        Please register or login. If you are a new user, you will be prompted to create an account. If you are an existing user, you will be prompted to login. This database is wiped frequently as it is not meant to be stored long term until everything is fully built, and ready for production.
-                    </p>
 				</div>
                 <Box ml={5}>
                     <Box>
@@ -49,7 +45,6 @@ function LandingPage() {
                                 <Button sx={{width: 120}} variant='contained' onClick={onLogin}>
                                     Login
                                 </Button>
-                                <Anonymous />
                             </Stack>
                     </Box>
                 </Box>

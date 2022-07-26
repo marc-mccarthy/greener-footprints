@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-import loadingBar from '../../images/loading-bar.gif';
 import StartAddress from '../StartAddress/StartAddress';
 import EndAddress from '../EndAddress/EndAddress';
 import Passengers from '../Passengers/Passengers';
