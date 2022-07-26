@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 import { Box, Button } from '@mui/material';
 
 function Anonymous() {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const errors = useSelector(store => store.errors);
+
 	const dispatch = useDispatch();
 
 	const login = event => {
@@ -18,10 +16,10 @@ function Anonymous() {
                 password: 'anonymous',
             },
         });
-	}; // end login
+	}; // end anonymous login
 
 	return (
-        <Button sx={{width: 120}} variant='contained' onClick={login}>
+        <Button sx={{width: 120}} variant='outlined' onClick={login}>
             Anonymous
         </Button>
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import {Button, Stack} from '@mui/material';
+import Anonymous from '../Anonymous/Anonymous';
 
 function LoginForm() {
 	const [username, setUsername] = useState('');
@@ -56,14 +58,24 @@ function LoginForm() {
 					/>
 				</label>
 			</div>
-			<div>
-				<input
-					className='btn'
-					type='submit'
-					name='submit'
-					value='Log In'
-				/>
-			</div>
+            <Stack
+                direction='row'
+                justifyContent='center'
+                alignItems='center'
+                spacing={3}
+                mt={3}
+            >
+				<Button
+                    m={3}
+                    onClick={login}
+                    sx={{width: 120}}
+                    variant='contained'
+				>
+                    Login
+                </Button>
+                <Anonymous />
+			</Stack>
+
 		</form>
 	);
 }

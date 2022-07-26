@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {Button, Stack} from '@mui/material';
+import Anonymous from '../Anonymous/Anonymous';
 
 function RegisterForm() {
 	const [username, setUsername] = useState('');
@@ -20,7 +22,7 @@ function RegisterForm() {
 	}; // end registerUser
 
 	return (
-		<form className="formPanel" onSubmit={registerUser}>
+		<form className="formPanel">
 			<h2>Register User</h2>
 			{errors.registrationMessage && (
 				<h3 className="alert" role="alert">
@@ -51,9 +53,23 @@ function RegisterForm() {
 					/>
 				</label>
 			</div>
-			<div>
-				<input className="btn" type="submit" name="submit" value="Register" />
-			</div>
+            <Stack
+                direction='row'
+                justifyContent='center'
+                alignItems='center'
+                spacing={3}
+                mt={3}
+            >
+                <Button
+                    m={3}
+                    onClick={registerUser}
+                    sx={{width: 120}}
+                    variant='contained'
+                >
+                    Login
+                </Button>
+                <Anonymous />
+            </Stack>
 		</form>
 	);
 }
