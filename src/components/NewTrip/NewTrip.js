@@ -26,10 +26,9 @@ function NewTrip() {
 	const lastTrip = getTrips[getTrips.length - 1];
 	const getMap = useSelector(store => store.getMap);
 
-    //
+    // If lastTrip holds a value, go get the map
 	useEffect(() => {
 		if (lastTrip != undefined) {
-            console.log('Last Trip:', lastTrip);
 			dispatch({ type: 'GET_MAP_SAGA', payload: lastTrip });
 		}
 	}, [lastTrip]);
@@ -48,8 +47,8 @@ function NewTrip() {
 		model: '',
 	});
 
+    // BUTTON CLICK SEND FORM DATA
 	const readySetGo = () => {
-		// console.log(formData)
 		for (let key in formData) {
 			if (formData[key] === '') {
 				alert('Please fill out all fields');
@@ -68,7 +67,6 @@ function NewTrip() {
 			year: '',
 			model: '',
 		});
-		console.log(formData);
 	};
 
 	return (
@@ -134,7 +132,12 @@ function NewTrip() {
 					<Typography variant='h5' color='primary' align='center'>
 						No previous trips taken
 					</Typography>
-					<Typography mt={3} variant='h5' color='primary' align='center'>
+					<Typography
+						mt={3}
+						variant='h5'
+						color='primary'
+						align='center'
+					>
 						Add one above 🡱👌
 					</Typography>
 				</Box>

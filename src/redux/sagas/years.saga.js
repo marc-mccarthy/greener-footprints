@@ -7,11 +7,9 @@ function* yearsSaga() {
 }
 
 function* years(action) {
-    console.log('YEARS: ACTION.PAYLOAD', action.payload)
     try {
         const years = yield axios.post('/api/carbon/years', {make: action.payload.make});
         let responseYears = years.data.map(model => model.data.attributes.year);
-        console.log('YEARS IN SAGA', responseYears)
 		let uniqueYears = [...new Set(responseYears)];
         uniqueYears = uniqueYears.sort((a, b) => a - b);
         yield put({ type: 'YEARS', payload: uniqueYears });

@@ -7,7 +7,6 @@ function* getTripsSaga() {
 }
 
 function* getTrips() {
-    console.log('RUNNING GET TRIPS SAGA')
 	try {
         const trips = yield axios.get(`/api/trips/getTrips`);
         yield put({ type: 'GET_TRIPS', payload: trips.data });

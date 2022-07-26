@@ -29,7 +29,7 @@ function DisplayTrip({ trip }) {
 				bgcolor: 'background.paper',
 			}}
 		>
-			<nav aria-label='trip-details'>
+			<Box>
 				<List
 					sx={{
 						bgcolor: 'background.paper',
@@ -120,7 +120,7 @@ function DisplayTrip({ trip }) {
 						/>
 					</ListItem>
 				</List>
-			</nav>
+			</Box>
 		</Box>
 	);
 }

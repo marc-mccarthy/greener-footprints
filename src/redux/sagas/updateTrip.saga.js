@@ -8,7 +8,6 @@ function* updateTripSaga() {
 
 function* updateTrip(action) {
 	try {
-		console.log('UPDATE TRIP: ACTION.PAYLOAD', action.payload);
         // GOOGLE MAPS API REQUEST TO SERVER
         const directionsService = new google.maps.DirectionsService();
 		const directionsResponse = yield directionsService.route({
@@ -16,7 +15,6 @@ function* updateTrip(action) {
 			destination: action.payload.endAddress,
 			travelMode: google.maps.TravelMode.DRIVING,
 		});
-        console.log('DIRECTIONS RESPONSE:', directionsResponse);
 
         // CARBON INTERFACE API RESPONSE TO SERVER
         const carbonResponse = yield axios({
@@ -27,7 +25,6 @@ function* updateTrip(action) {
 				vehicle_model_id: action.payload.model,
             }
         });
-        console.log('CARBON RESPONSE:', carbonResponse);
 
         const updateTrip = {
             id: action.payload.id,
@@ -44,12 +41,10 @@ function* updateTrip(action) {
 			model: carbonResponse.data.attributes.vehicle_model,
 			carbonPounds: carbonResponse.data.attributes.carbon_lb,
 		};
-        console.log('UPDATE TRIP:', updateTrip);
 
 		axios
 			.put('/api/trips/updateTrip', updateTrip)
-			.then(response => {
-				console.log('RESPONSE FROM POST /api/trips/updateTrip:', response);
+			.then(() => {
 			})
 			.catch(error => {
 				console.log('ERROR FROM POST /api/trips/updateTrip:', error);

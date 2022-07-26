@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
-import loadingBar from '../../images/loading-bar.gif';
+import LoadingBar from '../LoadingBar/LoadingBar';
 import StartAddress from '../StartAddress/StartAddress';
 import EndAddress from '../EndAddress/EndAddress';
 import Passengers from '../Passengers/Passengers';
@@ -16,33 +16,38 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import SendIcon from '@mui/icons-material/Send';
 
 function EditTrip(props) {
-	const dispatch = useDispatch();
-	const history = useHistory();
-    const getMap = useSelector(store => store.getMap);
-
+	// PAGE LOAD
+	const { id } = useParams();
 	useEffect(() => {
 		dispatch({ type: 'FIND_TRIP_SAGA', payload: id });
 	}, []);
 
-    useEffect(() => {
+	// REDUCERS
+	const findTrip = useSelector(store => store.findTrip);
+	const getMap = useSelector(store => store.getMap);
+
+	// If findTrip holds a value, go get the map
+	useEffect(() => {
 		if (findTrip != undefined) {
-			console.log('FIND_TRIP_SAGA', findTrip);
 			dispatch({ type: 'GET_MAP_SAGA', payload: findTrip });
 		}
 	}, [findTrip]);
 
-	const [showCar, setShowCar] = useState(false);
-	const { id } = useParams();
-	const findTrip = useSelector(store => store.findTrip[0]);
+	// HOOK ABBREVIATIONS
+	const dispatch = useDispatch();
+	const history = useHistory();
 
+	// STATES
 	const [formData, setFormData] = useState({
 		startAddress: '',
 		endAddress: '',
 		passengers: '',
 	});
+	const [showCar, setShowCar] = useState(false);
 
+	// STATES CHANGE WHEN FINDTRIP LOADS
 	useEffect(() => {
-		if (findTrip !== undefined) {
+		if (findTrip != undefined) {
 			setFormData({
 				id: findTrip.id,
 				startAddress: findTrip.startAddress,
@@ -95,7 +100,9 @@ function EditTrip(props) {
 	return (
 		<Box className='EditTrip'>
 			{findTrip === undefined ? (
-				<img id='loadingBar' src={loadingBar} alt='loading bar' />
+				<Box display='flex' justifyContent='center' alignItems='center'>
+					<LoadingBar />
+				</Box>
 			) : (
 				<Box>
 					<Box mt={3}>
@@ -213,55 +220,64 @@ function EditTrip(props) {
 						</Grid>
 					</Box>
 
-                    {findTrip.length === 0 || Object.keys(getMap).length === 0 ? (
-                        <img src={loadingBar} alt='loading' />
-                    ) : (
-                        <Box m={3}>
-                            <Box style={{ height: '100%', width: '100%' }} mt={6}>
-                                <Grid
-                                    container
-                                    direction='row'
-                                    wrap='wrap'
-                                    spacing={1}
-                                >
-                                    <Grid xs={6} align='center' item>
-                                        <DisplayTrip trip={findTrip} />
-                                    </Grid>
-                                    <Grid xs={6} align='center' item>
-                                        <DisplayMap getMap={getMap} />
-                                    </Grid>
-                                </Grid>
-                            </Box>
+					{Object.keys(getMap).length === 0 ? (
+						<Box
+							display='flex'
+							justifyContent='center'
+							alignItems='center'
+						>
+							<LoadingBar />
+						</Box>
+					) : (
+						<Box m={3}>
+							<Box
+								style={{ height: '100%', width: '100%' }}
+								mt={6}
+							>
+								<Grid
+									container
+									direction='row'
+									wrap='wrap'
+									spacing={1}
+								>
+									<Grid xs={6} align='center' item>
+										<DisplayTrip trip={findTrip} />
+									</Grid>
+									<Grid xs={6} align='center' item>
+										<DisplayMap getMap={getMap} />
+									</Grid>
+								</Grid>
+							</Box>
 
-                            <Box m={10}>
-                                <Stack
-                                    direction='row'
-                                    justifyContent='center'
-                                    alignItems='center'
-                                    spacing={3}
-                                >
-                                    <Button
-                                        size='large'
-                                        onClick={() => history.push('/history')}
-                                        sx={{ width: 110 }}
-                                        variant='contained'
-                                        startIcon={<HistoryIcon />}
-                                    >
-                                        History
-                                    </Button>
-                                    <Button
-                                        size='large'
-                                        onClick={() => history.push('/charts')}
-                                        sx={{ width: 110 }}
-                                        variant='contained'
-                                        startIcon={<BarChartIcon />}
-                                    >
-                                        Chart
-                                    </Button>
-                                </Stack>
-                            </Box>
-                        </Box>
-                    )}
+							<Box m={10}>
+								<Stack
+									direction='row'
+									justifyContent='center'
+									alignItems='center'
+									spacing={3}
+								>
+									<Button
+										size='large'
+										onClick={() => history.push('/history')}
+										sx={{ width: 110 }}
+										variant='contained'
+										startIcon={<HistoryIcon />}
+									>
+										History
+									</Button>
+									<Button
+										size='large'
+										onClick={() => history.push('/charts')}
+										sx={{ width: 110 }}
+										variant='contained'
+										startIcon={<BarChartIcon />}
+									>
+										Chart
+									</Button>
+								</Stack>
+							</Box>
+						</Box>
+					)}
 				</Box>
 			)}
 		</Box>

@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-import {
-	Box,
-	Button,
-	Grid,
-    Typography,
-} from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
@@ -14,7 +9,6 @@ import SendIcon from '@mui/icons-material/Send';
 import './History.css';
 
 function History(props) {
-
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const trips = useSelector(store => store.getTrips);
@@ -33,7 +27,7 @@ function History(props) {
 			maxWidth: 70,
 			flex: 1,
 			editable: true,
-            hide: true,
+			hide: true,
 		},
 		{
 			field: 'startAddress',
@@ -133,7 +127,8 @@ function History(props) {
 						label='Edit'
 						color='inherit'
 						onClick={() => {
-                            dispatch({ type: 'GET_MAP', payload: {} });
+							dispatch({ type: 'GET_MAP', payload: {} });
+							dispatch({ type: 'FIND_TRIP', payload: {} });
 							history.push(`/edittrip/${id}`);
 						}}
 					/>,
@@ -151,7 +146,7 @@ function History(props) {
 	];
 
 	const processRowUpdate = (newRow, oldRow) => {
-        console.log('OLD ROW:', oldRow);
+		console.log('OLD ROW:', oldRow);
 		console.log('NEW ROW:', newRow);
 		if (
 			newRow.startAddress === oldRow.startAddress &&
@@ -163,21 +158,30 @@ function History(props) {
 		}
 		const modelId = trips.find(trip => trip.id === newRow.id).modelId;
 		dispatch({ type: 'GET_TRIPS', payload: [] });
-		dispatch({ type: 'UPDATE_TRIP_SAGA', payload: { id: newRow.id, startAddress: newRow.startAddress, endAddress: newRow.endAddress, passengers: newRow.passengers, model: modelId } });
+		dispatch({
+			type: 'UPDATE_TRIP_SAGA',
+			payload: {
+				id: newRow.id,
+				startAddress: newRow.startAddress,
+				endAddress: newRow.endAddress,
+				passengers: newRow.passengers,
+				model: modelId,
+			},
+		});
 	};
 
-	const processRowUpdateError = (error) => {
+	const processRowUpdateError = error => {
 		// console.log('ERROR:', error);
 	};
 
-    const [selectedRows, setSelectedRows] = useState([]);
+	const [selectedRows, setSelectedRows] = useState([]);
 
-    const deleteMultiple = () => {
-        console.log('DELETE MULTIPLE:', selectedRows);
-        selectedRows.forEach(id => {
-            dispatch({ type: 'DELETE_TRIP_SAGA', payload: id });
-        });
-    }
+	const deleteMultiple = () => {
+		console.log('DELETE MULTIPLE:', selectedRows);
+		selectedRows.forEach(id => {
+			dispatch({ type: 'DELETE_TRIP_SAGA', payload: id });
+		});
+	};
 
 	return (
 		<Box>
@@ -208,69 +212,64 @@ function History(props) {
 				</Box>
 			) : (
 				<Box>
-					<Box>
-						<Grid
-							container
-							direction='row'
-							justifyContent='center'
-							alignItems='center'
-							sx={{
-								height: 300,
-								width: '100%',
-								'& .theme--header': {
-									backgroundColor: '#059e00',
-									color: '#fff',
-								},
-							}}
-						>
-							<Grid item xs={11.5}>
-								<Box mb={2} mt={2}>
-									<Button
-										startIcon={<DeleteIcon />}
-										onClick={deleteMultiple}
-										color='secondary'
-										variant='contained'
-									>
-										Delete Selected
-									</Button>
-								</Box>
+					<Grid
+						container
+						direction='row'
+						justifyContent='center'
+						alignItems='center'
+						sx={{
+							height: 300,
+							width: '100%',
+							'& .theme--header': {
+								backgroundColor: '#059e00',
+								color: '#fff',
+							},
+						}}
+					>
+						<Grid item xs={11.5}>
+							<Box mb={2} mt={2}>
+								<Button
+									startIcon={<DeleteIcon />}
+									onClick={deleteMultiple}
+									color='secondary'
+									variant='contained'
+								>
+									Delete Selected
+								</Button>
+							</Box>
 
-								<DataGrid
-									autoHeight
-									rows={trips}
-									columns={columns}
-									pageSize={10}
-									getRowId={row => row.id}
-									rowsPerPageOptions={[10]}
-									editMode='row'
-									disableSelectionOnClick
-									processRowUpdate={processRowUpdate}
-									onProcessRowUpdateError={() =>
-										processRowUpdateError
-									}
-									checkboxSelection={true}
-									experimentalFeatures={{
-										newEditingApi: true,
-									}}
-									onSelectionModelChange={ids => {
-										setSelectedRows(ids);
-										console.log(
-											'SELECTION MODEL CHANGE:',
-											ids
-										);
-									}}
-									sx={{
-										boxShadow: 4,
-										border: 4,
-										borderColor: 'primary.light',
-										'& .MuiDataGrid-cell:hover': {
-											color: 'primary.main',
-										},
-									}}
-								/>
-							</Grid>
+							<DataGrid
+								autoHeight
+								rows={trips}
+								columns={columns}
+								pageSize={10}
+								getRowId={row => row.id}
+								rowsPerPageOptions={[10]}
+								editMode='row'
+								disableSelectionOnClick
+								processRowUpdate={processRowUpdate}
+								onProcessRowUpdateError={() =>
+									processRowUpdateError
+								}
+								checkboxSelection={true}
+								experimentalFeatures={{
+									newEditingApi: true,
+								}}
+								onSelectionModelChange={ids => {
+									setSelectedRows(ids);
+									console.log('SELECTION MODEL CHANGE:', ids);
+								}}
+								sx={{
+									boxShadow: 4,
+									border: 4,
+									borderColor: 'primary.light',
+									'& .MuiDataGrid-cell:hover': {
+										color: 'primary.main',
+									},
+								}}
+							/>
 						</Grid>
-					</Box>
+					</Grid>
 				</Box>
 			)}
 		</Box>

@@ -9,7 +9,6 @@ function* makesSaga() {
 function* makes() {
 	try {
         const makes = yield axios.get('/api/carbon/makes');
-        console.log('MAKES IN SAGA', makes.data)
         yield put({ type: 'MAKES', payload: makes.data });
 	} catch (error) {
 		console.log('Error in makes.saga:', error);

@@ -18,7 +18,6 @@ function* models(action) {
         const uniqueModels = [
 			...new Map(responseModels.map(model => [model.data.attributes['name'], model])).values(),
 		];
-        console.log('MODELS IN SAGA', uniqueModels);
         yield put({ type: 'MODELS', payload: uniqueModels });
 	} catch (error) {
 		console.log('Error in models.saga:', error);
