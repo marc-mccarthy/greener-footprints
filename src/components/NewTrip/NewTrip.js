@@ -143,6 +143,15 @@ function NewTrip() {
 			) : (
 				<Box m={3}>
 					<Box style={{ height: '100%', width: '100%' }} mt={6}>
+						<Box m={8}>
+							<Typography
+								variant='h5'
+								color='primary'
+								align='center'
+							>
+								Previous Trip
+							</Typography>
+						</Box>
 						<Grid container direction='row' wrap='wrap' spacing={1}>
 							<Grid xs={6} align='center' item>
 								<DisplayTrip trip={lastTrip} />
