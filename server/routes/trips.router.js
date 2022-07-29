@@ -8,6 +8,7 @@ const {
 
 // GET all trips
 router.get('/getTrips', rejectUnauthenticated, (req, res) => {
+    console.log(req.user.id)
     pool.query(`SELECT * FROM "trips" WHERE user_id = $1 ORDER BY "id" ASC`, [req.user.id])
         .then(response => {
             res.send(response.rows);
@@ -34,6 +35,7 @@ router.get('/findTrip/:id', rejectUnauthenticated, (req, res) => {
 // POST new trip
 router.post('/newTrip', rejectUnauthenticated, (req, res) => {
 	// console.log(req.body)
+    // console.log(req.user.id)
 	pool.query(
 		`INSERT INTO "trips" ("startAddress", "endAddress", "distance", "duration", "passengers", "estimateId", "modelId", "year", "make", "model", "carbonPounds", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
 		[

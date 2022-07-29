@@ -10,9 +10,9 @@ import Years from '../Years/Years';
 import Models from '../Models/Models';
 import DisplayTrip from '../DisplayTrip/DisplayTrip';
 import DisplayMap from '../DisplayMap/DisplayMap';
-import HistoryIcon from '@mui/icons-material/History';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import SendIcon from '@mui/icons-material/Send';
+import HistoryButton from '../HistoryButton/HistoryButton';
+import ChartsButton from '../ChartsButton/ChartsButton';
 
 function NewTrip() {
 	// PAGE LOAD
@@ -169,24 +169,8 @@ function NewTrip() {
 							alignItems='center'
 							spacing={3}
 						>
-							<Button
-								size='large'
-								onClick={() => history.push('/history')}
-								sx={{ width: 110 }}
-								variant='contained'
-								startIcon={<HistoryIcon />}
-							>
-								History
-							</Button>
-							<Button
-								size='large'
-								onClick={() => history.push('/charts')}
-								sx={{ width: 110 }}
-								variant='contained'
-								startIcon={<BarChartIcon />}
-							>
-								Chart
-							</Button>
+							<HistoryButton />
+							<ChartsButton />
 						</Stack>
 					</Box>
 				</Box>

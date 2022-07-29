@@ -11,11 +11,11 @@ import {
 
 function Charts(props) {
 
-	useEffect(() => {
-		console.log('USE EFFECT WORKING');
-	}, []);
-
     const dispatch = useDispatch();
+    
+    const trips = useSelector(store => store.trips);
+
+
 
 	return (
 		<div className='Charts'>

@@ -9,6 +9,7 @@ function* getTripsSaga() {
 function* getTrips() {
 	try {
         const trips = yield axios.get(`/api/trips/getTrips`);
+        console.log('MAAAA TRIPPPPPS:', trips)
         yield put({ type: 'GET_TRIPS', payload: trips.data });
 	} catch (error) {
 		console.log('Error in getTrips.saga:', error);
