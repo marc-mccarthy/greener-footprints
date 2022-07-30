@@ -3,54 +3,83 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Typography } from '@mui/material';
 import {
-	ComposedChart,
-	Line,
-	Bar,
-	XAxis,
-	YAxis,
-	CartesianGrid,
+	Chart as ChartJS,
+	LinearScale,
+	CategoryScale,
+	BarElement,
+	PointElement,
+	LineElement,
+    Legend,
 	Tooltip,
-	Legend,
-} from 'recharts';
+	LineController,
+	BarController,
+} from 'chart.js';
+import { Chart } from 'react-chartjs-2';
 import SendIcon from '@mui/icons-material/Send';
+
+ChartJS.register(
+	LinearScale,
+	CategoryScale,
+	BarElement,
+	PointElement,
+	LineElement,
+	Legend,
+	Tooltip,
+	LineController,
+	BarController
+);
 
 function Charts(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const trips = useSelector(store => store.getTrips);
 
-    useEffect(() => {
+	useEffect(() => {
 		dispatch({ type: 'GET_TRIPS_SAGA' });
 	}, []);
 
-	const CustomTooltip = ({ active, payload, label }) => {
-		if (active && payload && payload.length) {
-			return (
-				<div className='custom-tooltip'>
-					<p className='label'>{`${label} : ${payload[0].value}`}</p>
-					<p className='intro'>{}</p>
-					<p className='desc'>
-						Anything you want can be displayed here.
-					</p>
-				</div>
-			);
-		}
-	};
-
     let totalEmissions = 0;
 	const indexedTrips = trips.map((trip, index) => {
-        let carbonPoundsPerson = trip.carbonPounds / trip.passengers;
-        totalEmissions += carbonPoundsPerson;
+		let carbonPoundsPerson = trip.carbonPounds / trip.passengers;
+		totalEmissions += carbonPoundsPerson;
 		return {
 			index: index + 1,
 			...trip,
-            carbonPoundsPerson: carbonPoundsPerson,
-            avgCarbonPoundsPerson: totalEmissions / (index + 1),
+			carbonPoundsPerson: carbonPoundsPerson,
+			avgCarbonPoundsPerson: totalEmissions / (index + 1),
 		};
 	});
 
+	let data = {
+		labels: indexedTrips.map(trip => {
+            return `${trip.index}. ${trip.startAddress} - ${trip.endAddress}`;
+        }),
+		datasets: [
+			{
+				type: 'bar',
+				label: 'Carbon Pounds',
+				data: indexedTrips.map(trip => {
+					return trip.carbonPoundsPerson;
+				}),
+				backgroundColor: 'rgb(0, 0, 255, 0.2)',
+				borderColor: 'rgb(0, 0, 255)',
+				borderWidth: 1,
+			},
+			{
+				type: 'line',
+				label: 'Average Carbon Pounds',
+				data: indexedTrips.map(trip => {
+					return trip.avgCarbonPoundsPerson;
+				}),
+				backgroundColor: 'rgb(255, 0, 0, 0.2)',
+				borderColor: 'rgb(255, 0, 0, 1)',
+				borderWidth: 2,
+			},
+		],
+	};
+
 	return (
-		<Box>
+		<Box m={4}>
 			{trips.length === 0 ? (
 				<Box mt={10}>
 					<Typography variant='h5' color='primary' align='center'>
@@ -77,36 +106,7 @@ function Charts(props) {
 					</Box>
 				</Box>
 			) : (
-				<Box>
-					<ComposedChart
-						width={1000}
-						height={700}
-						data={indexedTrips}
-						margin={{
-							top: 20,
-							right: 20,
-							bottom: 20,
-							left: 20,
-						}}
-					>
-						<CartesianGrid stroke='#f5f5f5' />
-						<XAxis dataKey='' scale='band' />
-						<YAxis />
-
-						<Tooltip />
-						<Legend />
-						<Bar
-							dataKey='carbonPoundsPerson'
-							barSize={20}
-							fill='#413ea0'
-						/>
-						<Line
-							type='monotone'
-							dataKey='avgCarbonPoundsPerson'
-							stroke='#ff7300'
-						/>
-					</ComposedChart>
-				</Box>
+				<Chart data={data} />
 			)}
 		</Box>
 	);
