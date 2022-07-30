@@ -8,7 +8,7 @@ const {
 
 // GET all trips
 router.get('/getTrips', rejectUnauthenticated, (req, res) => {
-    console.log(req.user.id)
+    // console.log(req.user.id)
     pool.query(`SELECT * FROM "trips" WHERE user_id = $1 ORDER BY "id" ASC`, [req.user.id])
         .then(response => {
             res.send(response.rows);
@@ -64,8 +64,8 @@ router.post('/newTrip', rejectUnauthenticated, (req, res) => {
 
 // UPDATE old trip
 router.put('/updateTrip', rejectUnauthenticated, (req, res) => {
-	console.log(req.body);
-    console.log(req.user.id);
+	// console.log(req.body);
+    // console.log(req.user.id);
 	pool.query(
 		`UPDATE "trips" SET "startAddress" = $1, "endAddress" = $2, "distance" = $3, "duration" = $4, "passengers" = $5, "estimateId" = $6, "modelId" = $7, "year" = $8, "make" = $9, "model" = $10, "carbonPounds" = $11, "user_id" = $12 WHERE "id" = $13`,
 		[
@@ -98,7 +98,7 @@ router.put('/updateTrip', rejectUnauthenticated, (req, res) => {
 
 // DELETE trip
 router.delete('/:id', (req, res) => {
-    console.log('DELETE /api/trips/:id', req.params);
+    // console.log('DELETE /api/trips/:id', req.params);
     pool.query(
         `DELETE FROM "trips" WHERE "id" = $1 AND "user_id" = $2`,
         [req.params.id, req.user.id]

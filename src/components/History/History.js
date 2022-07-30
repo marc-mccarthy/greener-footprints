@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
+
 import SendIcon from '@mui/icons-material/Send';
 import './History.css';
 

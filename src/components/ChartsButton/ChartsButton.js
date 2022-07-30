@@ -5,7 +5,6 @@ import {
 import BarChartIcon from '@mui/icons-material/BarChart';
 
 function ChartsButton() {
-
     const history = useHistory();
 
 	return (
@@ -16,7 +15,7 @@ function ChartsButton() {
 			variant='contained'
 			startIcon={<BarChartIcon />}
 		>
-			History
+			Charts
 		</Button>
 	);
 }
