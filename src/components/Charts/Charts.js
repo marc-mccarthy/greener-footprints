@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Typography } from '@mui/material';
@@ -19,6 +19,10 @@ function Charts(props) {
 	const history = useHistory();
 	const trips = useSelector(store => store.getTrips);
 
+    useEffect(() => {
+		dispatch({ type: 'GET_TRIPS_SAGA' });
+	}, []);
+
 	const CustomTooltip = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			return (
@@ -36,7 +40,6 @@ function Charts(props) {
     let totalEmissions = 0;
 	const indexedTrips = trips.map((trip, index) => {
         let carbonPoundsPerson = trip.carbonPounds / trip.passengers;
-        console.log(carbonPoundsPerson);
         totalEmissions += carbonPoundsPerson;
 		return {
 			index: index + 1,
@@ -87,7 +90,7 @@ function Charts(props) {
 						}}
 					>
 						<CartesianGrid stroke='#f5f5f5' />
-						<XAxis dataKey='index' scale='band' />
+						<XAxis dataKey='' scale='band' />
 						<YAxis />
 
 						<Tooltip />
