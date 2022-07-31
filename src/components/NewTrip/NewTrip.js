@@ -13,6 +13,7 @@ import DisplayMap from '../DisplayMap/DisplayMap';
 import SendIcon from '@mui/icons-material/Send';
 import HistoryButton from '../HistoryButton/HistoryButton';
 import ChartsButton from '../ChartsButton/ChartsButton';
+import LoadingBar from '../LoadingBar/LoadingBar';
 
 function NewTrip() {
 	// PAGE LOAD
@@ -70,7 +71,7 @@ function NewTrip() {
 
 	return (
 		<Box className='NewTrip'>
-			<Box m={4}>
+			<Box m={2}>
 				<Typography variant='h4' color='primary' align='center'>
 					New Trip
 				</Typography>
@@ -128,22 +129,12 @@ function NewTrip() {
 			lastTrip === undefined ||
 			Object.keys(getMap).length === 0 ? (
 				<Box mt={10}>
-					<Typography variant='h5' color='primary' align='center'>
-						No previous trips taken
-					</Typography>
-					<Typography
-						mt={3}
-						variant='h5'
-						color='primary'
-						align='center'
-					>
-						Add one above 🡱👌
-					</Typography>
+					<LoadingBar />
 				</Box>
 			) : (
 				<Box m={3}>
 					<Box style={{ height: '100%', width: '100%' }} mt={6}>
-						<Box m={8}>
+						<Box m={3}>
 							<Typography
 								variant='h5'
 								color='primary'

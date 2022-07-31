@@ -53,7 +53,7 @@ router.post('/newTrip', rejectUnauthenticated, (req, res) => {
 			req.user.id,
 		]
 	)
-		.then(response => {
+		.then(() => {
 			res.sendStatus(201);
 		})
 		.catch(error => {
@@ -94,22 +94,20 @@ router.put('/updateTrip', rejectUnauthenticated, (req, res) => {
 		});
 });
 
-
-
 // DELETE trip
-router.delete('/:id', (req, res) => {
-    // console.log('DELETE /api/trips/:id', req.params);
-    pool.query(
-        `DELETE FROM "trips" WHERE "id" = $1 AND "user_id" = $2`,
-        [req.params.id, req.user.id]
-    )
-    .then(response => {
-        res.sendStatus(200);
-    })
-    .catch(error => {
-        console.log('Error in DELETE /api/trips:', error);
-        res.sendStatus(500);
-    });
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+	// console.log('DELETE /api/trips/:id', req.params);
+	pool.query(`DELETE FROM "trips" WHERE "id" = $1 AND "user_id" = $2`, [
+		req.params.id,
+		req.user.id,
+	])
+		.then(() => {
+			res.sendStatus(200);
+		})
+		.catch(error => {
+			console.log('Error in DELETE /api/trips:', error);
+			res.sendStatus(500);
+		});
 });
 
 module.exports = router;

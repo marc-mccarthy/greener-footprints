@@ -5,7 +5,6 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-
 import SendIcon from '@mui/icons-material/Send';
 import './History.css';
 
@@ -243,9 +242,8 @@ function History(props) {
 								autoHeight
 								rows={trips}
 								columns={columns}
-								pageSize={10}
+								pageSize={12}
 								getRowId={row => row.id}
-								rowsPerPageOptions={[10]}
 								editMode='row'
 								disableSelectionOnClick
 								processRowUpdate={processRowUpdate}

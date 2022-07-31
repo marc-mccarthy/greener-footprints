@@ -9,7 +9,7 @@ import {
 	BarElement,
 	PointElement,
 	LineElement,
-    Legend,
+	Legend,
 	Tooltip,
 	LineController,
 	BarController,
@@ -23,10 +23,10 @@ ChartJS.register(
 	BarElement,
 	PointElement,
 	LineElement,
-	Legend,
-	Tooltip,
 	LineController,
-	BarController
+	BarController,
+	Tooltip,
+	Legend
 );
 
 function Charts(props) {
@@ -38,7 +38,7 @@ function Charts(props) {
 		dispatch({ type: 'GET_TRIPS_SAGA' });
 	}, []);
 
-    let totalEmissions = 0;
+	let totalEmissions = 0;
 	const indexedTrips = trips.map((trip, index) => {
 		let carbonPoundsPerson = trip.carbonPounds / trip.passengers;
 		totalEmissions += carbonPoundsPerson;
@@ -52,8 +52,8 @@ function Charts(props) {
 
 	let data = {
 		labels: indexedTrips.map(trip => {
-            return `${trip.index}. ${trip.startAddress} - ${trip.endAddress}`;
-        }),
+			return `${trip.index}. ${trip.startAddress} - ${trip.endAddress}`;
+		}),
 		datasets: [
 			{
 				type: 'bar',
@@ -61,9 +61,9 @@ function Charts(props) {
 				data: indexedTrips.map(trip => {
 					return trip.carbonPoundsPerson;
 				}),
-				backgroundColor: 'rgb(0, 0, 255, 0.2)',
-				borderColor: 'rgb(0, 0, 255)',
-				borderWidth: 1,
+				backgroundColor: 'rgb(11, 107, 7, 0.2)',
+				borderColor: 'rgb(11, 107, 7, 1)',
+				borderWidth: 1.5,
 			},
 			{
 				type: 'line',
@@ -73,13 +73,13 @@ function Charts(props) {
 				}),
 				backgroundColor: 'rgb(255, 0, 0, 0.2)',
 				borderColor: 'rgb(255, 0, 0, 1)',
-				borderWidth: 2,
+				borderWidth: 1.5,
 			},
 		],
 	};
 
 	return (
-		<Box m={4}>
+		<Box ml={5} mr={5}>
 			{trips.length === 0 ? (
 				<Box mt={10}>
 					<Typography variant='h5' color='primary' align='center'>
