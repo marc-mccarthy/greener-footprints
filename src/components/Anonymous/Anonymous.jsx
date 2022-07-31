@@ -22,7 +22,6 @@ function Anonymous() {
         <Button sx={{width: 120}} variant='outlined' onClick={login}>
             Anonymous
         </Button>
-
 	);
 }
 

@@ -5,6 +5,7 @@ import {
     Box,
     Grid,
 } from '@mui/material';
+import AvatarUpload from '../AvatarUpload/AvatarUpload';
 
 function UserPage() {
 	// this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -15,6 +16,11 @@ function UserPage() {
 	return (
 		<Box className="container">
             <Grid container align='center'>
+                <Grid item xs={12}>
+                    <Box>
+                        <AvatarUpload />
+                    </Box>
+                </Grid>
                 <Grid item xs={12}>
                     <Box>
                         <h2>{user.username}, welcome to your profile page!</h2>
