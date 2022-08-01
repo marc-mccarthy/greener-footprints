@@ -28,6 +28,8 @@ ChartJS.register(
 	Legend
 );
 
+const avgDailyVehicleEmissions = 27.783;
+
 function Charts(props) {
 	const dispatch = useDispatch();
 	const trips = useSelector(store => store.getTrips);

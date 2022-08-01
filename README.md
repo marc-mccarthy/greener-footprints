@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/marc-mccarthy/greener-footprints">
-    <img src="/public/favicon.ico" alt="Logo" width="80" height="80">
+    <img src="/public/favicon.ico" alt="Logo" width="120" height="120">
   </a>
 
 <!-- PROJECT DETAILS -->
@@ -87,8 +87,8 @@ This app will allow you to see how much carbon is emitted from your specific veh
 -   [![Markdown][markdown]][markdown-url]
 -   [![Chart.js][chart.js]][chart-url]
 -   [![React-Router][react-router]][react-router-url]
--   [![NPM][npm]][npm-url]
 -   [![Heroku][heroku]][heroku-url]
+-   [![NPM][npm]][npm-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -129,6 +129,10 @@ This app will allow you to see how much carbon is emitted from your specific veh
     - Carbon Interface Information
     ```dotenv
     CARBON_INTERFACE_KEY='ENTER YOUR CARBON INTERFACE API KEY HERE'
+    ```
+    - Session Random Key
+    ```dotenv
+    SERVER_SESSION_SECRET='ENTER RANDOM STRING OVER 8 CHARS HERE`
     ```
 
 ### Installation
@@ -217,6 +221,7 @@ Project Link: [Greener Foot(prints)](https://github.com/marc-mccarthy/greener-fo
 -   [Material UI Documentation](https://mui.com/material-ui/getting-started/learn/)
 -   [README.md Composing](https://www.welcometothejungle.com/en/articles/btc-readme-documentation-best-practices)
 -   [Stack Overflow](https://stackoverflow.com/)
+-   [DB Designer](https://dbdesigner.net/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

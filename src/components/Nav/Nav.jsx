@@ -16,7 +16,7 @@ function Nav(props) {
                 alignItems="center">
                 <Link to="/user">
                     <Avatar
-                        sx={{ width: 42, height: 42 }}
+                        sx={{width: 42, height: 42}}
                         variant="rounded"
                         alt={user.name}
                         src={user.avatar}
@@ -28,52 +28,45 @@ function Nav(props) {
                     </Typography>
                 </Link>
             </Stack>
-            <Stack ml={1} direction='row' justifyContent="center" alignItems="center">
-                {/* If a user is logged in, show these links */}
-                {user.id&&(
-                    <Typography>
-                        <Link className="navLink" to="/user">
-                            Home
-                        </Link>
-                        <Link className="navLink" to="/newtrip">
-                            New Trip
-                        </Link>
-                        <Link className="navLink" to="/history">
-                            History
-                        </Link>
-                        <Link className="navLink" to="/charts">
-                            Charts
-                        </Link>
-                    </Typography>
-                )}
-                <Typography>
-                <Link className="navLink" to="/docs">
-                    Docs
-                </Link>
-                <Link className="navLink" to="/info">
-                    Info Page
-                </Link>
-                <Link className="navLink" to="/about">
-                    About
-                </Link>
-                </Typography>
-                {user.id&&(
-                    <Typography>
+            <Typography variant='h5'>
+                <Stack ml={1} direction='row' justifyContent="center" alignItems="center">
+                    {/* If a user is logged in, show these links */}
+                    {user.id&&(
+                        <>
+                            <Link className="navLink" to="/user">
+                                Home
+                            </Link>
+                            <Link className="navLink" to="/newtrip">
+                                New Trip
+                            </Link>
+                            <Link className="navLink" to="/history">
+                                History
+                            </Link>
+                            <Link className="navLink" to="/charts">
+                                Charts
+                            </Link>
+                        </>
+                    )}
+                    <Link className="navLink" to="/info">
+                        Info
+                    </Link>
+                    <Link className="navLink" to="/about">
+                        About
+                    </Link>
+                    {user.id&&(
                         <Link className="navLink" onClick={() => dispatch({type: 'LOGOUT'})}>
                             Log Out
                         </Link>
-                    </Typography>
-                )}
-                {/* If no user is logged in, show these links */}
-                {!user.id&&(
-                    // If there's no user, show login/registration links
-                    <Typography>
+                    )}
+                    {/* If no user is logged in, show these links */}
+                    {!user.id&&(
+                        // If there's no user, show login/registration links
                         <Link className="navLink" to="/login">
                             Login / Register
                         </Link>
-                    </Typography>
-                )}
-            </Stack>
+                    )}
+                </Stack>
+            </Typography>
         </Box>
     );
 }
