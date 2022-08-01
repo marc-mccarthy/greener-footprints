@@ -16,8 +16,8 @@ function Nav(props) {
                 alignItems="center">
                 <Link to="/user">
                     <Avatar
-                        sx={{width: 42, height: 42}}
-                        variant="rounded"
+                        sx={{width: 40, height: 40}}
+
                         alt={user.name}
                         src={user.avatar}
                     />

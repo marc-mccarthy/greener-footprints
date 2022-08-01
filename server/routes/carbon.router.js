@@ -3,34 +3,6 @@ const router = express.Router();
 require('dotenv').config();
 const axios = require('axios');
 
-/**
- * @api {get} /tasks Gets all Makes
- * @apiGroup Makes
- * @apiSuccess {Object[]} makes Makes array of objects
- * @apiSuccess {Number} make.id Make Carbon Interface ID
- * @apiSuccess {String} make.type Type of Vehicle Make
- * @apiSuccess {Object[]} makes Makes array of attributes
- * @apiSuccessExample {json} Success
- *  HTTP/1.1 200 OK
- *  [
- *      {
- *          data: {
- *              id: 'c0d79b67-76e8-442d-b105-2c73501948a9',
- *              type: 'vehicle_make',
- *              attributes: [Object]
- *          },
- *          {
- *              data: {
- *              id: 'c0d79b67-76e8-442d-b105-2c73501948a9',
- *               type: 'vehicle_make',
- *               attributes: [Object]
- *           }
- *       }
- *  ]
- * @apiErrorExample {json} List error
- *    HTTP/1.1 500 Internal Server Error
- */
-
 // POST new makes
 router.get('/makes', (req, res) => {
     // console.log('CARBON API SERVER req.body:', req.body);
@@ -43,7 +15,7 @@ router.get('/makes', (req, res) => {
 		},
     })
     .then(response => {
-        console.log('CARBON API SERVER response:', response.data);
+        // console.log('CARBON API SERVER response:', response.data);
         res.send(response.data);
     })
     .catch(error => {

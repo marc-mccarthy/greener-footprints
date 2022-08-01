@@ -27,7 +27,7 @@ function DisplayMap({ getMap, center, options, zoom }) {
 	return (
 		<Box
 			mr={10}
-			style={{ height: '50vh', width: '40vw' }}
+			style={{ height: '49vh', width: '40vw' }}
 		>
 			{/* Google Map Box */}
 			<GoogleMap

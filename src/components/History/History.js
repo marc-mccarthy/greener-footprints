@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, Stack } from '@mui/material';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import LoadingBar from '../LoadingBar/LoadingBar';
+import HistoryButton from '../HistoryButton/HistoryButton';
+import ChartsButton from '../ChartsButton/ChartsButton';
 
 function History(props) {
 	const dispatch = useDispatch();
@@ -189,7 +191,7 @@ function History(props) {
 					<LoadingBar />
 				</Box>
 			) : (
-				<Box>
+				<Box mt={3}>
 					<Grid
 						container
 						direction='row'
@@ -204,24 +206,29 @@ function History(props) {
 							},
 						}}
 					>
-						<Grid item xs={11.5}>
-							<Box mb={2} mt={2}>
-								<Button
-									startIcon={<DeleteIcon />}
-									onClick={deleteMultiple}
-									color='secondary'
-									variant='contained'
-								>
-									Delete Selected
-								</Button>
-							</Box>
-
+                        <Grid item mb={3} xs={11.5}>
+                            <Button
+                                size='small'
+                                sx={{ width: 140 }}
+                                startIcon={<DeleteIcon />}
+                                onClick={deleteMultiple}
+                                color='primary'
+                                variant='contained'
+                            >
+                                Delete Many
+                            </Button>
+                        </Grid>
+						<Grid item mb={3} xs={11.5}>
 							<DataGrid
 								autoHeight
+								autoPageSize
 								rows={trips}
 								columns={columns}
-								pageSize={12}
+								pageSize={16}
+								rowsPerPageOptions={[100]}
 								getRowId={row => row.id}
+								rowHeight={38}
+								headerHeight={38}
 								editMode='row'
 								disableSelectionOnClick
 								processRowUpdate={processRowUpdate}
@@ -245,6 +252,19 @@ function History(props) {
 									},
 								}}
 							/>
+						</Grid>
+						<Grid item xs={12}>
+							<Box m={2}>
+								<Stack
+									direction='row'
+									justifyContent='center'
+									alignItems='center'
+									spacing={3}
+								>
+									<HistoryButton />
+									<ChartsButton />
+								</Stack>
+							</Box>
 						</Grid>
 					</Grid>
 				</Box>

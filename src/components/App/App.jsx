@@ -33,12 +33,13 @@ function App() {
 
     return (
         <Router>
-            <div className="app">
+            <div id="header">
                 <Nav />
+            </div>
+            <div id="main-content">
                 <Switch>
                     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
                     <Redirect exact from="/" to="/home" />
-
                     {/* Visiting localhost:3000/about will show the about page. */}
                     <Route
                         // shows About Page at all times (logged in or not)
@@ -47,7 +48,6 @@ function App() {
                     >
                         <AboutPage />
                     </Route>
-
                     <Route
                         // shows Docs Page at all times (logged in or not)
                         exact
@@ -55,7 +55,6 @@ function App() {
                     >
                         <Docs />
                     </Route>
-
                     {/* For protected routes, the view could show one of several things on the same route.
                         Visiting localhost:3000/user will show the UserPage if the user is logged in.
                         If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
@@ -67,7 +66,6 @@ function App() {
                     >
                         <NewTrip />
                     </ProtectedRoute>
-
                     <ProtectedRoute
                         // logged in shows EditTrip else shows LoginPage
                         exact
@@ -75,7 +73,6 @@ function App() {
                     >
                         <EditTrip />
                     </ProtectedRoute>
-
                     <ProtectedRoute
                         // logged in shows Calculate else shows LoginPage
                         exact
@@ -83,7 +80,6 @@ function App() {
                     >
                         <History />
                     </ProtectedRoute>
-
                     <ProtectedRoute
                         // logged in shows UserPage else shows LoginPage
                         exact
@@ -91,7 +87,6 @@ function App() {
                     >
                         <UserPage />
                     </ProtectedRoute>
-
                     <ProtectedRoute
                         // logged in shows Calculate else shows LoginPage
                         exact
@@ -99,7 +94,6 @@ function App() {
                     >
                         <Charts />
                     </ProtectedRoute>
-
                     <ProtectedRoute
                         // logged in shows InfoPage else shows LoginPage
                         exact
@@ -107,7 +101,6 @@ function App() {
                     >
                         <InfoPage />
                     </ProtectedRoute>
-
                     <Route exact path="/login">
                         {user.id? (
                             // If the user is already logged in,
@@ -118,7 +111,6 @@ function App() {
                             <LoginPage />
                         )}
                     </Route>
-
                     <Route exact path="/registration">
                         {user.id? (
                             // If the user is already logged in,
@@ -129,7 +121,6 @@ function App() {
                             <RegisterPage />
                         )}
                     </Route>
-
                     <Route exact path="/home">
                         {user.id? (
                             // If the user is already logged in,
@@ -145,6 +136,8 @@ function App() {
                         <h1>404</h1>
                     </Route>
                 </Switch>
+            </div>
+            <div id="footer">
                 <Footer />
             </div>
         </Router>

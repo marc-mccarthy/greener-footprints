@@ -132,8 +132,8 @@ function NewTrip() {
 					<LoadingBar />
 				</Box>
 			) : (
-				<Box m={3}>
-					<Box style={{ height: '100%', width: '100%' }} mt={6}>
+				<Box>
+					<Box style={{ height: '100%', width: '100%' }} mt={8}>
 						<Box m={3}>
 							<Typography
 								variant='h5'

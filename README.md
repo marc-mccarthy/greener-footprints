@@ -63,7 +63,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Greener Foot(prints) Wireframe](./wireframes/wireframe.gif)
 
 This is an exploration into understanding what really comes out of those tailpipes every time we get behind the wheel. What is that six inches of black smoke before it dissipates into thin air? How is it measured and does anyone have reliable information as to what the impact is?
 
@@ -167,6 +167,7 @@ This app will allow you to see how much carbon is emitted from your specific veh
 -   [ ] Add Jest unit testing
 -   [ ] Compare emissions to different vehicles
 -   [ ] Add various types of travel
+-   [ ] Scale views for different viewports
 -   [ ] Add a mobile view
 -   [ ] Add dates to your travel
 -   [ ] Host on AWS or Dokku/Digital Ocean

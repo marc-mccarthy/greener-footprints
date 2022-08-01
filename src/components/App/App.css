@@ -7,6 +7,7 @@ body,
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	margin: 0px;
+
 }
 
 img {
@@ -110,8 +111,8 @@ input {
 	margin-bottom: 10px;
 }
 
-input[type="file"] {
-    display: none;
+input[type='file'] {
+	display: none;
 }
 
 #loadingBar {
@@ -125,14 +126,25 @@ input[type="file"] {
 Footer
 -------------------------------------------------------------------------------- */
 
-.footer {
-    height: 1.3rem;
-	padding: .7rem;
-	position: fixed;
+#container {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+#main-content {
+	flex: 1;
+    margin-bottom: 50px;
+}
+
+#footer {
+	height: 1.3rem;
+	padding: 0.7rem;
 	bottom: 0;
+    position: fixed;
 	left: 0;
 	width: 100%;
 	text-align: center;
-    background-color: #059e00;
-    color: #f2f2f2;
+	background-color: #059e00;
+	color: #f2f2f2;
 }

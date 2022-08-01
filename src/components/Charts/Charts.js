@@ -57,7 +57,7 @@ function Charts(props) {
 		datasets: [
 			{
 				type: 'bar',
-				label: 'Carbon Pounds',
+				label: 'Per Trip Carbon Pounds',
 				data: indexedTrips.map(trip => {
 					return trip.carbonPoundsPerson;
 				}),
@@ -67,12 +67,22 @@ function Charts(props) {
 			},
 			{
 				type: 'line',
-				label: 'Average Carbon Pounds',
+				label: 'Moving Average Carbon Pounds',
 				data: indexedTrips.map(trip => {
 					return trip.avgCarbonPoundsPerson;
 				}),
 				backgroundColor: 'rgb(255, 0, 0, 0.2)',
 				borderColor: 'rgb(255, 0, 0, 1)',
+				borderWidth: 1.5,
+			},
+			{
+				type: 'line',
+				label: 'Average American Daily Carbon Pounds',
+				data: indexedTrips.map(trip => {
+					return 27.783;
+				}),
+				backgroundColor: 'rgb(15, 10, 222, 0.2)',
+				borderColor: 'rgb(15, 10, 222, 1)',
 				borderWidth: 1.5,
 			},
 		],
