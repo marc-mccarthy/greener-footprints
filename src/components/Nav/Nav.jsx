@@ -16,6 +16,8 @@ function Nav(props) {
                 alignItems="center">
                 <Link to="/user">
                     <Avatar
+                        sx={{ width: 42, height: 42 }}
+                        variant="rounded"
                         alt={user.name}
                         src={user.avatar}
                     />
@@ -26,10 +28,10 @@ function Nav(props) {
                     </Typography>
                 </Link>
             </Stack>
-            <Box>
+            <Stack ml={1} direction='row' justifyContent="center" alignItems="center">
                 {/* If a user is logged in, show these links */}
                 {user.id&&(
-                    <>
+                    <Typography>
                         <Link className="navLink" to="/user">
                             Home
                         </Link>
@@ -42,8 +44,9 @@ function Nav(props) {
                         <Link className="navLink" to="/charts">
                             Charts
                         </Link>
-                    </>
+                    </Typography>
                 )}
+                <Typography>
                 <Link className="navLink" to="/docs">
                     Docs
                 </Link>
@@ -53,21 +56,24 @@ function Nav(props) {
                 <Link className="navLink" to="/about">
                     About
                 </Link>
+                </Typography>
                 {user.id&&(
-                    <>
+                    <Typography>
                         <Link className="navLink" onClick={() => dispatch({type: 'LOGOUT'})}>
                             Log Out
                         </Link>
-                    </>
+                    </Typography>
                 )}
                 {/* If no user is logged in, show these links */}
                 {!user.id&&(
                     // If there's no user, show login/registration links
-                    <Link className="navLink" to="/login">
-                        Login / Register
-                    </Link>
+                    <Typography>
+                        <Link className="navLink" to="/login">
+                            Login / Register
+                        </Link>
+                    </Typography>
                 )}
-            </Box>
+            </Stack>
         </Box>
     );
 }

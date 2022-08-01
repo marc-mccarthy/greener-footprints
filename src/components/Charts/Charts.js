@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import {
 	Chart as ChartJS,
 	LinearScale,
@@ -15,7 +14,7 @@ import {
 	BarController,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
-import SendIcon from '@mui/icons-material/Send';
+import LoadingBar from '../LoadingBar/LoadingBar';
 
 ChartJS.register(
 	LinearScale,
@@ -31,7 +30,6 @@ ChartJS.register(
 
 function Charts(props) {
 	const dispatch = useDispatch();
-	const history = useHistory();
 	const trips = useSelector(store => store.getTrips);
 
 	useEffect(() => {
@@ -82,28 +80,7 @@ function Charts(props) {
 		<Box ml={5} mr={5}>
 			{trips.length === 0 ? (
 				<Box mt={10}>
-					<Typography variant='h5' color='primary' align='center'>
-						Uh Oh! No previous trips taken 😧
-					</Typography>
-					<Typography
-						mt={3}
-						variant='h5'
-						color='primary'
-						align='center'
-					>
-						Add one now
-					</Typography>
-					<Box mt={3} display='flex' justifyContent='center'>
-						<Button
-							size='medium'
-							onClick={() => history.push('/newtrip')}
-							sx={{ width: 130 }}
-							variant='contained'
-							startIcon={<SendIcon />}
-						>
-							New Trip
-						</Button>
-					</Box>
+					<LoadingBar />
 				</Box>
 			) : (
 				<Chart data={data} />

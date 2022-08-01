@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import {
 	useJsApiLoader,
 	GoogleMap,
-	Autocomplete,
 	DirectionsRenderer,
 } from '@react-google-maps/api';
 

@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Box, Button, Divider, Stack} from '@mui/material';
 import './LandingPage.css';
-
-// CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
+    const history=useHistory();
 	const [heading, setHeading] = useState('Welcome to Greener Foot(prints): Road Trip Edition');
-	const history = useHistory();
-
-	const onLogin = (event) => {
-		history.push('/login');
-	};
 
 	return (
 		<div className="container">
@@ -42,7 +36,7 @@ function LandingPage() {
                     <Box>
                         <h4>Already a Member?</h4>
                             <Stack divider={<Divider orientation="vertical" flexItem />} spacing={3} justifyContent='left' direction='row'>
-                                <Button sx={{width: 120}} variant='contained' onClick={onLogin}>
+                            <Button sx={{width: 120}} variant='contained' onClick={history.push('/login')}>
                                     Login
                                 </Button>
                             </Stack>

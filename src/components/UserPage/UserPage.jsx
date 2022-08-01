@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
     Box,
     Grid,
@@ -41,5 +39,4 @@ function UserPage() {
     );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;

@@ -56,7 +56,7 @@ function NewTrip() {
 			}
 		}
 		dispatch({
-			type: 'NEW_TRIP',
+			type: 'NEW_TRIP_SAGA',
 			payload: formData,
 		});
 		setFormData({

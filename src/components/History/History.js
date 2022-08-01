@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import EditIcon from '@mui/icons-material/EditOutlined';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import SendIcon from '@mui/icons-material/Send';
-import './History.css';
+import LoadingBar from '../LoadingBar/LoadingBar';
 
 function History(props) {
 	const dispatch = useDispatch();
@@ -187,28 +186,7 @@ function History(props) {
 		<Box>
 			{trips.length === 0 ? (
 				<Box mt={10}>
-					<Typography variant='h5' color='primary' align='center'>
-						Uh Oh! No previous trips taken 😧
-					</Typography>
-					<Typography
-						mt={3}
-						variant='h5'
-						color='primary'
-						align='center'
-					>
-						Add one now
-					</Typography>
-					<Box mt={3} display='flex' justifyContent='center'>
-						<Button
-							size='medium'
-							onClick={() => history.push('/newtrip')}
-							sx={{ width: 130 }}
-							variant='contained'
-							startIcon={<SendIcon />}
-						>
-							New Trip
-						</Button>
-					</Box>
+					<LoadingBar />
 				</Box>
 			) : (
 				<Box>

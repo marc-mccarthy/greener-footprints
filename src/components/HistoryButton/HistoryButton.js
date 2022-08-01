@@ -5,7 +5,6 @@ import {
 import HistoryIcon from '@mui/icons-material/History';
 
 function HistoryButton() {
-
     const history = useHistory();
 
 	return (

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-// Worker Saga: will be fired on 'NEW_TRIP' actions
+// Worker Saga: will be fired on 'NEW_TRIP_SAGA' actions
 function* newTripSaga() {
-	yield takeLatest('NEW_TRIP', newTrip);
+	yield takeLatest('NEW_TRIP_SAGA', newTrip);
 }
 
 function* newTrip(action) {

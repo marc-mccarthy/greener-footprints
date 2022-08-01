@@ -59,7 +59,6 @@ Button
 	text-decoration: none;
 }
 
-/* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
 	padding: 0;
 	border-width: 0;
@@ -111,9 +110,29 @@ input {
 	margin-bottom: 10px;
 }
 
+input[type="file"] {
+    display: none;
+}
+
 #loadingBar {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	width: 50%;
+}
+
+/* --------------------------------------------------------------------------------
+Footer
+-------------------------------------------------------------------------------- */
+
+.footer {
+    height: 1.3rem;
+	padding: .7rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+    background-color: #059e00;
+    color: #f2f2f2;
 }

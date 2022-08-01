@@ -1,5 +1,4 @@
 .nav {
-	/* flex box layout */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -30,9 +29,6 @@
 	padding: 15px 15px;
 	text-decoration: none;
 	font-size: 15px;
-
-	/* these last two make the logout button in
-  the nav bar look like another link */
 	border: none;
 	cursor: pointer;
 	outline: 1;
@@ -43,14 +39,14 @@
 }
 
 .Nav-logo {
-	height: 3vmin;
-	pointer-events: none;
+	height: 3.5vmin;
 }
 
 @media (prefers-reduced-motion: no-preference) {
 	.Nav-logo {
-		animation: App-logo-spin infinite 20s linear;
+		animation: Nav-logo-spin infinite 15s linear;
 	}
+
 }
 
 @keyframes Nav-logo-spin {
