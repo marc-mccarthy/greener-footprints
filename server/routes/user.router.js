@@ -25,7 +25,6 @@ const multerS3Config = multerS3({
 		cb(null, { fieldName: file.fieldname });
 	},
 	key: function (req, file, cb) {
-		console.log('my', file);
 		cb(null, new Date().toISOString() + '-' + file.originalname);
 	},
 });
@@ -33,13 +32,23 @@ const multerS3Config = multerS3({
 const upload = multer({
 	storage: multerS3Config,
 	limits: {
-		fileSize: 1024 * 1024 * 5, // we are allowing only 5 MB files
+		fileSize: 1024 * 1024 * 5,
 	},
 });
 
 router.post('/avatar', upload.single('file'), (req, res) => {
-	console.log('in avatar server');
-    console.log(req.file)
+    console.log(req.file.location);
+    pool.query(`UPDATE "user" SET "avatar" = $1 WHERE "id" = $2`, [
+		req.file.location, req.user.id,
+	])
+		.then(response => {
+			console.log('Response:', response);
+			res.sendStatus(201);
+		})
+		.catch(error => {
+			console.log('Error in GET /api/avatar:', error);
+			res.sendStatus(500);
+		});
 });
 
 // Handles Ajax request for user information if user is authenticated

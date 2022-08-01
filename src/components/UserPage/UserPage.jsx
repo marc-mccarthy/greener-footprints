@@ -1,6 +1,6 @@
-import React from 'react';
+import { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Box,
     Grid,
@@ -8,22 +8,21 @@ import {
 import AvatarUpload from '../AvatarUpload/AvatarUpload';
 
 function UserPage() {
-	// this component doesn't do much to start, just renders some user reducer info to the DOM
-	const user = useSelector((store) => store.user);
 
-    const userNumber = user.role === 0 ? 'User' : 'Admin';
+	const user = useSelector((store) => store.user);
+    const userNumber=user.role===0? 'Standard User':'Admin';
 
 	return (
 		<Box className="container">
             <Grid container align='center'>
                 <Grid item xs={12}>
                     <Box>
-                        <AvatarUpload />
+                        <h2>Welcome, {user.username}!</h2>
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
                     <Box>
-                        <h2>{user.username}, welcome to your profile page!</h2>
+                        <AvatarUpload user={user}/>
                     </Box>
                 </Grid>
                 <Grid item xs={12}>
@@ -33,12 +32,7 @@ function UserPage() {
                 </Grid>
                 <Grid item xs={12}>
                     <Box>
-                        <LogOutButton className="btn" />
-                    </Box>
-                </Grid>
-                <Grid item xs={12}>
-                    <Box>
-                        <h5>Not much here at the moment.</h5>
+                        <h5>**Not much here at the moment**</h5>
                         <h5>Feel free to start exploring the pages in the navigation above.</h5>
                     </Box>
                 </Grid>

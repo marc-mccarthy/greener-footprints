@@ -7,6 +7,7 @@ import models from './models.reducer';
 import getTrips from './getTrips.reducer';
 import findTrip from './findTrip.reducer';
 import getMap from './getMap.reducer';
+import newAvatar from './newAvatar.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     getTrips,
     findTrip,
     getMap,
+    newAvatar,
 });
 
 export default rootReducer;

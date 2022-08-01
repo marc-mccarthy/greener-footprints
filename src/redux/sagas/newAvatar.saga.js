@@ -9,13 +9,9 @@ function* newAvatarSaga() {
 function* newAvatar(action) {
 	try {
         console.log('NEW AVATAR SAGA ACTION.PAYLOAD:', action.payload)
-        yield axios.post('/api/user/avatar/', action.payload)
-            .then(response => {
-                console.log('POST AVATAR RESPONSE', response)
-            })
-            .catch(error => {
-                console.log('POST AVATAR ERROR', error)
-            })
+        const response = yield axios.post('/api/user/avatar/', action.payload)
+        console.log('fdsfsdfdss', response.data)
+        yield put({ type: 'FETCH_USER' });
 	} catch (error) {
 		console.log('Error in newAvatarTrip.saga:', error);
 	}
