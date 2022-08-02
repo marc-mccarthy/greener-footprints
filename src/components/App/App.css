@@ -7,10 +7,7 @@ body,
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	margin: 0px;
-    background: rgb(211,210,210);
-    background: linear-gradient(90deg, rgba(211,210,210,1) 0%, rgba(241,240,240,1) 10%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(241,240,240,1) 90%, rgba(211,210,210,1) 100%);
     min-height: 100vh;
-
 }
 
 img {
@@ -144,8 +141,8 @@ Footer
 }
 
 #footer {
-	height: 1.4rem;
-	padding: .9rem;
+	height: 1rem;
+	padding: 1rem;
 	bottom: 0;
     position: fixed;
 	left: 0;

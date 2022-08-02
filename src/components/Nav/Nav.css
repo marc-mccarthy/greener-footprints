@@ -2,9 +2,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-    padding: 0.2rem;
+    padding: 0.5rem;
 	background-color: #059e00;
 	overflow: hidden;
+    height: 2.3rem;
 }
 
 .nav a {

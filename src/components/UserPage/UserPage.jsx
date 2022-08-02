@@ -50,11 +50,11 @@ function UserPage() {
                                 <Button
                                     size='large'
                                     onClick={() => history.push('/newtrip')}
-                                    sx={{width: 205}}
+                                    sx={{width: 170}}
                                     variant='contained'
                                     startIcon={<SendIcon />}
                                 >
-                                    Wanna be worse?
+                                    Be Worse?
                                 </Button>
                             </Grid>
 

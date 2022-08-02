@@ -31,59 +31,60 @@ function AboutPage() {
                     <Grid container direction='column' xs={4}>
                         <Grid item>
                             <Typography variant="h5">
-                                Major Tech Used
+                                Major Techs Used
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <ul>
-                                <li>
-                                    <a href="https://reactjs.org/">React</a>
-                                </li>
-                                <li>
-                                    <a href="https://redux.js.org/">Redux</a>
-                                </li>
-                                <li>
-                                    <a href="https://redux-saga.js.org/">Redux-Saga</a>
-                                </li>
-                                <li>
-                                    <a href="https://nodejs.org/en/">Node.js</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.postgresql.org/">PostgreSQL</a>
-                                </li>
-                                <li>
-                                    <a href="https://mui.com/">Material UI</a>
-                                </li>
-                                <li>
-                                    <a href="https://auth0.com/">Auth</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.passportjs.org/">Passport</a>
-                                </li>
-                            </ul>
+                            <Typography variant="h6">
+                                <ul>
+                                    <li>
+                                        <a href="https://reactjs.org/">React</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://redux.js.org/">Redux</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://redux-saga.js.org/">Redux-Saga</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://nodejs.org/en/">Node.js</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.postgresql.org/">PostgreSQL</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://mui.com/">Material UI</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.passportjs.org/">Passport (Auth)</a>
+                                    </li>
+                                </ul>
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container direction='column' xs={4}>
                         <Grid item>
                             <Typography variant="h5">
-                                Other Tech Used
+                                Spike Techs Used
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <ul>
-                                <li>
-                                    <a href="https://aws.amazon.com/">Amazon Web Services</a>
-                                </li>
-                                <li>
-                                    <a href="https://mapsplatform.google.com/">Google Maps Platform API</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.carboninterface.com/">Carbon Interface API</a>
-                                </li>
-                                <li>
-                                    <a href="https://www.chartjs.org/">Chart.js</a>
-                                </li>
-                            </ul>
+                            <Typography variant="h6">
+                                <ul>
+                                    <li>
+                                        <a href="https://aws.amazon.com/">Amazon Web Services</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://mapsplatform.google.com/">Google Maps Platform API</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.carboninterface.com/">Carbon Interface API</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.chartjs.org/">Chart.js</a>
+                                    </li>
+                                </ul>
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container direction='column' xs={4}>
@@ -92,6 +93,7 @@ function AboutPage() {
                                 Future To-Do's
                             </Typography>
                         </Grid>
+                        <Typography variant="h6">
                         <Grid item>
                             <Box>
                                 <input type="checkbox" id="1" />
@@ -122,6 +124,7 @@ function AboutPage() {
                                 <label for="7">Host on AWS or Dokku/Digital Ocean</label>
                             </Box>
                         </Grid>
+                        </Typography>
                     </Grid>
                 </Grid>
             </Box>
@@ -130,6 +133,7 @@ function AboutPage() {
                 alignItems="center"
                 ml={20}
                 mr={20}
+                width='50%'
             >
                 <Stack>
                     <Typography variant="h4">

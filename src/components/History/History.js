@@ -185,6 +185,14 @@ function History(props) {
 		});
 	};
 
+    function toWeight(pounds, thing) {
+		const weight = pounds / thing;
+		const formattedWeight = Number(weight.toFixed(2)).toLocaleString(
+			'en-us'
+		);
+		return formattedWeight;
+	}
+
 	return (
 		<Box>
 			{trips.length === 0 ? (
@@ -210,7 +218,7 @@ function History(props) {
                         <Grid item mb={3} xs={11.5}>
                             <Button
                                 size='small'
-                                sx={{ width: 140 }}
+                                sx={{ width: 145 }}
                                 startIcon={<DeleteIcon />}
                                 onClick={deleteMultiple}
                                 color='primary'
