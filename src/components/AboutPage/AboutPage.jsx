@@ -75,7 +75,7 @@ function AboutPage() {
                             <Typography variant="h6">
                                 <ul>
                                     <li>
-                                        <a href="https://aws.amazon.com/">Amazon Web Services</a>
+                                        <a href="https://aws.amazon.com/">Amazon Web Services (IAM S3 Bucket)</a>
                                     </li>
                                     <li>
                                         <a href="https://mapsplatform.google.com/">Google Maps Platform API</a>
@@ -84,7 +84,7 @@ function AboutPage() {
                                         <a href="https://www.carboninterface.com/">Carbon Interface API</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.chartjs.org/">Chart.js</a>
+                                        <a href="https://www.chartjs.org/">Chart.js (react-chartjs-2)</a>
                                     </li>
                                 </ul>
                             </Typography>
@@ -100,15 +100,15 @@ function AboutPage() {
                         <Grid item>
                             <Box>
                                 <input type="checkbox" id="1" />
-                                <label for="1">Add Jest unit testing</label>
+                                <label for="1">Add more Jest unit testing</label>
                             </Box>
                             <Box>
                                 <input type="checkbox" id="2" />
-                                <label for="2">Compare emissions to different vehicles</label>
+                                <label for="2">Compare emissions from multiple vehicles</label>
                             </Box>
                             <Box>
                                 <input type="checkbox" id="3" />
-                                <label for="3">Add various types of travel</label>
+                                <label for="3">Add various types of travel vehicles (flight, bicycle)</label>
                             </Box>
                             <Box>
                                 <input type="checkbox" id="4" />
@@ -116,7 +116,7 @@ function AboutPage() {
                             </Box>
                             <Box>
                                 <input type="checkbox" id="5" />
-                                <label for="5">Add a mobile view</label>
+                                <label for="5">Rebuild in React Native</label>
                             </Box>
                             <Box>
                                 <input type="checkbox" id="6" />
@@ -124,7 +124,7 @@ function AboutPage() {
                             </Box>
                             <Box>
                                 <input type="checkbox" id="7" />
-                                <label for="7">Host on AWS or Dokku/Digital Ocean</label>
+                                <label for="7">Fully host on AWS or Dokku/Digital Ocean</label>
                             </Box>
                         </Grid>
                         </Typography>

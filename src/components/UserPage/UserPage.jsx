@@ -30,7 +30,7 @@ function UserPage() {
 					<LoadingBar />
 				</Box>
             ) : (
-                <Box display="flex" alignItems='center'>
+                <Box mt={3} display="flex" alignItems='center'>
                     <Grid m={0} container align='center'>
                         <Grid item xs={12}>
                             <Box>
