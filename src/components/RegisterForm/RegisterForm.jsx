@@ -22,7 +22,7 @@ function RegisterForm() {
 	}; // end registerUser
 
 	return (
-		<form className="formPanel">
+        <form style={{backgroundColor: '#DEDEDE', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}} className="formPanel">
 			<h2>Register User</h2>
 			{errors.registrationMessage && (
 				<h3 className="alert" role="alert">

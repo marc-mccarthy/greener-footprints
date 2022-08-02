@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import {Button, Stack} from '@mui/material';
 import Anonymous from '../Anonymous/Anonymous';
+import forestImg from '../../images/forest-background.jpg';
 
 function LoginForm() {
 	const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ function LoginForm() {
 	}; // end login
 
 	return (
-		<form className='formPanel' onSubmit={login}>
+        <form style={{backgroundColor: '#DEDEDE', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='formPanel' onSubmit={login}>
 			<h2>Login</h2>
 			{errors.loginMessage && (
 				<h3 className='alert' role='alert'>

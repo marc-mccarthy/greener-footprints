@@ -1,15 +1,21 @@
 import React from 'react';
-
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+let forestImg=require('../../images/forest-background.jpg');
+import {Box, Button, Stack} from '@mui/material';
 
 function RegisterPage() {
 	const history = useHistory();
 
 	return (
-		<div>
-			<RegisterForm />
-
+        <Box style={{
+            backgroundImage: `url(${forestImg})`,
+            height: '90vh',
+            backgroundSize: "cover",
+        }}>
+            <Box pt={3}>
+			    <RegisterForm />
+            </Box>
 			<center>
 				<button
 					type="button"
@@ -21,7 +27,7 @@ function RegisterPage() {
 					Login
 				</button>
 			</center>
-		</div>
+		</Box>
 	);
 }
 

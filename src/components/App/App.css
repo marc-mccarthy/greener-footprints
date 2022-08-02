@@ -7,6 +7,9 @@ body,
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	margin: 0px;
+    background: rgb(211,210,210);
+    background: linear-gradient(90deg, rgba(211,210,210,1) 0%, rgba(241,240,240,1) 10%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 70%, rgba(241,240,240,1) 90%, rgba(211,210,210,1) 100%);
+    min-height: 100vh;
 
 }
 
@@ -15,6 +18,9 @@ img {
 	max-width: 100%;
 }
 
+.App {
+
+}
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
@@ -134,21 +140,25 @@ Footer
 
 #main-content {
 	flex: 1;
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
 #footer {
-	height: 1.3rem;
-	padding: 0.7rem;
+	height: 1.4rem;
+	padding: .9rem;
 	bottom: 0;
     position: fixed;
 	left: 0;
 	width: 100%;
 	text-align: center;
-	background-color: #059e00;
+	background-color: #150b0b;
 	color: #f2f2f2;
 }
 
 .comp-img {
     height: 30px;
+}
+
+.foot-img {
+    height: 75px;
 }

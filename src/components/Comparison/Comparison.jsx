@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import {Box, Grid, Typography} from '@mui/material';
+import {Box, Button, Grid, Typography} from '@mui/material';
 let footballImg=require('../../images/football.png');
 let toiletImg=require('../../images/toilet.png');
 let octopusImg=require('../../images/octopus.png');
@@ -39,12 +39,12 @@ function Comparison({trips}) {
         <Grid container flexDirection="column" justifyContent='flex-start'>
             <Grid m={1} mb={6} item>
                 <Box>
-                    <Typography variant="h5">You've launched {cleanPounds} pounds of CO2 into the Atmosphere!</Typography>
+                    <Typography color="primary" variant="h4">You've launched {cleanPounds} pounds of CO2 into the Atmosphere!</Typography>
                 </Box>
             </Grid>
             <Grid m={1} item>
                 <Box>
-                    <Typography variant="h6"><img className='comp-img' src={footballImg} alt='football' /> That's {toWeight(totalCarbonPounds, football)} footballs Tom Brady can't deflate.</Typography>
+                    <Typography color="secondary" variant="h6"><img className='comp-img' src={footballImg} alt='football' /> That's {toWeight(totalCarbonPounds, football)} footballs Tom Brady can't deflate.</Typography>
                 </Box>
             </Grid>
             <Grid m={1} item>
@@ -54,7 +54,7 @@ function Comparison({trips}) {
             </Grid>
             <Grid m={1} item>
                 <Box>
-                    <Typography variant="h6"><img className='comp-img' src={octopusImg} alt='octopus' /> That's {toWeight(totalCarbonPounds, octopus)} innocent Octopuses, you jerk.</Typography>
+                    <Typography color="secondary" variant="h6"><img className='comp-img' src={octopusImg} alt='octopus' /> That's {toWeight(totalCarbonPounds, octopus)} innocent Octopuses, you jerk.</Typography>
                 </Box>
             </Grid>
             <Grid m={1} item>
@@ -64,7 +64,7 @@ function Comparison({trips}) {
             </Grid>
             <Grid m={1} item>
                 <Box>
-                    <Typography variant="h6"><img className='comp-img' src={grandPianoImg} alt='grandPiano' /> That's {toWeight(totalCarbonPounds, grandPiano)} of your Grandmother's grand pianos.</Typography>
+                    <Typography color="secondary" variant="h6"><img className='comp-img' src={grandPianoImg} alt='grandPiano' /> That's {toWeight(totalCarbonPounds, grandPiano)} of your Grandmother's grand pianos.</Typography>
                 </Box>
             </Grid>
             <Grid m={1} item>
@@ -74,7 +74,7 @@ function Comparison({trips}) {
             </Grid>
             <Grid m={1} item>
                 <Box>
-                    <Typography variant="h6"><img className='comp-img' src={spaceShuttleImg} alt='spaceShuttle' /> That's {toWeight(totalCarbonPounds, spaceShuttle)} of Elon's space shuttles so we can't escape your rage.</Typography>
+                    <Typography color="secondary" variant="h6"><img className='comp-img' src={spaceShuttleImg} alt='spaceShuttle' /> That's {toWeight(totalCarbonPounds, spaceShuttle)} of Elon's space shuttles so we can't escape your rage.</Typography>
                 </Box>
             </Grid>
             <Grid m={1} item>
@@ -82,6 +82,8 @@ function Comparison({trips}) {
                     <Typography variant="h6"><img className='comp-img' src={blueWhaleImg} alt='blueWhale' /> That's {toWeight(totalCarbonPounds, blueWhale)} Blue Whales dude. Yep, Blue Whales.</Typography>
                 </Box>
             </Grid>
+
+
         </Grid>
     );
 }

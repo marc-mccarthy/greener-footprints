@@ -165,13 +165,13 @@ This app will allow you to see how much carbon is emitted from your specific veh
 
 ## Roadmap
 
--   [ ] Add Jest unit testing
--   [ ] Compare emissions to different vehicles
--   [ ] Add various types of travel
--   [ ] Scale views for different viewports
--   [ ] Add a mobile view
--   [ ] Add dates to your travel
--   [ ] Host on AWS or Dokku/Digital Ocean
+- [ ] Add Jest unit testing
+- [ ] Compare emissions to different vehicles
+- [ ] Add various types of travel
+- [ ] Scale views for different viewports
+- [ ] Add a mobile view
+- [ ] Add dates to your travel
+- [ ] Host on AWS or Dokku/Digital Ocean
 
 See the [open issues](https://github.com/marc-mccarthy/greener-footprints/issues) for a full list of proposed features (and known issues).
 

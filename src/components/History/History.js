@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import LoadingBar from '../LoadingBar/LoadingBar';
 import HistoryButton from '../HistoryButton/HistoryButton';
 import ChartsButton from '../ChartsButton/ChartsButton';
+import NewTripButton from '../NewTripButton/NewTripButton';
 
 function History(props) {
 	const dispatch = useDispatch();
@@ -261,7 +262,7 @@ function History(props) {
 									alignItems='center'
 									spacing={3}
 								>
-									<HistoryButton />
+                                    <NewTripButton />
 									<ChartsButton />
 								</Stack>
 							</Box>

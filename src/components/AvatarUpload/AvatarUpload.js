@@ -13,7 +13,7 @@ function AvatarUpload({ user }) {
 
 	return (
 		<Grid container spacing={3}>
-			<Grid item xs={12}>
+			<Grid m={1} mb={3} item xs={12}>
                 <Avatar
                     alt={user.name}
                     src={user.avatar}

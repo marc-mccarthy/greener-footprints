@@ -1,13 +1,15 @@
 import {useEffect} from 'react';
-import { useSelector } from 'react-redux';
-import {useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import {
     Box,
+    Button,
     Grid,
 } from '@mui/material';
 import AvatarUpload from '../AvatarUpload/AvatarUpload';
 import Comparison from '../Comparison/Comparison';
 import LoadingBar from '../LoadingBar/LoadingBar';
+import SendIcon from '@mui/icons-material/Send';
 
 function UserPage() {
     // PAGE LOAD
@@ -15,6 +17,7 @@ function UserPage() {
         dispatch({type: 'GET_TRIPS_SAGA'});
     }, []);
 
+    const history=useHistory();
     const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
     const userNumber=user.role===0 ? 'Standard User':'Admin';
@@ -27,21 +30,35 @@ function UserPage() {
 					<LoadingBar />
 				</Box>
             ) : (
-                <Box className="container" display="flex" alignItems='center'>
+                <Box display="flex" alignItems='center'>
                     <Grid m={0} container align='center'>
                         <Grid item xs={12}>
                             <Box>
                                 <h2>Welcome, {user.username}!</h2>
                             </Box>
+                                <Box mt={-2}>
+                                    <h4>{userNumber}</h4>
+                                </Box>
                             <Box>
                                 <AvatarUpload user={user} />
                             </Box>
-                            <Box>
-                                <h4>You are logged in as a {userNumber}</h4>
-                            </Box>
                         </Grid>
                     </Grid>
-                    <Comparison trips={trips} />
+                    <Grid mt={10} container>
+                        <Comparison trips={trips} />
+                            <Grid mt={5} container justifyContent="center">
+                                <Button
+                                    size='large'
+                                    onClick={() => history.push('/newtrip')}
+                                    sx={{width: 205}}
+                                    variant='contained'
+                                    startIcon={<SendIcon />}
+                                >
+                                    Wanna be worse?
+                                </Button>
+                            </Grid>
+
+                    </Grid>
                 </Box>
             )}
         </Box>

@@ -38,15 +38,18 @@ function Charts(props) {
 		dispatch({ type: 'GET_TRIPS_SAGA' });
 	}, []);
 
-	let totalEmissions = 0;
+    let totalEmissions = 0;
+	let totalEmissionsPerPerson = 0;
 	const indexedTrips = trips.map((trip, index) => {
 		let carbonPoundsPerson = trip.carbonPounds / trip.passengers;
-		totalEmissions += carbonPoundsPerson;
+		totalEmissions += trip.carbonPounds;
+        totalEmissionsPerPerson += carbonPoundsPerson;
 		return {
 			index: index + 1,
 			...trip,
 			carbonPoundsPerson: carbonPoundsPerson,
-			avgCarbonPoundsPerson: totalEmissions / (index + 1),
+            avgCarbonPounds: totalEmissions / (index + 1),
+			avgCarbonPoundsPerson: totalEmissionsPerPerson / (index + 1),
 		};
 	});
 
@@ -57,7 +60,17 @@ function Charts(props) {
 		datasets: [
 			{
 				type: 'bar',
-				label: 'Per Trip Carbon Pounds',
+				label: 'Per Trip Carbon (lbs)',
+				data: indexedTrips.map(trip => {
+					return trip.carbonPounds;
+				}),
+				backgroundColor: 'rgb(207, 139, 0, 0.2)',
+				borderColor: 'rgb(207, 139, 0, 1)',
+				borderWidth: 1.5,
+			},
+			{
+				type: 'bar',
+				label: 'Your Carbon (lbs)',
 				data: indexedTrips.map(trip => {
 					return trip.carbonPoundsPerson;
 				}),
@@ -67,9 +80,9 @@ function Charts(props) {
 			},
 			{
 				type: 'line',
-				label: 'Moving Average Carbon Pounds',
+				label: 'Per Trip MA Carbon (lbs)',
 				data: indexedTrips.map(trip => {
-					return trip.avgCarbonPoundsPerson;
+					return trip.avgCarbonPounds;
 				}),
 				backgroundColor: 'rgb(255, 0, 0, 0.2)',
 				borderColor: 'rgb(255, 0, 0, 1)',
@@ -77,7 +90,17 @@ function Charts(props) {
 			},
 			{
 				type: 'line',
-				label: 'Average American Daily Carbon Pounds',
+				label: 'Your MA Carbon (lbs)',
+				data: indexedTrips.map(trip => {
+					return trip.avgCarbonPoundsPerson;
+				}),
+				backgroundColor: 'rgb(58, 58, 58, 0.2)',
+				borderColor: 'rgb(58, 58, 58, 1)',
+				borderWidth: 1.5,
+			},
+			{
+				type: 'line',
+				label: 'Average American Daily Carbon (lbs)',
 				data: indexedTrips.map(trip => {
 					return 27.783;
 				}),
@@ -88,6 +111,78 @@ function Charts(props) {
 		],
 	};
 
+    const options = {
+		plugins: {
+			legend: {
+				display: true,
+				labels: {
+					font: {
+						family: 'Arial',
+                        size: 14,
+                        weight: 'bold',
+					},
+				},
+				tooltip: {
+					bodyFont: {
+						family: 'Arial',
+                        size: 14,
+                        weight: 'bold',
+					},
+					titleFont: {
+						family: 'Arial',
+                        size: 14,
+                        weight: 'bold',
+					},
+				},
+			},
+		},
+		tooltips: {
+			backgroundColor: '#f5f5f5',
+			titleFontColor: '#333',
+            titleFontSize: 12,
+			bodyFontColor: '#666',
+			bodySpacing: 4,
+			xPadding: 12,
+			mode: 'nearest',
+			intersect: 0,
+			position: 'nearest',
+		},
+		scales: {
+			yAxes: {
+				barPercentage: 1.6,
+				grid: {
+					display: false,
+					zeroLineColor: 'transparent',
+				},
+				ticks: {
+					suggestedMin: 0,
+					suggestedMax: 125000,
+					padding: 2,
+                    size: 24,
+					backdropPadding: 2,
+					backdropColor: 'rgba(255,255,255,1)',
+					font: {
+						family: 'Arial', // Add your font here to change the font of your y axis
+						size: 14,
+                        weight: 'bold',
+					},
+					major: {
+						enable: true,
+					},
+				},
+			},
+			xAxes: {
+				ticks: {
+					font: {
+						family: 'Arial', // Add your font here to change the font of your x axis
+						size: 12,
+                        weight: 'bold',
+					},
+				},
+			},
+		},
+	};
+
 	return (
 		<Box ml={8} mr={8}>
 			{trips.length === 0 ? (
@@ -96,7 +191,7 @@ function Charts(props) {
 				</Box>
 			) : (
 				<Box display='flex' justifyContent='center' alignItems='center'>
-					<Chart data={data} />
+					<Chart options={options} data={data} />
 				</Box>
 			)}
 		</Box>

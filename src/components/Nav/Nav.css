@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 0 0 15px;
+    padding: 0.2rem;
 	background-color: #059e00;
 	overflow: hidden;
 }
@@ -26,10 +26,10 @@
 	color: #f2f2f2;
 	background-color: #000000;
 	text-align: center;
-	padding: 15px 15px;
+    padding: 1em;
 	text-decoration: none;
 	font-size: 14px;
-	border: none;
+	border: .3px solid #6e6e6e;
 	cursor: pointer;
 	outline: 1;
 }
@@ -44,7 +44,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
 	.Nav-logo {
-		animation: Nav-logo-spin infinite 15s linear;
+		animation: Nav-logo-spin infinite 10s linear;
 	}
 
 }
