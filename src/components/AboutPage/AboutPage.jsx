@@ -53,6 +53,9 @@ function AboutPage() {
                                         <a href="https://www.postgresql.org/">PostgreSQL</a>
                                     </li>
                                     <li>
+                                        <a href="https://expressjs.com/">Express.js</a>
+                                    </li>
+                                    <li>
                                         <a href="https://mui.com/">Material UI</a>
                                     </li>
                                     <li>
