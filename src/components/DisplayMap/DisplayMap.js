@@ -20,24 +20,28 @@ const mapContainerStyle = {
 const libraries = ['places'];
 
 function DisplayMap({ getMap, center, options, zoom }) {
-	const { isLoaded } = useJsApiLoader({
+	const { isLoaded, loadError } = useJsApiLoader({
+		version: 'weekly',
 		libraries,
 	});
 
 	return (
 		<Box
 			mr={10}
-			style={{ height: '49vh', width: '40vw' }}
+			style={{ height: '50vh', width: '40vw' }}
 		>
-			{/* Google Map Box */}
-			<GoogleMap
-				mapContainerStyle={mapContainerStyle}
-				center={center}
-				zoom={zoom}
-				options={options}
-			>
-				{getMap && <DirectionsRenderer directions={getMap} />}
-			</GoogleMap>
+            {isLoaded ? (
+                <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    center={center}
+                    zoom={zoom}
+                    options={options}
+                >
+                    {getMap && <DirectionsRenderer directions={getMap} />}
+                </GoogleMap>
+            ) : (
+                null
+            )}
 		</Box>
 	);
 }

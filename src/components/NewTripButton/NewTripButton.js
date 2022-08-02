@@ -13,7 +13,7 @@ function NewTripButton() {
 			variant='contained'
 			startIcon={<SendIcon />}
 		>
-			New Trip
+			Trip
 		</Button>
 	);
 }

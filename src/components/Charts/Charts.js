@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
 	Chart as ChartJS,
 	LinearScale,
@@ -89,13 +89,15 @@ function Charts(props) {
 	};
 
 	return (
-		<Box ml={5} mr={5}>
+		<Box ml={8} mr={8}>
 			{trips.length === 0 ? (
 				<Box mt={10}>
 					<LoadingBar />
 				</Box>
 			) : (
-				<Chart data={data} />
+				<Box display='flex' justifyContent='center' alignItems='center'>
+					<Chart data={data} />
+				</Box>
 			)}
 		</Box>
 	);

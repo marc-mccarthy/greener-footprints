@@ -17,11 +17,11 @@ function AvatarUpload({ user }) {
                 <Avatar
                     alt={user.name}
                     src={user.avatar}
-                    sx={{ width: 250, height: 250 }}
+                    sx={{ width: 500, height: 500 }}
                 />
 			</Grid>
 			<Grid item xs={12}>
-				<Button sx={{ width: 130 }} size='small' variant='contained'>
+				<Button sx={{ width: 180 }} size='large' variant='contained'>
 					<label>
 						<input
 							onChange={uploadImage}

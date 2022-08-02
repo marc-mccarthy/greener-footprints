@@ -51,6 +51,7 @@ function* updateTrip(action) {
 			});
             yield put({ type: 'GET_MAP_SAGA', payload: updateTrip });
             yield put({ type: 'GET_TRIPS_SAGA' });
+            yield put({ type: 'FIND_TRIP_SAGA', payload: action.payload.id });
 	} catch (error) {
 		console.log('Error in updateTripSaga:', error);
         yield put({ type: 'GET_TRIPS_SAGA' });

@@ -19,7 +19,7 @@
   <h3 align="center">Greener Foot(prints)</h3>
 
   <p align="center">
-    🍃 Travel situation emissions footprint calculator based on variables for how the user travels, with whom, and the route they want to go.
+    🍃 Travel situation emissions footprint calculator based on variables for how the user travels, with whom, and the route they want to go. Great for tracking your combustion footprint.
     <br />
     <a href="https://greener-footprints.herokuapp.com">View Demo</a>
     <br />
@@ -98,9 +98,10 @@ This app will allow you to see how much carbon is emitted from your specific veh
 
 ### Prerequisites
 
+0. This project was tested using Firefox and Chromium browsers.
 1. Setup a free (kinda) account on [Amazon Web Services](https://aws.amazon.com/).
-2. Get a free (sorta) maps API key at [Google Maps Platform](https://developers.google.com/maps/apis-by-platform)
-3. Get a free emissions API key at [Carbon Interface](https://www.carboninterface.com)
+2. Get a free (sorta) maps API key at [Google Maps Platform](https://developers.google.com/maps/apis-by-platform).
+3. Get a free emissions API key at [Carbon Interface](https://www.carboninterface.com).
 4. Clone the repo by HTTPS:
     ```sh
     git clone https://github.com/marc-mccarthy/greener-footprints.git
@@ -193,14 +194,6 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- LICENSE -->
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 <!-- CONTACT -->
 
 ## Contact
@@ -219,10 +212,11 @@ Project Link: [Greener Foot(prints)](https://github.com/marc-mccarthy/greener-fo
 -   [Amazon Web Services Documentation](https://docs.aws.amazon.com/index.html)
 -   [Google Maps Platform Documentation](https://developers.google.com/maps/documentation/)
 -   [Carbon Interface Documentation](https://docs.carboninterface.com/#/)
--   [Material UI Documentation](https://mui.com/material-ui/getting-started/learn/)
 -   [README.md Composing](https://www.welcometothejungle.com/en/articles/btc-readme-documentation-best-practices)
 -   [Stack Overflow](https://stackoverflow.com/)
+-   [Material UI Documentation](https://mui.com/material-ui/getting-started/learn/)
 -   [DB Designer](https://dbdesigner.net/)
+-   [Flaticon](https://www.flaticon.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -230,7 +224,21 @@ Project Link: [Greener Foot(prints)](https://github.com/marc-mccarthy/greener-fo
 
 ## Acknowledgments
 
-I'd like to firstly thank my wife, Jessica! She put on a few hats over my time at Prime and this project wouldn't have nearly the commitment without her. Also, my children Mila, Madden and Reya. They were my inspiration to choose this topic and explore it so heavily. Shout out to my Prime staff and my Dorian cohort as we battled through the trenches together. They have been a wonderful group to grow with and share ideas and knowledge. I'd like to also thank all of you in the open source community for your contributions to projects I explored and got ideas from. Lastly, my dogs Roscoe and Remy, as they kept my feet warm on the late nights of studying!
+I'd like to firstly thank my wife, Jessica! She put on a few hats over my time at Prime and this project wouldn't have nearly the commitment without her. She's been a superhero mom! Also, my children Mila, Madden and Reya. They were my inspiration to choose this topic and explore it so heavily. Shout out to my Prime staff and my Dorian cohort as we battled through the trenches together. They have been a wonderful group to grow with and share ideas and knowledge. I'd like to also thank all of you in the open source community for your contributions to projects I explored and got ideas from. Lastly, my dogs Roscoe and Remy, as they kept my feet warm on the late nights of studying!
+
+#### Credit for icons used:
+
+- <a href="https://www.flaticon.com/free-icons/carbon-dioxide" title="carbon dioxide icons">Carbon dioxide icons created by wanicon - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/carbon-footprint" title="carbon footprint icons">Carbon footprint icons created by Freepik - Flaticon</a>
+- <a href="https://www.flaticon.com/free-icons/co2" title="co2 icons">Co2 icons created by Freepik - Flaticon</a>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

@@ -16,14 +16,13 @@ function Nav(props) {
                 alignItems="center">
                 <Link to="/user">
                     <Avatar
-                        sx={{width: 40, height: 40}}
-
+                        sx={{width: 45, height: 45}}
                         alt={user.name}
                         src={user.avatar}
                     />
                 </Link>
                 <Link to="/newtrip">
-                    <Typography ml={2} variant="h5" color="#fff">
+                    <Typography ml={2} variant="h4" color="#fff">
                         Know your <img src={logo1} className="Nav-logo" alt="co2-logo" /> so you can <img src={logo2} className="Nav-logo" alt="react-logo" /> accordingly
                     </Typography>
                 </Link>
@@ -47,9 +46,6 @@ function Nav(props) {
                             </Link>
                         </>
                     )}
-                    <Link className="navLink" to="/info">
-                        Info
-                    </Link>
                     <Link className="navLink" to="/about">
                         About
                     </Link>

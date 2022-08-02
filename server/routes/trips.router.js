@@ -85,7 +85,7 @@ router.put('/updateTrip', rejectUnauthenticated, (req, res) => {
 		]
 	)
 		.then(response => {
-            console.log('Response:', response);
+            // console.log('Response:', response);
 			res.sendStatus(201);
 		})
 		.catch(error => {

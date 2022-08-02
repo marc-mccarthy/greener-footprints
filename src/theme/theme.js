@@ -43,7 +43,7 @@ const theme = createTheme({
 			fontWeight: 900,
 		},
 		h6: {
-			fontFamily: 'Oleo Script',
+			fontFamily: 'Yeseva One',
 			fontWeight: 900,
 		},
 		p: {

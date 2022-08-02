@@ -26,35 +26,35 @@ function EditTrip(props) {
 	const findTrip = useSelector(store => store.findTrip);
 	const getMap = useSelector(store => store.getMap);
 
-	// If findTrip holds a value, go get the map
-	useEffect(() => {
-		if (findTrip != undefined) {
-			dispatch({ type: 'GET_MAP_SAGA', payload: findTrip });
-		}
-	}, [findTrip]);
-
 	// HOOK ABBREVIATIONS
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	// STATES
-	const [formData, setFormData] = useState({
-		startAddress: '',
-		endAddress: '',
-		passengers: '',
-	});
+	const [formData, setFormData] = useState(
+		{
+			id: findTrip.id,
+			startAddress: '',
+			endAddress: '',
+			passengers: '',
+			model: findTrip.modelId,
+		},
+		[findTrip]
+	);
 	const [showCar, setShowCar] = useState(false);
 
 	// STATES CHANGE WHEN FINDTRIP LOADS
 	useEffect(() => {
 		if (findTrip != undefined) {
-			setFormData({
+            setFormData({
 				id: findTrip.id,
 				startAddress: findTrip.startAddress,
 				endAddress: findTrip.endAddress,
 				passengers: findTrip.passengers,
 				model: findTrip.modelId,
 			});
+            setShowCar(false);
+			dispatch({ type: 'GET_MAP_SAGA', payload: findTrip });
 		}
 	}, [findTrip]);
 
@@ -78,13 +78,14 @@ function EditTrip(props) {
 		if (
 			formData.startAddress === findTrip.startAddress &&
 			formData.endAddress === findTrip.endAddress &&
-			formData.passengers === findTrip.passengers
+			formData.passengers === findTrip.passengers &&
+            formData.model === findTrip.modelId
 		) {
 			alert('No changes were made');
 			return false;
 		}
-		dispatch({ type: 'GET_TRIPS', payload: [] });
-		dispatch({ type: 'FIND_TRIP', payload: [] });
+        setShowCar(!showCar);
+		dispatch({ type: 'FIND_TRIP', payload: {} });
 		dispatch({
 			type: 'UPDATE_TRIP_SAGA',
 			payload: {
@@ -99,8 +100,8 @@ function EditTrip(props) {
 
 	return (
 		<Box className='EditTrip'>
-			{findTrip === undefined ? (
-				<Box display='flex' justifyContent='center' alignItems='center'>
+			{Object.keys(findTrip).length === 0 ? (
+				<Box mt={25} display='flex' justifyContent='center' alignItems='center'>
 					<LoadingBar />
 				</Box>
 			) : (
@@ -192,7 +193,7 @@ function EditTrip(props) {
 								justifyContent='center'
 								alignItems='center'
 							>
-								<Grid item>
+								<Grid mt={2} item>
 									{showCar ? (
 										<Makes
 											formData={formData}
@@ -200,7 +201,7 @@ function EditTrip(props) {
 										/>
 									) : null}
 								</Grid>
-								<Grid item>
+								<Grid mt={2} item>
 									{showCar ? (
 										<Years
 											formData={formData}
@@ -208,7 +209,7 @@ function EditTrip(props) {
 										/>
 									) : null}
 								</Grid>
-								<Grid item>
+								<Grid mt={2} item>
 									{showCar ? (
 										<Models
 											formData={formData}
@@ -229,7 +230,7 @@ function EditTrip(props) {
 							<LoadingBar />
 						</Box>
 					) : (
-						<Box m={3}>
+						<Box>
 							<Box
 								style={{ height: '100%', width: '100%' }}
 								mt={6}

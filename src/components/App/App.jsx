@@ -11,7 +11,6 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -19,7 +18,7 @@ import NewTrip from '../NewTrip/NewTrip';
 import EditTrip from '../EditTrip/EditTrip';
 import History from '../History/History';
 import Charts from '../Charts/Charts';
-import Docs from '../Docs/Docs';
+import Page404 from '../Page404/Page404';
 import './App.css';
 
 function App() {
@@ -47,13 +46,6 @@ function App() {
                         path="/about"
                     >
                         <AboutPage />
-                    </Route>
-                    <Route
-                        // shows Docs Page at all times (logged in or not)
-                        exact
-                        path="/docs"
-                    >
-                        <Docs />
                     </Route>
                     {/* For protected routes, the view could show one of several things on the same route.
                         Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -94,13 +86,6 @@ function App() {
                     >
                         <Charts />
                     </ProtectedRoute>
-                    <ProtectedRoute
-                        // logged in shows InfoPage else shows LoginPage
-                        exact
-                        path="/info"
-                    >
-                        <InfoPage />
-                    </ProtectedRoute>
                     <Route exact path="/login">
                         {user.id? (
                             // If the user is already logged in,
@@ -133,7 +118,7 @@ function App() {
                     </Route>
                     {/* If none of the other routes matched, we will show a 404. */}
                     <Route>
-                        <h1>404</h1>
+                        <Page404 />
                     </Route>
                 </Switch>
             </div>

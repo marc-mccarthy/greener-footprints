@@ -42,7 +42,7 @@ router.post('/avatar', upload.single('file'), (req, res) => {
 		req.file.location, req.user.id,
 	])
 		.then(response => {
-			console.log('Response:', response);
+			// console.log('Response:', response);
 			res.sendStatus(201);
 		})
 		.catch(error => {
