@@ -31,7 +31,7 @@ function AboutPage() {
                     <Grid container direction='column' xs={4}>
                         <Grid item>
                             <Typography variant="h5">
-                                Major Techs Used
+                                Major Techs Used:
                             </Typography>
                         </Grid>
                         <Grid item>
@@ -65,7 +65,7 @@ function AboutPage() {
                     <Grid container direction='column' xs={4}>
                         <Grid item>
                             <Typography variant="h5">
-                                Spike Techs Used
+                                Spike Techs Used:
                             </Typography>
                         </Grid>
                         <Grid item>
@@ -90,7 +90,7 @@ function AboutPage() {
                     <Grid container direction='column' xs={4}>
                         <Grid mb={2} item>
                             <Typography variant="h5">
-                                Future To-Do's
+                                Future To-Do's:
                             </Typography>
                         </Grid>
                         <Typography variant="h6">
@@ -141,7 +141,7 @@ function AboutPage() {
                     </Typography>
                     <Typography variant="body1">
                         <p>
-                            I want to thank Prime and Dev for the amazing opportunity. My cohort for being an amazing and fun group of individuals to engage with, and of course my wife and family for allowing me to pour my time into this. It was a joy to see each of your projects and take part in your sharing of them. Thanks for listening! Now i’ll shoot it back to Dev to see where this train takes us next.
+                            I want to thank Prime and Dev for this amazing opportunity and my cohort for being the fun and energetic group of individuals who I can engage with. Of course, I'd like to thank my wife and family for allowing me to pour my time into this. It was a joy to see each of your projects and take part in your sharing of them. Thanks for listening! Now I’ll shoot it back to Dev to see where this train takes us next.
                         </p>
                     </Typography>
                 </Stack>
