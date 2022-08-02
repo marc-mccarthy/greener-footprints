@@ -61,6 +61,9 @@ function AboutPage() {
                                     <li>
                                         <a href="https://www.passportjs.org/">Passport (Auth)</a>
                                     </li>
+                                    <li>
+                                        <a href="https://www.heroku.com/">Heroku</a>
+                                    </li>
                                 </ul>
                             </Typography>
                         </Grid>
@@ -78,7 +81,10 @@ function AboutPage() {
                                         <a href="https://aws.amazon.com/">Amazon Web Services (IAM S3 Bucket)</a>
                                     </li>
                                     <li>
-                                        <a href="https://mapsplatform.google.com/">Google Maps Platform API</a>
+                                        <a href="https://mapsplatform.google.com/">Google Maps Javascript API</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://mapsplatform.google.com/">Google Maps Directions API</a>
                                     </li>
                                     <li>
                                         <a href="https://www.carboninterface.com/">Carbon Interface API</a>
