@@ -10,10 +10,10 @@ const center = { lat: 36.090794, lng: -115.183952 }; // ALLEGIANT STADIUM. Go Ra
 const mapContainerStyle = {
     height: '100%',
     width: '100%',
-	borderRadius: '40px',
-	border: '1px solid #ccc',
-	boxShadow: '10px 10px 10px #ccc',
-	position: 'relative',
+    borderRadius: '40px',
+    border: '1px solid #ccc',
+    boxShadow: '10px 10px 10px #ccc',
+    position: 'relative',
     padding: '2px',
 };
 
