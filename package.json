@@ -1,6 +1,9 @@
 {
 	"name": "greener-footprints",
 	"version": "0.1.0",
+  "engines": {
+    "npm": "18.x"
+  },
 	"private": true,
 	"proxy": "http://localhost:5001",
 	"dependencies": {
