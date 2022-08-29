@@ -2,7 +2,7 @@
 	"name": "greener-footprints",
 	"version": "0.1.0",
   "engines": {
-    "npm": "18.8.0"
+    "node": "18.8.0"
   },
 	"private": true,
 	"proxy": "http://localhost:5001",
