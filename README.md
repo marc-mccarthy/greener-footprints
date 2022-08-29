@@ -103,6 +103,7 @@ This app will allow you to see how much carbon is emitted from your specific veh
 2. Get a free (sorta) maps API key at [Google Maps Platform](https://developers.google.com/maps/apis-by-platform).
 3. Get a free emissions API key at [Carbon Interface](https://www.carboninterface.com).
 4. Clone the repo by HTTPS:
+
     ```sh
     git clone https://github.com/marc-mccarthy/greener-footprints.git
     ```

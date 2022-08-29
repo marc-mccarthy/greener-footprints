@@ -29,6 +29,7 @@ function Comparison({trips}) {
     const spaceShuttle=160000;
     const blueWhale=310000;
 
+    
     function toWeight(pounds, thing) {
         const weight=pounds/thing;
         const formattedWeight=Number(weight.toFixed(2)).toLocaleString("en-us")
