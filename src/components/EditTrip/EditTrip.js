@@ -102,7 +102,7 @@ function EditTrip(props) {
 		<Box className='EditTrip'>
 			{Object.keys(findTrip).length === 0 ? (
 				<Box mt={25} display='flex' justifyContent='center' alignItems='center'>
-					<LoadingBar />
+          <LoadingBar />
 				</Box>
 			) : (
 				<Box>
