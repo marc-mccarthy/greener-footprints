@@ -11,6 +11,7 @@ function NewTripButton() {
 			onClick={() => history.push('/newtrip')}
 			sx={{ width: 110 }}
 			variant='contained'
+			m={5}
 			startIcon={<SendIcon />}
 		>
 			Trip

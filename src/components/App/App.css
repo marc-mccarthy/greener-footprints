@@ -5,9 +5,9 @@ body,
 }
 
 body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	margin: 0px;
-    min-height: 100vh;
+	min-height: 0vh;
 }
 
 img {
@@ -15,16 +15,10 @@ img {
 	max-width: 100%;
 }
 
-.App {
-
-}
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
 
-.container {
-	padding: 0px;
-}
 
 /* --------------------------------------------------------------------------------
 Button
@@ -114,7 +108,7 @@ input {
 	margin-bottom: 10px;
 }
 
-input[type='file'] {
+input[type="file"] {
 	display: none;
 }
 
@@ -137,14 +131,15 @@ Footer
 
 #main-content {
 	flex: 1;
-    margin-bottom: 0px;
+	margin-bottom: 50px;
+	padding-bottom: 50px;
 }
 
 #footer {
 	height: 1rem;
 	padding: 1rem;
 	bottom: 0;
-    position: fixed;
+	position: fixed;
 	left: 0;
 	width: 100%;
 	text-align: center;
@@ -153,9 +148,9 @@ Footer
 }
 
 .comp-img {
-    height: 30px;
+	height: 30px;
 }
 
 .foot-img {
-    height: 75px;
+	height: 75px;
 }

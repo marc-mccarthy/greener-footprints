@@ -5,7 +5,7 @@ const axios = require("axios");
 
 // POST maps
 router.post("/", (req, res) => {
-	// console.log('MAPS API SERVER req.body:', req.body.directionsUrl + process.env.GOOGLE_MAPS_KEY);
+	console.log('MAPS API SERVER req.body:', req.body.directionsUrl + process.env.REACT_APP_GOOGLE_MAPS_KEY);
 	axios
 		.get(req.body.directionsUrl + process.env.REACT_APP_GOOGLE_MAPS_KEY)
 		.then((response) => {

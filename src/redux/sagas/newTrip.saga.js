@@ -8,12 +8,14 @@ function* newTripSaga() {
 
 function* newTrip(action) {
   try {
+    console.log(action)
     const directionsService = new google.maps.DirectionsService();
     const directionsResponse = yield directionsService.route({
       origin: action.payload.startAddress,
       destination: action.payload.endAddress,
       travelMode: google.maps.TravelMode.DRIVING,
     });
+    console.log('trstarstarstatar', directionsResponse)
     yield put({ type: 'GET_MAP', payload: directionsResponse });
 
     // CARBON INTERFACE API RESPONSE TO SERVER
