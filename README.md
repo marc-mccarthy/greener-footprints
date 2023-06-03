@@ -199,7 +199,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## Contact
 
-Marc McCarthy - [LinkedIn](https://linkedin.com/in/the-marc-mccarthy) - [Gmail](mailto:marstheory20@gmail.com)
+Marc McCarthy - [LinkedIn](https://linkedin.com/in/the-marc-mccarthy)
 
 Project Link: [Greener Foot(prints)](https://github.com/marc-mccarthy/greener-footprints)
 
