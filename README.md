@@ -1,11 +1,5 @@
 <div id="top"></div>
 
-<!-- PROJECT SHIELDS -->
-
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Gmail][gmail-shield]][gmail-url]
-
 <!-- PROJECT LOGO -->
 
 <br />
@@ -21,7 +15,7 @@
   <p align="center">
     🍃 Travel situation emissions footprint calculator based on variables for how the user travels, with whom, and the route they want to go. Great for tracking your combustion footprint.
     <br />
-    <a href="https://greener-footprints.herokuapp.com">View Demo</a>
+    <a href="https://greener-footprints.marcmccarthy.io">View Demo</a>
     <br />
     <a href="https://github.com/marc-mccarthy/greener-footprints"><strong>Explore the docs »</strong></a>
     <br />
